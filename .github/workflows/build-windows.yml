@@ -35,16 +35,35 @@ jobs:
       - name: Install dependencies, test, and build
         shell: pwsh
         env:
+          PYTHONUTF8: 1
           MSYS_ROOT: ${{ steps.msys.outputs.msys2-location }}
         run: |
           $env:CAIRO_DLL_DIR = Join-Path $env:MSYS_ROOT 'mingw64/bin'
-          $env:PATH = "$env:CAIRO_DLL_DIR;$env:PATH"
+          $env:PATH = "$env:PATH;$env:CAIRO_DLL_DIR"
           python -m pip install -r requirements-dev.txt -r requirements-desktop.txt
           npm ci
           npm test
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           npm run dist:win
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Smoke-test packaged backend and PDF
+        shell: pwsh
+        run: |
+          $p = Start-Process -FilePath './dist/server/naqsh-server.exe' -ArgumentList '--host','127.0.0.1','--port','18765' -PassThru -RedirectStandardOutput backend-out.log -RedirectStandardError backend-error.log
+          try {
+            $ready = $false
+            for ($i=0; $i -lt 60; $i++) {
+              try { $h = Invoke-RestMethod 'http://127.0.0.1:18765/api/health'; if ($h.ok) { $ready=$true; break } } catch {}
+              if ($p.HasExited) { Get-Content backend-error.log; throw "Packaged backend exited early" }
+              Start-Sleep -Seconds 1
+            }
+            if (-not $ready) { Get-Content backend-error.log; throw "Backend did not become ready" }
+            $body = @{svg='<svg xmlns="http://www.w3.org/2000/svg" width="10mm" height="10mm"><rect width="10" height="10" fill="red"/></svg>'} | ConvertTo-Json
+            Invoke-WebRequest 'http://127.0.0.1:18765/api/export/pdf' -Method Post -ContentType 'application/json' -Body $body -OutFile smoke.pdf
+            $bytes = [System.IO.File]::ReadAllBytes((Join-Path $PWD 'smoke.pdf'))
+            if ([System.Text.Encoding]::ASCII.GetString($bytes,0,4) -ne '%PDF') { throw 'Invalid PDF' }
+            Write-Host 'Packaged backend health and PDF export passed'
+          } finally { Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue }
       - name: Upload installer artifact
         uses: actions/upload-artifact@v4
         with:
