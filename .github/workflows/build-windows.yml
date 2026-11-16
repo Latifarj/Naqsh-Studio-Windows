@@ -44,7 +44,7 @@ jobs:
           npm ci
           npm test
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          npm run dist:win
+          npm run dist:win -- --publish never
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Smoke-test packaged backend and PDF
         shell: pwsh
