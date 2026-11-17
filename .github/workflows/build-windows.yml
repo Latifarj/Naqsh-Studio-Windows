@@ -17,7 +17,7 @@ jobs:
         run: |
           if (Test-Path 'technical-update.zip') {
             $hash = (Get-FileHash 'technical-update.zip' -Algorithm SHA256).Hash.ToLower()
-            if ($hash -ne '7c3cfb3436c18341447f248770fd41148c541c97b444ff0f6719e5505705366d') { throw 'Source archive checksum mismatch' }
+            if ($hash -ne 'a0c0cf970e41aa65a71c6a303e8080c28345a4020c129c949f84e5a84a04e9d8') { throw 'Source archive checksum mismatch' }
             Add-Type -AssemblyName System.IO.Compression.FileSystem
             $zip = [System.IO.Compression.ZipFile]::OpenRead((Join-Path $PWD 'technical-update.zip'))
             try {
@@ -52,7 +52,7 @@ jobs:
         with:
           msystem: MINGW64
           update: true
-          install: mingw-w64-x86_64-cairo
+          install: mingw-w64-x86_64-cairo mingw-w64-x86_64-fribidi
       - name: Install dependencies, test, and build
         shell: pwsh
         env:
@@ -62,6 +62,9 @@ jobs:
           $env:CAIRO_DLL_DIR = Join-Path $env:MSYS_ROOT 'mingw64/bin'
           $env:PATH = "$env:PATH;$env:CAIRO_DLL_DIR"
           python -m pip install -r requirements-dev.txt -r requirements-desktop.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -c "import server; from PIL import features; assert features.check('raqm'), 'RAQM/FriBidi is required for Persian labels'"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           npm ci
           npm test
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
