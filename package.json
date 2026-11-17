@@ -9,7 +9,7 @@
     "desktop": "electron .",
     "build:server": "pyinstaller --noconfirm --clean --distpath dist/server desktop/server.spec",
     "dist:win": "npm run build:server && electron-builder --win nsis --x64",
-    "test": "node tests/engine.test.js && node tests/project-store.test.js && node tests/web-unit-labels.test.js && node illustrator/tests/test.js && node tests/desktop-config.test.js && python3 -m pytest -q tests/test_server.py tests/test_catalog_curation.py"
+    "test": "node tests/engine.test.js && node tests/project-store.test.js && node tests/app-persistence.test.js && node tests/web-unit-labels.test.js && node illustrator/tests/test.js && node tests/desktop-config.test.js && python3 -m pytest -q tests/test_server.py tests/test_catalog_curation.py"
   },
   "license": "UNLICENSED",
   "devDependencies": {
