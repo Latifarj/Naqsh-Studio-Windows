@@ -18,14 +18,28 @@ import re
 import sys
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import unquote, urlsplit
-from xml.etree.ElementTree import Element
+from xml.etree.ElementTree import Element, register_namespace
+
+# Pillow's Windows wheels load FriBidi dynamically. Keep DLL search handles
+# alive and preload only the bundled/runtime copy, never a download at startup.
+ROOT = Path(getattr(sys, '_MEIPASS', Path(__file__).resolve().parent))
+_DLL_HANDLES = []
+if sys.platform == 'win32':
+    import ctypes
+    import os
+    for _dll_dir in (ROOT, Path(os.environ.get('CAIRO_DLL_DIR', str(ROOT)))):
+        if _dll_dir.is_dir():
+            _DLL_HANDLES.append(os.add_dll_directory(str(_dll_dir)))
+            _fribidi = _dll_dir / 'libfribidi-0.dll'
+            if _fribidi.is_file():
+                _DLL_HANDLES.append(ctypes.WinDLL(str(_fribidi)))
+                break
 
 import cairosvg
 import pymupdf as fitz
 from defusedxml import ElementTree as ET
 from PIL import Image, ImageDraw, ImageFont, ImageOps, features
 
-ROOT = Path(getattr(sys, '_MEIPASS', Path(__file__).resolve().parent))
 MAX_REQUEST = 50 * 1024 * 1024
 MAX_IMAGE = 20 * 1024 * 1024
 PRINT_PROFILE = 'technical-bw-v1'
@@ -33,6 +47,8 @@ BW_THRESHOLD = 128
 MIN_PRINT_PPI = 300
 PRINT_DPI = 600
 SVG_NS = 'http://www.w3.org/2000/svg'
+register_namespace('', SVG_NS)
+register_namespace('xlink', 'http://www.w3.org/1999/xlink')
 ALLOWED_TAGS = {
     'svg', 'g', 'defs', 'clipPath', 'polygon', 'polyline', 'path', 'rect',
     'image', 'title', 'desc', 'text', 'tspan', 'line', 'circle', 'ellipse',
@@ -329,10 +345,16 @@ def _verify_raster_placement_resolution(root, minimum_ppi: int = MIN_PRINT_PPI) 
     for node in root.iter():
         if local_name(node.tag) != 'image':
             continue
-        if node.get('data-raster', 'true').lower() == 'false':
-            continue
         href = next((node.get(key) for key in node.attrib if local_name(key).lower() == 'href'), '')
         match = DATA_IMAGE.fullmatch(href or '')
+        if node.get('data-raster', 'true').lower() == 'false':
+            if not match or match.group(1).lower() != 'svg+xml':
+                raise ValueError('دارایی برداری باید SVG جاسازی‌شدهٔ واقعی باشد.')
+            raw_svg = base64.b64decode(re.sub(r'\s+', '', match.group(2)), validate=True)
+            vector_root = ET.fromstring(raw_svg, forbid_dtd=True, forbid_entities=True, forbid_external=True)
+            if any(local_name(child.tag) == 'image' for child in vector_root.iter()):
+                raise ValueError('SVG حاوی تصویر توکار برای PDF فنی پشتیبانی نمی‌شود؛ نقش را برداری خالص یا تصویر PNG/JPEG مستقل با وضوح کافی وارد کنید.')
+            continue
         if not match or match.group(1).lower() == 'svg+xml':
             raise ValueError('تصویر raster برای کنترل وضوح باید یک دارایی جاسازی‌شدهٔ پیکسلی باشد.')
         try:

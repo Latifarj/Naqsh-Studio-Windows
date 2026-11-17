@@ -458,11 +458,38 @@
     const forbidden = 'script,style,foreignObject,iframe,object,embed,link'.split(','); forbidden.forEach(tag => documentNode.querySelectorAll(tag).forEach(node => node.remove()));
     documentNode.querySelectorAll('*').forEach(node => [...node.attributes].forEach(attribute => {
       const name = attribute.name.toLowerCase(); const value = attribute.value.trim();
-      if (name.startsWith('on') || ['href', 'xlink:href'].includes(name) && (!/^#[A-Za-z0-9_.:-]+$/.test(value))) node.removeAttribute(attribute.name);
-      if (name === 'style' || /url\s*\(|https?:|\/\//i.test(value)) node.removeAttribute(attribute.name);
+      const safeDataImage = /^data:image\/(png|jpeg|jpg|webp|gif|svg\+xml);base64,[A-Za-z0-9+/=\r\n]+$/i.test(value);
+      if (name.startsWith('on') || ['href', 'xlink:href'].includes(name) && !/^#[A-Za-z0-9_.:-]+$/.test(value) && !safeDataImage) node.removeAttribute(attribute.name);
+      if ((name === 'style' || /url\s*\(|https?:|\/\//i.test(value)) && !safeDataImage) node.removeAttribute(attribute.name);
     }));
     const svg = documentNode.documentElement; if (svg.tagName.toLowerCase() !== 'svg') throw new Error('ریشه SVG معتبر نیست.');
     return new XMLSerializer().serializeToString(svg);
+  }
+  function decodeSvgSource(source) {
+    const value = String(source || '');
+    const match = /^data:image\/svg\+xml(?:;[^,]*)?;base64,([\s\S]*)$/i.exec(value);
+    if (!match) return value;
+    const binary = atob(match[1].replace(/[\r\n\s]/g, ''));
+    const encoded = Array.from(binary, character => `%${character.charCodeAt(0).toString(16).padStart(2, '0')}`).join('');
+    return decodeURIComponent(encoded);
+  }
+  function encodeSvgDataUri(text) { return `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(text)))}`; }
+  function cropSvg(source, x, y, w, h, naturalWidth, naturalHeight) {
+    const parser = new DOMParser(); const documentNode = parser.parseFromString(decodeSvgSource(source), 'image/svg+xml');
+    if (documentNode.querySelector('parsererror')) throw new Error('SVG خراب است.');
+    const svg = documentNode.documentElement;
+    const viewBox = (svg.getAttribute('viewBox') || '').trim().split(/[ ,]+/).map(Number);
+    const hasViewBox = viewBox.length === 4 && viewBox.every(Number.isFinite) && viewBox[2] > 0 && viewBox[3] > 0;
+    const baseWidth = naturalWidth > 0 ? naturalWidth : (hasViewBox ? viewBox[2] : w);
+    const baseHeight = naturalHeight > 0 ? naturalHeight : (hasViewBox ? viewBox[3] : h);
+    const ux = hasViewBox ? viewBox[0] + x / baseWidth * viewBox[2] : x;
+    const uy = hasViewBox ? viewBox[1] + y / baseHeight * viewBox[3] : y;
+    const uw = hasViewBox ? w / baseWidth * viewBox[2] : w;
+    const uh = hasViewBox ? h / baseHeight * viewBox[3] : h;
+    svg.setAttribute('viewBox', `${ux} ${uy} ${uw} ${uh}`);
+    svg.setAttribute('width', String(w)); svg.setAttribute('height', String(h));
+    svg.setAttribute('preserveAspectRatio', 'none');
+    return encodeSvgDataUri(sanitizeSvg(new XMLSerializer().serializeToString(svg)));
   }
 
   function readImage(file) {
@@ -501,8 +528,11 @@
     if (x < 0 || y < 0 || w <= 0 || h <= 0 || x + w > image.naturalWidth || y + h > image.naturalHeight) { toast('مستطیل pixel خارج از تصویر است.'); return; }
     const physicalW = parseMm($('#physicalW').value), physicalH = parseMm($('#physicalH').value);
     if (!(physicalW > 0 && physicalH > 0)) { toast('عرض و ارتفاع واقعی نقش را وارد کنید؛ اندازهٔ کاتالوگ به‌عنوان اندازهٔ تولید فرض نمی‌شود.'); return; }
-    const canvas = document.createElement('canvas'); canvas.width = w; canvas.height = h; canvas.getContext('2d').drawImage(image, x, y, w, h, 0, 0, w, h);
-    const data = canvas.toDataURL('image/png'); const motif = calibration.motif; const reviewed = $('#calibrationReviewed').checked; motif.sourceAsset = motif.sourceAsset || motif.asset; motif.asset = data; motif.widthMm = physicalW; motif.heightMm = physicalH; motif.pixelWidth = w; motif.pixelHeight = h; motif.needsCalibration = !reviewed; motif.codeVerified = reviewed; motif.physicalDimensionsReviewed = reviewed; motif.associationReview = !reviewed; motif.associationIssues = reviewed ? [] : ['physical dimensions and code/image association remain unconfirmed']; motif.calibrationReviewedAt = reviewed ? new Date().toISOString() : null; motif.productionApproved = false; motif.variants = motif.variants || []; motif.calibrationOverride = { asset: data, widthMm: motif.widthMm, heightMm: motif.heightMm, pixelWidth: w, pixelHeight: h, crop: { x, y, width: w, height: h }, referenceCollection: $('#calibrationCollection').value || null }; state.customAssets[motif.code] = data; saveLocal(false); $('#calibrationDialog').close(); commit(); toast(reviewed ? 'ابعاد واقعی و تطبیق کد/تصویر ثبت شد؛ تأیید نهایی تولید جداگانه است.' : 'اندازه ذخیره شد؛ نقش همچنان برای تولید تأیید نشده است.');
+    const isVector = /^data:image\/svg\+xml(?:;|$)/i.test(calibration.source) || /\.svg(?:$|[?#])/i.test(calibration.source);
+    const data = isVector ? cropSvg(calibration.source, x, y, w, h, image.naturalWidth, image.naturalHeight) : (() => {
+      const canvas = document.createElement('canvas'); canvas.width = w; canvas.height = h; canvas.getContext('2d').drawImage(image, x, y, w, h, 0, 0, w, h);
+      return canvas.toDataURL('image/png');
+    })(); const motif = calibration.motif; const reviewed = $('#calibrationReviewed').checked; motif.sourceAsset = motif.sourceAsset || motif.asset; motif.asset = data; motif.widthMm = physicalW; motif.heightMm = physicalH; motif.pixelWidth = isVector ? 0 : w; motif.pixelHeight = isVector ? 0 : h; motif.needsCalibration = !reviewed; motif.codeVerified = reviewed; motif.physicalDimensionsReviewed = reviewed; motif.associationReview = !reviewed; motif.associationIssues = reviewed ? [] : ['physical dimensions and code/image association remain unconfirmed']; motif.calibrationReviewedAt = reviewed ? new Date().toISOString() : null; motif.productionApproved = false; motif.variants = motif.variants || []; motif.calibrationOverride = { asset: data, widthMm: motif.widthMm, heightMm: motif.heightMm, pixelWidth: motif.pixelWidth, pixelHeight: motif.pixelHeight, crop: { x, y, width: w, height: h }, referenceCollection: $('#calibrationCollection').value || null }; state.customAssets[motif.code] = data; saveLocal(false); $('#calibrationDialog').close(); commit(); toast(reviewed ? 'ابعاد واقعی و تطبیق کد/تصویر ثبت شد؛ تأیید نهایی تولید جداگانه است.' : 'اندازه ذخیره شد؛ نقش همچنان برای تولید تأیید نشده است.');
   }
 
   let pendingProductionExport = null;

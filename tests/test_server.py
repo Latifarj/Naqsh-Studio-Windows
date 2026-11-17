@@ -79,6 +79,25 @@ def test_print_profile_rejects_unshaped_text_in_svg_motif_assets():
         make_pdf(svg(art), 100, 50)
 
 
+def test_print_profile_preserves_true_vector_motif_without_rasterizing():
+    nested = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M1 1 H9 V9 H1Z" fill="none" stroke="black" stroke-width="0.1"/></svg>'
+    uri = 'data:image/svg+xml;base64,' + base64.b64encode(nested.encode()).decode()
+    art = f'<defs><image id="motif" data-raster="false" x="-0.5" y="-0.5" width="1" height="1" xlink:href="{uri}"/></defs><use xlink:href="#motif" data-output-width-mm="10" data-output-height-mm="10" transform="translate(15 15) scale(10 10)"/>'
+    document = fitz.open(stream=make_pdf(svg(art), 100, 50), filetype='pdf')
+    assert document[0].get_drawings()
+    assert not document[0].get_images(full=True)
+
+
+def test_vector_flag_cannot_bypass_raster_resolution_checks():
+    raster = image_data()
+    with pytest.raises(ValueError, match='برداری'):
+        make_pdf(svg(f'<image data-raster="false" width="100" height="50" xlink:href="{raster}"/>'), 100, 50)
+    nested = f'<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><image width="10" height="10" href="{raster}"/></svg>'
+    uri = 'data:image/svg+xml;base64,' + base64.b64encode(nested.encode()).decode()
+    with pytest.raises(ValueError, match='تصویر توکار'):
+        make_pdf(svg(f'<image data-raster="false" width="100" height="50" xlink:href="{uri}"/>'), 100, 50)
+
+
 @pytest.mark.parametrize('art', [
     '<defs><linearGradient id="g"><stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient></defs><rect width="10" height="10" fill="url(#g)"/>',
     '<defs><mask id="m"><rect width="10" height="10" fill="white"/></mask></defs><rect width="10" height="10" mask="url(#m)"/>'

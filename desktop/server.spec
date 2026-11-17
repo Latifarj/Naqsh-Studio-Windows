@@ -19,15 +19,15 @@ def cairo_binaries():
     if not dll_dir.is_dir():
         raise RuntimeError('Set CAIRO_DLL_DIR to the MSYS2 mingw64/bin directory before building Windows.')
 
-    # cairocffi loads Cairo through CFFI at runtime, so PyInstaller cannot infer
-    # these native imports. Bundle cairo and its non-system DLL dependency tree.
+    # Cairo and Pillow/FriBidi use dynamic loading, so PyInstaller cannot infer
+    # these native imports. Bundle both non-system DLL dependency trees.
     try:
         import pefile
     except ImportError as exc:
         raise RuntimeError('PyInstaller pefile dependency is required to collect Cairo DLLs.') from exc
 
     available = {item.name.lower(): item for item in dll_dir.glob('*.dll')}
-    pending = ['libcairo-2.dll']
+    pending = ['libcairo-2.dll', 'libfribidi-0.dll']
     found = {}
     system_dlls = {
         'advapi32.dll', 'bcrypt.dll', 'comdlg32.dll', 'gdi32.dll', 'imm32.dll',
@@ -50,8 +50,9 @@ def cairo_binaries():
             dependency = entry.dll.decode('ascii', errors='ignore').lower()
             if dependency in available and dependency not in found:
                 pending.append(dependency)
-    if 'libcairo-2.dll' not in found:
-        raise RuntimeError(f'libcairo-2.dll was not found in {dll_dir}')
+    for required in ('libcairo-2.dll', 'libfribidi-0.dll'):
+        if required not in found:
+            raise RuntimeError(f'{required} was not found in {dll_dir}')
     return [(str(file), '.') for file in found.values()]
 
 binaries = cairo_binaries()
@@ -60,6 +61,10 @@ datas = [
     (str(PROJECT_ROOT / 'shared'), 'shared'),
     (str(PROJECT_ROOT / 'assets'), 'assets'),
 ]
+if sys.platform == 'win32':
+    licenses = Path(os.environ['CAIRO_DLL_DIR']).parent / 'share' / 'licenses'
+    if licenses.is_dir():
+        datas.append((str(licenses), 'third-party-licenses'))
 hiddenimports = collect_submodules('cairosvg') + collect_submodules('cairocffi')
 a = Analysis(
     [str(PROJECT_ROOT / 'server.py')],
