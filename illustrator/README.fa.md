@@ -6,14 +6,14 @@
 
 - برای پنل CEP، `host/index.jsx` فقط `lib/engine.js` و توابع `Naqsh.jsx` را load می‌کند و dialog را خودکار باز نمی‌کند. پنل می‌تواند exchange JSON وب را با `Naqsh_import` یا عملیات مستقیم کد/ابعاد را با `Naqsh_importDirect` اجرا کند.
 - برای اجرای واقعی از **File > Scripts > Other Script...** فایل `standalone.jsx` را انتخاب کنید؛ این entry dialog انتخاب exchange را باز می‌کند. `Naqsh.jsx` خودِ کتابخانهٔ host است.
-- exchange قابل‌حمل فقط `data:image/png;base64,...` را می‌پذیرد. decoder واقعی base64 به بایت است (encoder نیست) و فایل موقت را فقط بعد از `embed()` حذف می‌کند.
+- exchange خودبسندهٔ نسخهٔ ۱ و ۲ را می‌پذیرد؛ دارایی‌های Illustrator همچنان باید `data:image/png;base64,...` باشند. decoder واقعی base64 به بایت است (encoder نیست) و فایل موقت را فقط بعد از `embed()` حذف می‌کند.
 - direct local فقط با `libraryRoot` صریح و مسیر نسبی `assets/motifs/*.png` مجاز است و `assets/library.json` را از همان root می‌خواند. URI خارجی، `file://`، `..` و هر فایل بیرون root رد می‌شود. JPG/JPEG و SVG در native importer پشتیبانی نمی‌شوند؛ پیام محدودیت شفاف نمایش داده می‌شود.
 
 ## ایمنی و هندسه
 
-قبل از ایجاد document، format/version، همهٔ عددها، نقاط، regionها، placementها، count و اندازهٔ شیت بررسی می‌شوند؛ سقف شیت ۵۷۷۹ میلی‌متر و placement برابر ۱۰۰۰۰ است. manifest تولیدشده از shared engine مستقیماً مصرف می‌شود: quantity دوباره تکرار نمی‌شود، `manifest.points` شکل واقعی section است و `layer.region` ناحیهٔ clipping است. clipping pathهای native برای section و region ساخته می‌شوند. placementهای native پس از embed دوباره استفاده نمی‌شوند. در خطا سند تازهٔ نیمه‌ساخته بدون ذخیره بسته می‌شود؛ سند قبلی دست‌نخورده می‌ماند.
+قبل از ایجاد document، format/version، همهٔ عددها، نقاط، regionها، placementها، count و اندازهٔ شیت بررسی می‌شوند؛ سقف شیت ۵۷۷۹ میلی‌متر و placement برابر ۱۰۰۰۰ است. manifest تولیدشده از shared engine مستقیماً مصرف می‌شود: quantity دوباره تکرار نمی‌شود، `manifest.points` شکل واقعی section است و `layer.region` ناحیهٔ clipping است. چرخش ۹۰ درجهٔ قطعه به‌صورت گروه بومی اعمال می‌شود. clipping pathهای native برای section و region ساخته می‌شوند. placementهای native پس از embed دوباره استفاده نمی‌شوند. در خطا سند تازهٔ نیمه‌ساخته بدون ذخیره بسته می‌شود؛ سند قبلی دست‌نخورده می‌ماند.
 
-`lib/engine.js` کپی بسته‌بندی‌شدهٔ `shared/engine.js` است و direct layout از همان engine استفاده می‌کند؛ فایل را هنگام assemble از root پروژه به‌روزرسانی کنید.
+`lib/engine.js` نسخهٔ بسته‌بندی‌شدهٔ `shared/engine.js` است؛ تست اصلی تفاوت بایت‌به‌بایت دو فایل را رد می‌کند تا drift ناخواسته آشکار شود.
 
 ## نصب توسعه‌ای Windows / macOS
 
@@ -32,7 +32,7 @@ node --check illustrator/client/app.js
 node --check illustrator/lib/engine.js
 ```
 
-این ۱۰ تست، parser، decoder بایت PNG، اعتبارسنجی قبل از ساخت سند، ماسک و مختصات قطعهٔ دوم، قرینهٔ کل قطعه، حالت مستقیم با موتور مشترک، حفظ فایل اصلی و پاک‌سازی پس از خطای embed را با مدل API بررسی می‌کنند. Illustrator در این محیط در دسترس نیست؛ بنابراین هیچ ادعای اجرای واقعی `app.documents`, native clipping یا `embed()` داخل Illustrator مطرح نمی‌شود. SVG سفارشی و rasterهای JPG/JPEG در این importer عمداً رد می‌شوند، نه اینکه موفقیت جعلی گزارش شود.
+این تست‌ها parser، decoder بایت PNG، اعتبارسنجی قبل از ساخت سند، ماسک و مختصات، قرینهٔ قطعه، ورود نسخهٔ ۲ و چرخش گروه را با مدل API بررسی می‌کنند. Illustrator در این محیط در دسترس نیست؛ بنابراین هیچ ادعای اجرای واقعی `app.documents`, native clipping یا `embed()` داخل Illustrator مطرح نمی‌شود. SVG سفارشی و rasterهای JPG/JPEG در این importer عمداً رد می‌شوند، نه اینکه موفقیت جعلی گزارش شود.
 
 ## منابع
 
