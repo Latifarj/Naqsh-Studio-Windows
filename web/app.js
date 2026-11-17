@@ -10,11 +10,14 @@
 
   const state = {
     library: { version: 1, motifs: [], sets: [] },
+    baseLibrary: { version: 1, motifs: [], sets: [] },
     project: null,
     selectedSection: null,
     selectedLayer: null,
     history: [],
     future: [],
+    store: null,
+    projectId: null,
     visible: 24,
     zoom: 1,
     unit: 'mm',
@@ -22,6 +25,9 @@
     customAssets: {},
     warnings: []
   };
+  let autoSaveTimer = null;
+  let saveQueue = Promise.resolve();
+  let projectListCache = [];
 
   function toast(message) {
     const node = $('#toast');
@@ -47,7 +53,7 @@
 
   function commit() {
     renderAll();
-    saveLocal(false);
+    scheduleSave();
   }
 
   function makeFallback() {
@@ -62,6 +68,11 @@
     const p = clone(project);
     p.version = 1;
     p.name = String(p.name || 'سفارش جدید');
+    p.createdAt = p.createdAt || new Date().toISOString();
+    p.updatedAt = new Date().toISOString();
+    p.customerName = String(p.customerName || '');
+    p.orderNumber = String(p.orderNumber || '');
+    p.status = /^(draft|approved|print-ready|delivered)$/.test(p.status) ? p.status : 'draft';
     p.sheet = Object.assign({ widthMm: 1000, heightMm: 700, autoHeight: false, gutterMm: 12, marginMm: 10 }, p.sheet || {});
     p.sections = Array.isArray(p.sections) ? p.sections : [];
     p.sections.forEach(section => {
@@ -79,49 +90,108 @@
   }
 
   async function load() {
+    state.store = window.NaqshProjectStore?.create();
     try {
       const response = await fetch('/assets/library.json');
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      state.library = await response.json();
-      $('#statusPill').textContent = `کتابخانه ${fa(state.library.motifs?.length || 0)} نقش`;
+      state.baseLibrary = await response.json();
+      state.library = clone(state.baseLibrary);
+      $('#statusPill').textContent = `بتا ۱.۱ · ${fa(state.library.motifs?.length || 0)} نقش`;
       $('#statusPill').classList.add('ok');
     } catch (error) {
       $('#statusPill').textContent = 'خطا در بارگذاری کتابخانه';
       $('#renderMessage').textContent = `library.json در دسترس نیست: ${error.message}`;
     }
 
-    const saved = readLocal();
-    if (saved?.project) {
-      state.project = normalizeProject(saved.project);
-      state.customAssets = saved.customAssets || {};
-      mergeLibrary(saved.library);
+    if (state.store) {
+      try {
+        projectListCache = await state.store.list();
+        let activeId = null;
+        try { activeId = localStorage.getItem('naqsh-active-project-id'); } catch (_) {}
+        let saved = activeId ? await state.store.get(activeId) : null;
+        if (!saved && projectListCache.length) saved = await state.store.get(projectListCache[0].id);
+        if (saved) {
+          state.projectId = saved.id;
+          const migrated = state.store.migrate(JSON.parse(saved.data));
+          state.project = normalizeProject(migrated.project);
+          state.customAssets = migrated.customAssets || migrated.assets || {};
+          mergeLibrary(migrated.library);
+        }
+      } catch (error) { toast(`بازکردن پروژه‌های ذخیره‌شده ناموفق بود: ${error.message}`); }
     }
-    if (!state.project) state.project = makeFallback();
+    if (!state.project) {
+      const old = readLocal();
+      state.library = clone(state.baseLibrary);
+      if (old?.project) {
+        state.project = normalizeProject(old.project);
+        state.customAssets = old.customAssets || {};
+        mergeLibrary(old.library);
+      } else state.project = makeFallback();
+      state.projectId = uid('project-');
+      await saveLocal(false);
+    }
+    try { localStorage.setItem('naqsh-active-project-id', state.projectId); } catch (_) {}
     selectFirst();
     renderAll();
+    await refreshProjectList();
   }
 
   function readLocal() {
     try { return JSON.parse(localStorage.getItem('naqsh-project')); } catch (_) { return null; }
   }
 
-  function saveLocal(notify = true) {
+  function projectPayload() {
+    const envelope = window.NaqshProjectStore.makeEnvelope(state.project);
+    envelope.library = { version: 1, motifs: (state.library.motifs || []).filter(m => String(m.code).startsWith('CUSTOM-') || m.calibrationOverride || state.customAssets[m.code]) };
+    envelope.customAssets = state.customAssets;
+    return envelope;
+  }
+
+  async function saveLocal(notify = true) {
+    clearTimeout(autoSaveTimer);
+    if (!state.store) { toast('پایگاه پروژه در دسترس نیست؛ فایل JSON را پشتیبان بگیرید.'); return false; }
+    state.project.updatedAt = new Date().toISOString();
+    const id = state.projectId; const payload = clone(projectPayload());
+    const operation = saveQueue.then(() => state.store.save(id, payload));
+    saveQueue = operation.catch(() => {});
     try {
-      localStorage.setItem('naqsh-project', JSON.stringify({
-        project: state.project,
-        library: { version: 1, motifs: (state.library.motifs || []).filter(m => String(m.code).startsWith('CUSTOM-')) },
-        customAssets: state.customAssets
-      }));
-      if (notify) toast('پروژه، نقش‌های سفارشی و overrideها در مرورگر ذخیره شد.');
-    } catch (error) {
-      toast(`ذخیره محلی ناموفق (احتمالاً سهمیه پر است): ${error.message}`);
-    }
+      await operation;
+      try { localStorage.setItem('naqsh-active-project-id', state.projectId); } catch (_) {}
+      if (notify) toast('پروژه در پایگاه محلی ذخیره شد.');
+      await refreshProjectList(); return true;
+    } catch (error) { toast(`ذخیره ناموفق بود: ${error.message}`); return false; }
+  }
+
+  function scheduleSave() {
+    clearTimeout(autoSaveTimer);
+    autoSaveTimer = window.setTimeout(() => { saveLocal(false); }, 450);
+  }
+
+  async function refreshProjectList() {
+    if (!state.store) return;
+    try {
+      projectListCache = await state.store.list();
+      const box = $('#projectList');
+      const term = ($('#projectSearch').value || '').trim().toLowerCase();
+      box.replaceChildren();
+      projectListCache.filter(item => !term || [item.name, item.customerName, item.orderNumber].join(' ').toLowerCase().includes(term)).forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.id;
+        option.textContent = `${item.name || 'بدون نام'} · ${item.orderNumber || item.customerName || 'بدون سفارش'} · ${fa(item.versions)} نسخه`;
+        if (item.id === state.projectId) option.selected = true;
+        box.appendChild(option);
+      });
+      if (!box.options.length) { const empty = document.createElement('option'); empty.textContent = 'پروژه‌ای ذخیره نشده است'; empty.disabled = true; box.appendChild(empty); }
+    } catch (_) { /* Saving remains available even if the list cannot be refreshed. */ }
   }
 
   function mergeLibrary(extra) {
     if (!extra?.motifs) return;
-    const existing = new Set((state.library.motifs || []).map(m => m.code));
-    extra.motifs.forEach(motif => { if (!existing.has(motif.code)) state.library.motifs.push(motif); });
+    extra.motifs.forEach(motif => {
+      const current = state.library.motifs.find(m => m.code === motif.code);
+      if (current) Object.assign(current, clone(motif));
+      else state.library.motifs.push(clone(motif));
+    });
   }
 
   function selectFirst() {
@@ -142,6 +212,9 @@
   function renderProjectMeta() {
     if (!state.project) return;
     $('#projectName').value = state.project.name || '';
+    $('#customerName').value = state.project.customerName || '';
+    $('#orderNumber').value = state.project.orderNumber || '';
+    $('#projectStatus').value = state.project.status || 'draft';
     $('#sheetW').value = displayMm(state.project.sheet.widthMm);
     $('#sheetH').value = displayMm(state.project.sheet.heightMm);
     $('#unitSelector').value = state.unit;
@@ -186,6 +259,7 @@
       $('.section-neck', fragment).value = displayMm(section.neckWidthMm ?? section.widthMm * 0.3);
       $('.section-depth', fragment).value = displayMm(section.neckDepthMm ?? section.heightMm * 0.15);
       $('.section-mirror', fragment).checked = !!section.mirror;
+      $('.section-rotate', fragment).checked = !!section.rotateOnSheet;
       const layers = $('.layer-mini', fragment);
       (section.layers || []).forEach(layer => layers.appendChild(createLayerItem(section, layer)));
       $('.section-select', fragment).onclick = () => { state.selectedSection = section.id; state.selectedLayer = section.layers?.[0]?.id || null; renderAll(); };
@@ -204,7 +278,7 @@
         remember(); const layer = defaultLayer(section); section.layers.push(layer);
         state.selectedSection = section.id; state.selectedLayer = layer.id; commit();
       };
-      [['.section-name', 'name'], ['.section-shape', 'shape'], ['.section-w', 'widthMm'], ['.section-h', 'heightMm'], ['.section-q', 'quantity'], ['.section-top', 'topWidthMm'], ['.section-neck', 'neckWidthMm'], ['.section-depth', 'neckDepthMm'], ['.section-mirror', 'mirror']].forEach(([selector, key]) => {
+      [['.section-name', 'name'], ['.section-shape', 'shape'], ['.section-w', 'widthMm'], ['.section-h', 'heightMm'], ['.section-q', 'quantity'], ['.section-top', 'topWidthMm'], ['.section-neck', 'neckWidthMm'], ['.section-depth', 'neckDepthMm'], ['.section-mirror', 'mirror'], ['.section-rotate', 'rotateOnSheet']].forEach(([selector, key]) => {
         $(selector, fragment).onchange = event => { remember(); section[key] = ['name', 'shape'].includes(key) ? event.target.value : event.target.type === 'checkbox' ? event.target.checked : ['widthMm','heightMm','topWidthMm','neckWidthMm','neckDepthMm'].includes(key) ? parseMm(event.target.value) : Number(event.target.value); commit(); };
       });
       box.appendChild(fragment);
@@ -310,7 +384,7 @@
       const manifest = engine().layout(state.project, state.library);
       const svg = engine().renderSvg(manifest, undefined, { guides: state.project.guides !== false, labels: true, background: '#ffffff' });
       $('#svgHost').innerHTML = svg; state.warnings = manifest.warnings || [];
-      $('#placementInfo').textContent = `${fa(manifest.placementCount || 0)} جایگذاری`;
+      $('#placementInfo').textContent = `${fa(manifest.placementCount || 0)} جایگذاری · ${fa(manifest.nesting?.utilizationPercent || 0)}٪ استفادهٔ تقریبی`;
       $('#warningInfo').textContent = state.warnings.length ? `${fa(state.warnings.length)} هشدار` : 'آماده';
       $('#warningDetails').replaceChildren(); state.warnings.forEach(warning => { const item = document.createElement('li'); item.textContent = warning; $('#warningDetails').appendChild(item); });
       $('#renderMessage').textContent = '';
@@ -341,15 +415,16 @@
 
   function download(filename, data, type) { const link = document.createElement('a'); link.href = URL.createObjectURL(new Blob([data], { type })); link.download = filename; link.click(); window.setTimeout(() => URL.revokeObjectURL(link.href), 1000); }
 
-  async function exportWhat(kind) {
+  async function exportWhat(kind, productionApproved = false) {
     $('#exportMenu').classList.add('hidden');
+    if (kind === 'pdf' && !productionApproved) { openProductionCheck('pdf'); return; }
     try {
+      if (kind === 'project') { const envelope = projectPayload(); download(`${state.project.name || 'naqsh'}-project.json`, JSON.stringify(envelope, null, 2), 'application/json'); return; }
       const manifest = engine().layout(state.project, state.library); const assets = await assetMapForExport();
-      if (kind === 'project') { download('naqsh-settings-only.json', JSON.stringify(state.project, null, 2), 'application/json'); return; }
       if (kind === 'exchange') { const exchange = engine().createExchange(state.project, state.library, assets); exchange.library.motifs.forEach(motif => { if (state.customAssets[motif.code]) motif.asset = state.customAssets[motif.code]; }); exchange.assets = Object.assign(exchange.assets, state.customAssets); download('naqsh-self-contained-exchange.json', JSON.stringify(exchange, null, 2), 'application/json'); return; }
       const svg = engine().renderSvg(manifest, assets, { guides: state.project.guides !== false, labels: true, background: '#ffffff' });
       if (kind === 'svg') { download(`${state.project.name || 'naqsh'}.svg`, svg, 'image/svg+xml'); return; }
-      const response = await fetch('/api/export/pdf', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ svg, filename: state.project.name || 'naqsh' }) });
+      const response = await fetch('/api/export/pdf', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ svg, filename: state.project.name || 'naqsh', expected_width_mm: manifest.sheet.widthMm, expected_height_mm: manifest.sheet.heightMm }) });
       if (!response.ok) { let message = `سرور PDF خطا داد (${response.status})`; try { const body = await response.json(); message = body.error || body.message || message; } catch (_) {} throw new Error(message); }
       download(`${state.project.name || 'naqsh'}.pdf`, await response.blob(), 'application/pdf');
     } catch (error) { toast(`خروجی انجام نشد: ${error.message}`); }
@@ -405,24 +480,60 @@
     const physicalW = parseMm($('#physicalW').value), physicalH = parseMm($('#physicalH').value);
     if (!(physicalW > 0 && physicalH > 0)) { toast('عرض و ارتفاع واقعی نقش را وارد کنید؛ اندازهٔ کاتالوگ به‌عنوان اندازهٔ تولید فرض نمی‌شود.'); return; }
     const canvas = document.createElement('canvas'); canvas.width = w; canvas.height = h; canvas.getContext('2d').drawImage(image, x, y, w, h, 0, 0, w, h);
-    const data = canvas.toDataURL('image/png'); const motif = calibration.motif; const reviewed = $('#calibrationReviewed').checked; motif.sourceAsset = motif.sourceAsset || motif.asset; motif.asset = data; motif.widthMm = physicalW; motif.heightMm = physicalH; motif.pixelWidth = w; motif.pixelHeight = h; motif.needsCalibration = !reviewed; motif.associationReview = !reviewed; motif.associationIssues = reviewed ? [] : ['physical dimensions and code/image association remain unconfirmed']; motif.variants = motif.variants || []; motif.calibrationOverride = { asset: data, widthMm: motif.widthMm, heightMm: motif.heightMm, pixelWidth: w, pixelHeight: h, crop: { x, y, width: w, height: h }, referenceCollection: $('#calibrationCollection').value || null }; state.customAssets[motif.code] = data; saveLocal(false); $('#calibrationDialog').close(); commit(); toast(reviewed ? 'ابعاد و تطبیق کد/تصویر بازبینی و ذخیره شد.' : 'اندازه ذخیره شد؛ نقش همچنان برای تولید تأیید نشده است.');
+    const data = canvas.toDataURL('image/png'); const motif = calibration.motif; const reviewed = $('#calibrationReviewed').checked; motif.sourceAsset = motif.sourceAsset || motif.asset; motif.asset = data; motif.widthMm = physicalW; motif.heightMm = physicalH; motif.pixelWidth = w; motif.pixelHeight = h; motif.needsCalibration = !reviewed; motif.codeVerified = reviewed; motif.physicalDimensionsReviewed = reviewed; motif.associationReview = !reviewed; motif.associationIssues = reviewed ? [] : ['physical dimensions and code/image association remain unconfirmed']; motif.calibrationReviewedAt = reviewed ? new Date().toISOString() : null; motif.productionApproved = false; motif.variants = motif.variants || []; motif.calibrationOverride = { asset: data, widthMm: motif.widthMm, heightMm: motif.heightMm, pixelWidth: w, pixelHeight: h, crop: { x, y, width: w, height: h }, referenceCollection: $('#calibrationCollection').value || null }; state.customAssets[motif.code] = data; saveLocal(false); $('#calibrationDialog').close(); commit(); toast(reviewed ? 'ابعاد واقعی و تطبیق کد/تصویر ثبت شد؛ تأیید نهایی تولید جداگانه است.' : 'اندازه ذخیره شد؛ نقش همچنان برای تولید تأیید نشده است.');
+  }
+
+  let pendingProductionExport = null;
+  function openProductionCheck(kind = null) {
+    const dialog = $('#productionDialog');
+    const summary = $('#productionSummary'); const list = $('#productionIssues'); const ack = $('#productionAck'); const proceed = $('#productionContinue');
+    let manifest = null; let report;
+    try { manifest = engine().layout(state.project, state.library); report = engine().productionCheck(state.project, state.library, manifest); }
+    catch (error) { report = { ready: false, errors: [error.message], warnings: [], usedMotifs: [], nesting: null }; }
+    pendingProductionExport = report.ready ? kind : null;
+    summary.className = `production-report ${report.ready ? 'ready' : 'blocked'}`;
+    summary.replaceChildren();
+    const heading = document.createElement('b'); heading.textContent = report.ready ? 'هندسه قابل محاسبه است؛ تأیید انسانی هنوز لازم است.' : 'خروجی چاپ متوقف شد تا خطاها برطرف شوند.'; summary.appendChild(heading);
+    if (manifest?.nesting) { const metrics = document.createElement('span'); metrics.className = 'metric'; metrics.textContent = `روش ${manifest.nesting.method} · استفادهٔ برآوردی ${fa(manifest.nesting.utilizationPercent)}٪ · یک شیت`; summary.appendChild(document.createElement('br')); summary.appendChild(metrics); }
+    list.replaceChildren();
+    [...report.errors.map(text => `خطا: ${text}`), ...report.warnings].forEach(text => { const item = document.createElement('li'); item.textContent = text; list.appendChild(item); });
+    if (!list.children.length) { const item = document.createElement('li'); item.textContent = 'موردی برای هشدار خودکار پیدا نشد؛ همچنان یک چاپ آزمایشی انجام دهید.'; list.appendChild(item); }
+    $('#productionIntro').textContent = 'این کنترل ابعاد ثبت‌شده، کالیبراسیون، وضوح رستر و چیدمان را بررسی می‌کند؛ صحت فیزیکی نقش را مستقلاً اندازه‌گیری نمی‌کند و جایگزین تأیید چاپخانه نیست.';
+    ack.checked = false; ack.disabled = !report.ready; proceed.hidden = !kind; proceed.disabled = true;
+    dialog.showModal();
+  }
+
+  function exportScaleTest() {
+    const svg = engine().renderPrintScaleSvg();
+    fetch('/api/export/pdf', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ svg, filename: 'naqsh-scale-test', expected_width_mm: 120, expected_height_mm: 45 }) })
+      .then(async response => { if (!response.ok) { const body = await response.json().catch(() => ({})); throw new Error(body.error || `سرور PDF خطا داد (${response.status})`); } download('naqsh-scale-test-100-percent.pdf', await response.blob(), 'application/pdf'); toast('PDF تست مقیاس آماده است؛ خط‌کش ۱۰۰ میلی‌متری را پس از چاپ اندازه بگیرید.'); })
+      .catch(error => toast(`ساخت PDF تست مقیاس ناموفق بود: ${error.message}`));
   }
 
   function bind() {
     $('#projectName').onchange = e => { remember(); state.project.name = e.target.value; commit(); };
+    $('#customerName').onchange = e => { remember(); state.project.customerName = e.target.value.trim(); commit(); };
+    $('#orderNumber').onchange = e => { remember(); state.project.orderNumber = e.target.value.trim(); commit(); };
+    $('#projectStatus').onchange = e => { remember(); state.project.status = e.target.value; commit(); };
     [['#sheetW', 'widthMm'], ['#sheetH', 'heightMm']].forEach(([id, key]) => $(id).onchange = e => { remember(); state.project.sheet[key] = parseMm(e.target.value); commit(); });
     $('#autoHeight').onchange = e => { remember(); state.project.sheet.autoHeight = e.target.checked; commit(); };
-    $('#guidesToggle').onchange = e => { state.project.guides = e.target.checked; render(); };
+    $('#guidesToggle').onchange = e => { state.project.guides = e.target.checked; commit(); };
     $('#librarySearch').oninput = () => { state.visible = 24; renderLibrary(); }; $('#clearSearch').onclick = () => { $('#librarySearch').value = ''; renderLibrary(); }; $('#loadMoreBtn').onclick = () => { state.visible += 24; renderLibrary(); };
     $('#addSectionBtn').onclick = () => { remember(); const section = { id: uid('s'), name: 'بخش جدید', widthMm: 350, heightMm: 550, quantity: 1, shape: 'rect', topWidthMm: 280, neckWidthMm: 90, neckDepthMm: 100, mirror: false, rotateOnSheet: false, layers: [] }; state.project.sections.push(section); state.selectedSection = section.id; state.selectedLayer = null; commit(); };
     $('#loadSampleBtn').onclick = () => { remember(); state.project = engine().makeDefaultProject(state.library); selectFirst(); commit(); toast('نمونهٔ نمایشی بارگذاری شد؛ اندازه‌های آن فرضی‌اند.'); };
-    $('#saveBtn').onclick = () => saveLocal(true); $('#newProjectBtn').onclick = () => { if (window.confirm('پروژه فعلی پاک شود؟')) { remember(); state.project = makeFallback(); selectFirst(); commit(); } };
-    $('#undoBtn').onclick = () => { if (!state.history.length) return; state.future.push(clone(state.project)); state.project = state.history.pop(); selectFirst(); renderAll(); }; $('#redoBtn').onclick = () => { if (!state.future.length) return; state.history.push(clone(state.project)); state.project = state.future.pop(); selectFirst(); renderAll(); };
+    $('#saveBtn').onclick = () => saveLocal(true); $('#newProjectBtn').onclick = async () => { if (window.confirm('پروژهٔ فعلی حفظ می‌شود و یک پروژهٔ خالی تازه ساخته خواهد شد. ادامه؟')) { if (!await saveLocal(false)) return; state.library = clone(state.baseLibrary); state.customAssets = {}; state.history = []; state.future = []; state.project = makeFallback(); state.projectId = uid('project-'); selectFirst(); commit(); } };
+    $('#undoBtn').onclick = () => { if (!state.history.length) return; state.future.push(clone(state.project)); state.project = state.history.pop(); selectFirst(); renderAll(); scheduleSave(); }; $('#redoBtn').onclick = () => { if (!state.future.length) return; state.history.push(clone(state.project)); state.project = state.future.pop(); selectFirst(); renderAll(); scheduleSave(); };
     $('#fitBtn').onclick = () => fitCanvas(); $('#zoomIn').onclick = () => zoomBy(.1); $('#zoomOut').onclick = () => zoomBy(-.1); $('#gridBtn').onclick = () => $('#canvasWrap').classList.toggle('no-grid');
-    $('#exportMenuBtn').onclick = () => $('#exportMenu').classList.toggle('hidden'); $('#exportSvgBtn').onclick = () => exportWhat('svg'); $('#exportProjectBtn').onclick = () => exportWhat('project'); $('#exportExchangeBtn').onclick = () => exportWhat('exchange'); $('#exportPdfBtn').onclick = () => exportWhat('pdf');
+    $('#exportMenuBtn').onclick = () => $('#exportMenu').classList.toggle('hidden'); $('#exportSvgBtn').onclick = () => exportWhat('svg'); $('#exportProjectBtn').onclick = () => exportWhat('project'); $('#exportExchangeBtn').onclick = () => exportWhat('exchange'); $('#exportPdfBtn').onclick = () => exportWhat('pdf'); $('#exportScaleTestBtn').onclick = () => { $('#exportMenu').classList.add('hidden'); exportScaleTest(); };
     $$('.tab').forEach(tab => tab.onclick = () => tab.dataset.tab === 'library' ? (showLibrary()) : showProperties()); $('#importProjectBtn').onclick = () => $('#projectFile').click(); $('#projectFile').onchange = e => importJSON(e.target.files[0]); $('#projectDrop').ondragover = e => e.preventDefault(); $('#projectDrop').ondrop = e => { e.preventDefault(); importJSON(e.dataTransfer.files[0]); }; $('#assetFile').onchange = e => importAsset(e.target.files[0]);
     $('#unitSelector').onchange = e => { state.unit = e.target.value; renderAll(); };
     $('#calibrationApply').onclick = applyCalibration; $('#calibrationCancel').onclick = () => $('#calibrationDialog').close();
+    $('#productionCheckBtn').onclick = () => openProductionCheck(); $('#productionAck').onchange = () => { $('#productionContinue').disabled = !$('#productionAck').checked; };
+    $('#productionCancel').onclick = () => $('#productionDialog').close(); $('#productionContinue').onclick = () => { if (!$('#productionAck').checked || !pendingProductionExport) return; const kind = pendingProductionExport; $('#productionDialog').close(); pendingProductionExport = null; exportWhat(kind, true); };
+    $('#projectSearch').oninput = refreshProjectList; $('#refreshProjectsBtn').onclick = refreshProjectList;
+    $('#openProjectBtn').onclick = async () => { const id = $('#projectList').value; if (!id || id === state.projectId) return; if (!await saveLocal(false)) return; const record = await state.store.get(id); if (!record) { toast('پروژه انتخاب‌شده پیدا نشد.'); return; } try { const migrated = state.store.migrate(JSON.parse(record.data)); state.library = clone(state.baseLibrary); state.history = []; state.future = []; state.projectId = record.id; state.project = normalizeProject(migrated.project); state.customAssets = migrated.customAssets || migrated.assets || {}; mergeLibrary(migrated.library); (migrated.library?.motifs || []).forEach(motif => { const current = findMotif(motif.code); if (current) Object.assign(current, motif); }); selectFirst(); renderAll(); localStorage.setItem('naqsh-active-project-id', state.projectId); toast('پروژه باز شد.'); } catch (error) { toast(`پروژه باز نشد: ${error.message}`); } };
+    $('#duplicateProjectBtn').onclick = async () => { if (!await saveLocal(false)) return; state.project = normalizeProject(clone(state.project)); state.project.name = `${state.project.name || 'پروژه'} · کپی`; state.projectId = uid('project-'); selectFirst(); commit(); toast('نسخهٔ جداگانه ساخته شد؛ پروژهٔ قبلی حفظ شده است.'); };
+    $('#restoreProjectBtn').onclick = async () => { const record = await state.store?.get($('#projectList').value); if (!record?.versions?.length) { toast('برای این پروژه نسخهٔ قبلی ثبت نشده است.'); return; } const choice = window.prompt(`شمارهٔ نسخه برای بازیابی (۱ تا ${record.versions.length}، ۱ جدیدترین نسخهٔ قبلی):`, '1'); if (choice === null) return; const index = record.versions.length - Number(choice); if (!Number.isInteger(index) || index < 0 || index >= record.versions.length) { toast('شمارهٔ نسخه معتبر نیست.'); return; } try { const selectedVersion = state.store.migrate(JSON.parse(record.versions[index].data)); if (!await saveLocal(false)) return; await state.store.save(record.id, selectedVersion); const migrated = selectedVersion; state.library = clone(state.baseLibrary); state.history = []; state.future = []; state.projectId = record.id; state.project = normalizeProject(migrated.project); state.customAssets = migrated.customAssets || migrated.assets || {}; mergeLibrary(migrated.library); (migrated.library?.motifs || []).forEach(motif => { const current = findMotif(motif.code); if (current) Object.assign(current, motif); }); selectFirst(); renderAll(); try { localStorage.setItem('naqsh-active-project-id', state.projectId); } catch (_) {} await refreshProjectList(); toast('نسخهٔ قبلی بازیابی شد؛ نسخهٔ فعلی در تاریخچه باقی ماند.'); } catch (error) { toast(`بازیابی ناموفق بود: ${error.message}`); } };
   }
 
   function fitCanvas() { state.zoom = 1; const host = $('#svgHost'); host.style.transform = 'scale(1)'; $('#zoomLabel').textContent = '۱۰۰٪'; }
@@ -430,12 +541,14 @@
   function showLibrary() { $$('.tab').forEach(tab => tab.classList.toggle('active', tab.dataset.tab === 'library')); $('#libraryTab').classList.remove('hidden'); $('#propertiesTab').classList.add('hidden'); }
 
   function importJSON(file) {
-    if (!file) return; const reader = new FileReader(); reader.onload = () => {
+    if (!file) return;
+    if (file.size > 100 * 1024 * 1024) { toast('فایل پروژه بیش از ۱۰۰ مگابایت است و برای جلوگیری از مصرف بیش‌ازحد حافظه رد شد.'); return; }
+    const reader = new FileReader(); reader.onload = async () => {
       try {
-        const exchange = JSON.parse(reader.result); const project = exchange.project || exchange; if (!project.version || !Array.isArray(project.sections)) throw new Error('ساختار پروژه معتبر نیست.');
-        remember(); state.project = normalizeProject(project); state.customAssets = Object.assign({}, state.customAssets, exchange.assets || {}); mergeLibrary(exchange.library);
-        Object.entries(exchange.assets || {}).forEach(([code, asset]) => { const motif = engine().findMotif(state.library, code); if (motif) { motif.asset = asset; state.customAssets[motif.code] = asset; } });
-        selectFirst(); saveLocal(false); renderAll(); toast('پروژه و assetهای تبادل با هم وارد و در library ادغام شدند.');
+        const exchange = JSON.parse(reader.result); const migrated = window.NaqshProjectStore.migrate(exchange); const project = migrated.project;
+        if (!await saveLocal(false)) return; state.library = clone(state.baseLibrary); state.history = []; state.future = []; state.project = normalizeProject(project); state.projectId = uid('project-'); state.customAssets = Object.assign({}, migrated.customAssets || {}, migrated.assets || {}); mergeLibrary(migrated.library);
+        Object.entries(migrated.assets || {}).forEach(([code, asset]) => { const motif = engine().findMotif(state.library, code); if (motif) { motif.asset = asset; state.customAssets[motif.code] = asset; } });
+        selectFirst(); const saved = await saveLocal(false); renderAll(); if (!saved) return; toast('پروژه به‌عنوان پروندهٔ جداگانه وارد شد؛ پروژهٔ قبلی حفظ شد.');
       } catch (error) { toast(`ورود پروژه ناموفق: ${error.message}`); }
     }; reader.readAsText(file);
   }
