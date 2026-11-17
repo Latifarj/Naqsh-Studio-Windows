@@ -1,4 +1,4 @@
-/* Naqsh Studio geometry engine v1.0.0 — millimetres, y-down.
+/* Naqsh Studio geometry engine v1.1.0-beta — millimetres, y-down.
  * ES3-compatible UMD so the same calculations can run in browsers and ExtendScript.
  * Catalog raster art remains raster. No hidden resampling or vector tracing.
  */
@@ -61,7 +61,7 @@
       if (!(q >= 1 && q <= 100 && q === Math.floor(q))) { errors.push('تعداد قطعه باید عدد صحیح بین ۱ تا ۱۰۰ باشد.'); }
       if (s.shape && !/^(rect|trapezoid|pentagon|neck|polygon)$/.test(s.shape)) { errors.push('شکل قطعه شناخته نیست.'); }
       if (s.shape === 'trapezoid' && !(number(s.topWidthMm, s.widthMm * 0.75) > 0 && number(s.topWidthMm, s.widthMm * 0.75) <= number(s.widthMm, 0))) { errors.push('عرض بالای ذوزنقه باید مثبت و حداکثر برابر عرض قطعه باشد.'); }
-      if (s.rotateOnSheet) { errors.push('چرخش خودکار قطعه روی شیت در این نسخه فعال نیست؛ عرض/ارتفاع را آگاهانه تنظیم کنید.'); }
+      if (s.rotateOnSheet !== undefined && typeof s.rotateOnSheet !== 'boolean') { errors.push('گزینهٔ چرخش قطعه روی شیت باید روشن یا خاموش باشد.'); }
       if (s.shape === 'polygon') {
         pts = s.points || [];
         if (pts.length < 3 || pts.length > 512) { errors.push('چندضلعی سفارشی باید ۳ تا ۵۱۲ نقطه داشته باشد.'); }
@@ -160,28 +160,41 @@
   function layout(project, library, options) {
     var check = validateProject(project,library), sheet = project.sheet || {}, margin = number(sheet.marginMm,10), gutter = number(sheet.gutterMm,10);
     var sw = number(sheet.widthMm,2500), sh = number(sheet.heightMm,1500), x = margin, y = margin, row = 0, out = [], warnings = check.warnings.slice(0), counter = {count:0};
-    var sections = project.sections, i, j, k, s, qty, result, l, m, usedHeight, sectionW, sectionH;
+    var sections = project.sections, i, j, k, s, qty, result, l, m, usedHeight, sectionW, sectionH, placedW, placedH, rotated, availableW, availableH, normalFits, rotatedFits, occupiedArea = 0, usableArea;
     if (check.errors.length) { throw new Error(check.errors.join('\n')); }
     if (sw <= margin*2 || sh <= margin*2) { throw new Error('حاشیه از اندازهٔ قابل‌استفادهٔ شیت بزرگ‌تر است.'); }
     for (i = 0; i < sections.length; i++) {
       s = sections[i]; qty = number(s.quantity,1); sectionW = number(s.widthMm,0); sectionH = number(s.heightMm,0);
-      if (sectionW > sw-margin*2+0.000001) { throw new Error('قطعهٔ «' + (s.name || i+1) + '» از عرض مفید شیت بزرگ‌تر است؛ هیچ تغییر اندازهٔ پنهانی انجام نشد.'); }
       for (j = 0; j < qty; j++) {
         if (out.length >= 500) { throw new Error('بیش از ۵۰۰ قطعه در یک شیت مجاز نیست.'); }
-        if (x+sectionW > sw-margin+0.000001) { x = margin; y += row+gutter; row = 0; }
-        result = {id:String(s.id || 'section'+i)+'-'+(j+1),sourceId:String(s.id || 'section'+i),name:String(s.name || 'قطعه')+(qty>1?' — '+(j+1):''),xMm:round(x),yMm:round(y),widthMm:sectionW,heightMm:sectionH,mirror:!!s.mirror,points:shapePoints(s),layers:[]};
+        availableW = sw - margin - x; availableH = sheet.autoHeight ? 50000 : sh - margin - y;
+        normalFits = sectionW <= availableW + 0.000001 && sectionH <= availableH + 0.000001;
+        rotatedFits = !!s.rotateOnSheet && sectionH <= availableW + 0.000001 && sectionW <= availableH + 0.000001;
+        rotated = !!s.rotateOnSheet && !normalFits && rotatedFits;
+        placedW = rotated ? sectionH : sectionW; placedH = rotated ? sectionW : sectionH;
+        if (x+placedW > sw-margin+0.000001) {
+          x = margin; y += row+gutter; row = 0;
+          availableW = sw-margin*2; availableH = sheet.autoHeight ? 50000 : sh-margin-y;
+          normalFits = sectionW <= availableW + 0.000001 && sectionH <= availableH + 0.000001;
+          rotatedFits = !!s.rotateOnSheet && sectionH <= availableW + 0.000001 && sectionW <= availableH + 0.000001;
+          rotated = !!s.rotateOnSheet && !normalFits && rotatedFits;
+          placedW = rotated ? sectionH : sectionW; placedH = rotated ? sectionW : sectionH;
+        }
+        if (placedW > sw-margin*2+0.000001) { throw new Error('قطعهٔ «' + (s.name || i+1) + '» از عرض مفید شیت بزرگ‌تر است؛ چرخش ۹۰ درجه هم مناسب نیست و هیچ تغییر اندازهٔ پنهانی انجام نشد.'); }
+        result = {id:String(s.id || 'section'+i)+'-'+(j+1),sourceId:String(s.id || 'section'+i),name:String(s.name || 'قطعه')+(qty>1?' — '+(j+1):''),xMm:round(x),yMm:round(y),widthMm:sectionW,heightMm:sectionH,placedWidthMm:placedW,placedHeightMm:placedH,rotationOnSheet:rotated?90:0,mirror:!!s.mirror,points:shapePoints(s),layers:[]};
         for (k = 0; k < (s.layers || []).length; k++) {
           l = s.layers[k]; if (l.enabled === false) { continue; } m = findMotif(library,l.code);
           result.layers.push(makePlacements(l,s,m,warnings,counter));
         }
-        out.push(result); x += sectionW+gutter; row = Math.max(row,sectionH);
+        out.push(result); occupiedArea += placedW*placedH; x += placedW+gutter; row = Math.max(row,placedH);
       }
     }
     usedHeight = y+row+margin;
     if (sheet.autoHeight) { sh = Math.max(margin*2+1,usedHeight); }
     else if (usedHeight > sh+0.000001) { throw new Error('قطعات در ارتفاع شیت جا نمی‌شوند؛ ارتفاع یا چیدمان را تغییر دهید یا ارتفاع خودکار را روشن کنید.'); }
     if (sh > 50000) { throw new Error('ارتفاع شیت بیش از حد مجاز است.'); }
-    return {version:1,name:String(project.name || 'سفارش نقش'),guides:project.guides !== false,sheet:{widthMm:round(sw),heightMm:round(sh)},sections:out,warnings:warnings,placementCount:counter.count};
+    usableArea = Math.max(0,(sw-margin*2)*(sh-margin*2));
+    return {version:1,name:String(project.name || 'سفارش نقش'),guides:project.guides !== false,sheet:{widthMm:round(sw),heightMm:round(sh),marginMm:round(margin),gutterMm:round(gutter)},sections:out,warnings:warnings,placementCount:counter.count,nesting:{method:'deterministic-shelf',optimized:false,sheetCount:1,occupiedAreaMm2:round(occupiedArea),usableAreaMm2:round(usableArea),wasteAreaMm2:round(Math.max(0,usableArea-occupiedArea)),utilizationPercent:usableArea?round(Math.min(100,occupiedArea/usableArea*100)):0}};
   }
   function pointsString(points) { var a = [], i; for (i = 0; i < points.length; i++) { a.push(round(points[i][0])+','+round(points[i][1])); } return a.join(' '); }
   function safeHref(value) {
@@ -201,7 +214,7 @@
       s = manifest.sections[i]; sid = 'sectionClip'+i;
       defs.push('<clipPath id="'+sid+'" clipPathUnits="userSpaceOnUse"><polygon points="'+pointsString(s.points)+'"/></clipPath>');
       mirror = s.mirror ? 'translate('+s.widthMm+' 0) scale(-1 1)' : '';
-      art.push('<g id="section-'+i+'" data-name="'+xml(s.name)+'" transform="translate('+s.xMm+' '+s.yMm+')"><g'+(mirror?' transform="'+mirror+'"':'')+' clip-path="url(#'+sid+')">');
+      art.push('<g id="section-'+i+'" data-name="'+xml(s.name)+'" transform="'+(s.rotationOnSheet?'translate('+round(s.xMm+s.heightMm)+' '+round(s.yMm)+') rotate(90)':'translate('+s.xMm+' '+s.yMm+')')+'"><g'+(mirror?' transform="'+mirror+'"':'')+' clip-path="url(#'+sid+')">');
       for (j = 0; j < s.layers.length; j++) {
         l = s.layers[j]; lid = 'regionClip'+i+'_'+j; r = l.region;
         defs.push('<clipPath id="'+lid+'" clipPathUnits="userSpaceOnUse"><rect x="'+round(r.xMm)+'" y="'+round(r.yMm)+'" width="'+round(r.widthMm)+'" height="'+round(r.heightMm)+'"/></clipPath>');
@@ -221,7 +234,7 @@
       }
       art.push('</g></g>');
       if (showGuides) {
-        guides.push('<g transform="translate('+s.xMm+' '+s.yMm+')">');
+        guides.push('<g transform="'+(s.rotationOnSheet?'translate('+round(s.xMm+s.heightMm)+' '+round(s.yMm)+') rotate(90)':'translate('+s.xMm+' '+s.yMm+')')+'">');
         guides.push('<polygon points="'+pointsString(s.points)+'"'+(mirror?' transform="'+mirror+'"':'')+' fill="none" stroke="#158779" stroke-width="0.25" stroke-dasharray="3 2"/>');
         guides.push('<path d="M -3 0 H -1 M 0 -3 V -1 M '+(s.widthMm+1)+' 0 H '+(s.widthMm+3)+' M '+s.widthMm+' -3 V -1 M -3 '+s.heightMm+' H -1 M 0 '+(s.heightMm+1)+' V '+(s.heightMm+3)+' M '+(s.widthMm+1)+' '+s.heightMm+' H '+(s.widthMm+3)+' M '+s.widthMm+' '+(s.heightMm+1)+' V '+(s.heightMm+3)+'" stroke="#333" stroke-width="0.2" fill="none"/>');
         if (showLabels) { guides.push('<text x="'+round(s.widthMm/2)+'" y="-2.5" text-anchor="middle" direction="rtl" font-family="Vazirmatn,Tahoma,sans-serif" font-size="3.2" fill="#3b4d4a">'+xml(s.name)+' · '+round(s.widthMm)+' × '+round(s.heightMm)+' mm</text>'); }
@@ -258,7 +271,53 @@
       if(!href || !/^data:image\//i.test(href)){throw new Error('برای پروژهٔ قابل‌انتقال، تصویر «'+used[i]+'» باید جاسازی شود.');}
       safeHref(href);assets[m.code]=href;motifs.push(copy(m));
     }
-    return {format:'naqsh-project',version:1,project:copy(project),library:{version:1,motifs:motifs},manifest:manifest,assets:assets};
+    return {format:'naqsh-project',version:2,schemaVersion:2,appVersion:'1.1.0-beta',createdAt:new Date().toISOString(),updatedAt:new Date().toISOString(),project:copy(project),library:{version:1,motifs:motifs},manifest:manifest,assets:assets};
   }
-  return {version:'1.0.0',MAX_PLACEMENTS:MAX_PLACEMENTS,normalizeCode:normalizeCode,findMotif:findMotif,validateProject:validateProject,layout:layout,renderSvg:renderSvg,makeDefaultProject:makeDefaultProject,makeSection:makeSection,createExchange:createExchange,shapePoints:shapePoints};
+  function productionCheck(project, library, manifest) {
+    var errors = [], warnings = [], used = {}, motifs = [], i, j, k, section, layer, motif, code, list = library && library.motifs ? library.motifs : [], ppi, minPpi, placements;
+    var validation = validateProject(project, library);
+    errors = validation.errors.slice(0); warnings = validation.warnings.slice(0);
+    try { manifest = manifest || layout(project, library); } catch (error) { errors.push(error.message); }
+    for (i = 0; i < (project.sections || []).length; i++) {
+      section = project.sections[i];
+      for (j = 0; j < (section.layers || []).length; j++) {
+        layer = section.layers[j]; if (layer.enabled === false || !layer.code) { continue; }
+        code = normalizeCode(layer.code); if (used[code]) { continue; } used[code] = true;
+        motif = findMotif(library, code);
+        if (!motif) { errors.push('کد نقش «'+code+'» در کتابخانه نیست.'); continue; }
+        motifs.push(code);
+        if (motif.needsCalibration === true || !(number(motif.widthMm,0)>0 && number(motif.heightMm,0)>0)) { errors.push('«'+code+'»: اندازهٔ فیزیکی تأییدشده ندارد؛ پیش از خروجی تولیدی کالیبره کنید.'); }
+        if (motif.associationReview === true || motif.codeVerified === false) { errors.push('«'+code+'»: تطبیق کد و تصویر تأیید نشده است.'); }
+        if (motif.productionApproved !== true) { warnings.push('«'+code+'»: تأیید نهایی تولید برای این نقش ثبت نشده است.'); }
+        if (motif.seamlessVerified !== true) { warnings.push('«'+code+'»: seamless بودن نقش تأیید نشده است؛ درز تکرار را بررسی کنید.'); }
+        minPpi = Infinity;
+        if (manifest && manifest.sections) {
+          for (k = 0; k < manifest.sections.length; k++) {
+            var layers = manifest.sections[k].layers || [];
+            for (var li = 0; li < layers.length; li++) {
+              if (normalizeCode(layers[li].name) === normalizeCode(motif.code)) { /* Names are not a stable key; placement codes below are authoritative. */ }
+              placements = layers[li].placements || [];
+              for (var pi = 0; pi < placements.length; pi++) {
+                if (normalizeCode(placements[pi].code) !== code) { continue; }
+                ppi = Math.min(number(motif.pixelWidth,0)/(placements[pi].widthMm/25.4), number(motif.pixelHeight,0)/(placements[pi].heightMm/25.4));
+                if (ppi > 0) minPpi = Math.min(minPpi, ppi);
+              }
+            }
+          }
+        }
+        if (minPpi < 150) { errors.push('«'+code+'»: وضوح مؤثر '+Math.round(minPpi)+' ppi است؛ اندازه را کوچک‌تر کنید یا منبع باکیفیت‌تر وارد کنید.'); }
+        else if (minPpi < 300) { warnings.push('«'+code+'»: وضوح مؤثر حدود '+Math.round(minPpi)+' ppi است؛ کیفیت چاپ را روی نمونه بررسی کنید.'); }
+      }
+    }
+    warnings.push('این نسخه چیدمان صنعتیِ بهینه، چندشیتی، CMYK یا PDF/X را تضمین نمی‌کند.');
+    if (manifest && manifest.nesting && manifest.nesting.method === 'deterministic-shelf') { warnings.push('چیدمان شیت ردیفی و غیر‌بهینه است؛ درصد استفاده فقط برآورد مستطیلی است.'); }
+    return {ready:errors.length===0,errors:errors,warnings:warnings,usedMotifs:motifs,nesting:manifest&&manifest.nesting?copy(manifest.nesting):null};
+  }
+  function renderPrintScaleSvg() {
+    var parts=['<?xml version="1.0" encoding="UTF-8"?>','<svg xmlns="http://www.w3.org/2000/svg" width="120mm" height="45mm" viewBox="0 0 120 45">','<rect width="120" height="45" fill="#fff"/>','<text x="60" y="8" text-anchor="middle" font-family="sans-serif" font-size="3.5">Naqsh Studio · تست مقیاس ۱۰۰٪</text>','<path d="M 10 25 H 110" stroke="#000" stroke-width="0.35"/>'];
+    var i; for(i=0;i<=10;i++){var x=10+i*10;parts.push('<path d="M '+x+' 25 V '+(i%5===0?18:21)+'" stroke="#000" stroke-width="0.25"/>');if(i%2===0)parts.push('<text x="'+x+'" y="31" text-anchor="middle" font-family="sans-serif" font-size="2.5">'+(i*10)+'</text>');}
+    parts.push('<text x="60" y="39" text-anchor="middle" font-family="sans-serif" font-size="2.6">خط بین ۰ و ۱۰۰ باید دقیقاً ۱۰۰ میلی‌متر باشد · چاپ بدون Fit to page</text></svg>');
+    return parts.join('\n');
+  }
+  return {version:'1.1.0-beta',MAX_PLACEMENTS:MAX_PLACEMENTS,normalizeCode:normalizeCode,findMotif:findMotif,validateProject:validateProject,layout:layout,renderSvg:renderSvg,makeDefaultProject:makeDefaultProject,makeSection:makeSection,createExchange:createExchange,shapePoints:shapePoints,productionCheck:productionCheck,renderPrintScaleSvg:renderPrintScaleSvg};
 }));
