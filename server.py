@@ -19,6 +19,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import unquote, urlsplit
 
 import cairosvg
+import fitz
 from defusedxml import ElementTree as ET
 from PIL import Image
 
@@ -109,8 +110,30 @@ def make_pdf(svg: str) -> bytes:
     return cairosvg.svg2pdf(bytestring=svg.encode('utf-8'), unsafe=False)
 
 
+def verify_pdf_dimensions(pdf: bytes, expected_width_mm: float, expected_height_mm: float, tolerance_mm: float = 0.2) -> None:
+    """Fail closed if conversion changes the physical page size or page count."""
+    if not (0 < expected_width_mm <= 6000 and 0 < expected_height_mm <= 6000):
+        raise ValueError('اندازهٔ مورد انتظار PDF باید بین صفر و ۶۰۰۰ میلی‌متر باشد.')
+    try:
+        with fitz.open(stream=pdf, filetype='pdf') as document:
+            if len(document) != 1:
+                raise ValueError('خروجی باید دقیقاً یک صفحه داشته باشد.')
+            rect = document[0].rect
+            width_mm = rect.width * 25.4 / 72
+            height_mm = rect.height * 25.4 / 72
+    except (RuntimeError, ValueError) as exc:
+        if isinstance(exc, ValueError):
+            raise
+        raise ValueError('PDF ساخته‌شده قابل خواندن نیست.') from exc
+    if abs(width_mm - expected_width_mm) > tolerance_mm or abs(height_mm - expected_height_mm) > tolerance_mm:
+        raise ValueError(
+            f'اندازهٔ صفحهٔ PDF با پروژه برابر نیست: انتظار {expected_width_mm:.3f}×{expected_height_mm:.3f} mm، '
+            f'خروجی {width_mm:.3f}×{height_mm:.3f} mm.'
+        )
+
+
 class Handler(SimpleHTTPRequestHandler):
-    server_version = 'NaqshStudio/1.0'
+    server_version = 'NaqshStudio/1.1.0-beta'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(ROOT), **kwargs)
@@ -152,16 +175,16 @@ class Handler(SimpleHTTPRequestHandler):
         if '\x00' in path or '\\' in path or '%' in path or '..' in Path(path).parts:
             return self.send_error(404)
         if path == '/api/health':
-            return self.json_response(200, {'ok': True, 'app': 'naqsh-studio', 'version': '1.0.0', 'pdf': True})
+            return self.json_response(200, {'ok': True, 'app': 'naqsh-studio', 'version': '1.1.0-beta', 'pdf': True})
         if path in {'/', '/index.html'}:
             self.path = '/web/index.html'
-        elif not (path.startswith('/web/') or path.startswith('/assets/') or path == '/shared/engine.js'):
+        elif not (path.startswith('/web/') or path.startswith('/assets/') or path in {'/shared/engine.js', '/shared/project-store.js'}):
             return self.send_error(404)
         target = (ROOT / unquote(urlsplit(self.path).path).lstrip('/')).resolve()
         if not target.is_relative_to(ROOT) or not target.is_file() or any(p.startswith('.') for p in target.relative_to(ROOT).parts):
             return self.send_error(404)
         relative = target.relative_to(ROOT)
-        if not (relative.parts[0] in {'web', 'assets'} or relative.as_posix() == 'shared/engine.js'):
+        if not (relative.parts[0] in {'web', 'assets'} or relative.as_posix() in {'shared/engine.js', 'shared/project-store.js'}):
             return self.send_error(404)
         self.path = '/' + relative.as_posix()
         return super().do_GET()
@@ -183,6 +206,13 @@ class Handler(SimpleHTTPRequestHandler):
             if not isinstance(svg, str):
                 raise ValueError('متن SVG معتبر ارسال نشده است.')
             pdf = make_pdf(svg)
+            if 'expected_width_mm' in payload or 'expected_height_mm' in payload:
+                try:
+                    expected_width = float(payload['expected_width_mm'])
+                    expected_height = float(payload['expected_height_mm'])
+                except (TypeError, ValueError) as exc:
+                    raise ValueError('اندازهٔ مورد انتظار PDF معتبر نیست.') from exc
+                verify_pdf_dimensions(pdf, expected_width, expected_height)
         except (ValueError, TypeError, KeyError, ET.ParseError) as exc:
             return self.json_response(400, {'error': str(exc)})
         except Exception as exc:
