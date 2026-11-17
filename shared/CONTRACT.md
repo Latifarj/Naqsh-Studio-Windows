@@ -41,7 +41,8 @@ Natural width/height are the image placement size from the PDF, NOT a verified s
   "guides":true,
   "sections":[
     {
-      "id":"s1","name":"آستین راست","widthMm":350,"heightMm":550,"quantity":1,
+      "id":"s1","name":"آستین","partKind":"astin","partCode":"Astin","labelFa":"آستین",
+      "widthMm":350,"heightMm":550,"quantity":1,
       "shape":"rect","topWidthMm":280,"neckWidthMm":90,"neckDepthMm":100,
       "mirror":false,"rotateOnSheet":false,
       "layers":[
@@ -59,7 +60,7 @@ Natural width/height are the image placement size from the PDF, NOT a verified s
 }
 ```
 
-Section shapes: `rect`, `trapezoid` (centred top width), `pentagon` (pointed top), `neck` (rectangular section with a rounded U notch in top edge), `polygon` with custom `points:[[x,y],...]` in mm. Quantity duplicates sections; mirror mirrors a whole section's artwork, not the sheet. Project sections may contain any number of named layers; each layer has its own region and clipping. Modes: `single` (centred natural/scaled motif), `contain`, `cover`, `repeatX`, `repeatY`, `grid`.
+Standard bilingual section types are `astin` / `Astin` / `آستین`, `tak` / `tak` / `تک`, `pan` / `Pan` / `پانچک`, and `zih` / `zih` / `زیح`, represented by `partKind`, `partCode`, and `labelFa`. Custom sections use `partKind:"custom"` with a valid English identifier in `partCode` and a Persian label in `labelFa`. These labels are user-supplied garment terminology; they do not assert motif-to-piece mappings. Section shapes: `rect`, `trapezoid` (centred top width), `pentagon` (pointed top), `neck` (rectangular section with a rounded U notch in top edge), `polygon` with custom `points:[[x,y],...]` in mm. Quantity duplicates sections; mirror mirrors a whole section's artwork, not the sheet. Project sections may contain any number of named layers; each layer has its own region and clipping. Modes: `single` (centred natural/scaled motif), `contain`, `cover`, `repeatX`, `repeatY`, `grid`.
 
 ## Shared engine (UMD / ES3-compatible, no dependencies)
 
@@ -69,10 +70,11 @@ Global `NaqshEngine`, CommonJS export also available.
 - `findMotif(library, code)` -> motif or null (canonical/leading-zero tolerant)
 - `validateProject(project, library)` -> `{errors:[],warnings:[]}`
 - `layout(project, library, options?)` -> manifest below; throws descriptive error on invalid/missing codes, bad sizes, sheet overflow, >10000 placements.
-- `renderSvg(manifest, assetMap?, options?)` -> SVG string; assetMap maps motif code or asset path to data URL or relative URL. Options `{guides:true,labels:true,background:'#ffffff'}`. Preview may use relative asset paths; portable export must embed every image as data URI. Labels/cut guides are a separate SVG group and must be optional.
+- `getGarmentPart(kindOrCodeOrName)` / `garmentParts()` -> the standard bilingual catalog.
+- `renderSvg(manifest, assetMap?, options?)` -> SVG string; assetMap maps motif code or asset path to data URL or relative URL. Options `{guides:true,labels:true,background:'#ffffff',profile:'technical-bw-v1'}`. The technical profile stamps the SVG and declares black vector guides/labels; the PDF server must still normalize raster assets. Preview may use relative asset paths; portable export must embed every image as data URI. Labels/cut guides are a separate SVG group and must be optional.
 - `makeDefaultProject(library)` -> representative editable full-garment project using only codes actually present. Preset includes paired sleeves, paired Pan panels, paired Tak panels, Zih/chest section. Names are labels from user PDFs, not an assertion of tailoring terminology.
 - `makeSection(id,name,widthMm,heightMm,code)` -> section default helper.
-- `createExchange(project, library, assetMap)` -> `{format:'naqsh-project',version:1,project,library:{version:1,motifs:[used...]},manifest,assets:assetMap}`.
+- `createExchange(project, library, assetMap)` -> self-contained `{format:'naqsh-project',version:2,schemaVersion:2,appVersion:'1.2.0-alpha.1',project,library:{version:1,motifs:[used...]},manifest,assets:assetMap}`.
 
 ## Manifest produced by layout
 
@@ -80,8 +82,8 @@ Global `NaqshEngine`, CommonJS export also available.
 {
  "version":1,"name":"سفارش نمونه",
  "sheet":{"widthMm":2500,"heightMm":1500},
- "sections":[
-  {"id":"s1-1","sourceId":"s1","name":"آستین راست","xMm":10,"yMm":10,
+  "sections":[
+  {"id":"s1-1","sourceId":"s1","name":"آستین","partKind":"astin","partCode":"Astin","labelFa":"آستین","xMm":10,"yMm":10,
    "widthMm":350,"heightMm":550,"mirror":false,
    "points":[[0,0],[350,0],[350,550],[0,550]],
    "layers":[
@@ -102,7 +104,7 @@ Placement coordinates are local to the section, y down, in mm. Rotation is clock
 
 Clean professional responsive Persian RTL desktop workspace (warm ivory, charcoal, teal accents); real motif thumbnails from provided library, no unrelated stock imagery. Left/right panels: project/sections, live SVG canvas, property editor/library. Required working features: load library, search exact code and K sets, choose motif, add/remove/duplicate section, section dimensions/quantity/shapes, add/remove pattern layer, pattern region, repeat/fit, scale preserving aspect, rotate/mirror/alternating mirror, offsets/gaps, guides toggle, zoom/fit, undo/redo, local save/restore, export self-contained SVG, export PDF via backend, export/import exchange JSON for Illustrator. Custom image import (PNG/JPEG/SVG) should be available; sanitize SVG (no scripts/external refs) or restrict unsafe SVGs. Display missing-code/invalid-size errors, raster quality and uncalibrated library warnings. Never show fake success.
 
-Static paths from root: `/` serves web/index.html; `/web/...`, `/shared/engine.js`, `/assets/library.json`, `/assets/...`. Server endpoint `POST /api/export/pdf` takes JSON `{svg,filename}` and returns application/pdf; `GET /api/health` -> JSON. Engine may not exist at agent start; follow this contract and coordinate API changes with parent.
+Static paths from root: `/` serves `web/index.html` inside Electron; `/web/...`, `/shared/engine.js`, `/assets/library.json`, `/assets/...`. `POST /api/export/pdf` requires JSON `{svg,filename,profile:'technical-bw-v1',expected_width_mm,expected_height_mm}` and returns application/pdf only if the SVG profile, physical page size, raster placement metadata and minimum 300 PPI pass. It thresholds raster to black/white at 128, rasterizes shaped bilingual labels at 600 PPI using the bundled licensed Vazirmatn font, preserves vector geometry, and verifies the resulting PDF's dimensions and paint values. `GET /api/health` returns the app version and supported print profile. The Windows desktop package is the only user-facing delivery; do not advertise a standalone web build.
 
 ## Illustrator obligations
 

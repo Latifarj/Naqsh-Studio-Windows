@@ -1,6 +1,6 @@
 {
   "name": "naqsh-studio",
-  "version": "1.1.0-beta",
+  "version": "1.2.0-alpha.1",
   "private": true,
   "description": "Persian garment motif layout studio and Illustrator extension",
   "main": "desktop/main.cjs",
@@ -20,8 +20,8 @@
     "minimatch": "^11.0.1"
   },
   "build": {
-    "appId": "com.naqshstudio.desktop.beta",
-    "productName": "Naqsh Studio 1.1 Beta",
+    "appId": "com.naqshstudio.desktop.alpha",
+    "productName": "Naqsh Studio 1.2 Alpha",
     "asar": true,
     "directories": {
       "output": "release/win",
@@ -54,7 +54,7 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "نقش‌یار ۱.۱ بتا"
+      "shortcutName": "نقش‌یار ۱.۲ آلفا"
     }
   }
 }

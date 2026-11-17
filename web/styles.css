@@ -16,3 +16,11 @@ html,body{width:100%;min-width:0;overflow:hidden}
 @media(max-width:760px){html,body{overflow:auto}.workspace{min-height:0}.stage-area{overflow:visible}.stage-toolbar{overflow:auto}.canvas-wrap{min-height:300px}}
 
 .project-manager{margin-top:15px;padding-top:9px;border-top:1px solid var(--line)}.project-manager .section-title{margin:0 0 8px}.project-manager #projectList{width:100%;margin-top:7px;border:1px solid var(--line);border-radius:6px;background:#fff;font:11px Vazir,Tahoma,sans-serif;color:var(--charcoal);padding:4px}.project-manager #projectList option{padding:5px}.project-manager-actions{display:flex;gap:4px;flex-wrap:wrap;margin:6px 0}.project-manager small{display:block;color:var(--muted);font-size:9px;line-height:1.7}.project-meta input[type=text]{display:block;width:100%;margin-top:3px;border:1px solid var(--line);border-radius:5px;padding:6px;font:inherit}.project-meta label{display:block}.production-report{padding:9px;background:#fff4d7;border-radius:6px;font-size:11px;line-height:1.8}.production-report.ready{background:var(--teal2);color:#185c56}.production-report.blocked{background:#fae5e2;color:#8b3028}.production-report b{display:block}.production-report .metric{direction:ltr;display:inline-block;font-variant-numeric:tabular-nums}.calibration-form details{font-size:11px;color:var(--muted);margin:10px 0}.calibration-form details ul{padding-right:22px;max-height:220px;overflow:auto}.calibration-form details li{margin:4px 0}.calibration-form button:disabled{opacity:.45;cursor:not-allowed}.project-manager #projectSearch{font-size:11px;padding:7px}
+
+/* Bilingual piece metadata controls in the section editor */
+.section-fields>label:nth-child(-n+3){grid-column:1/-1;display:grid;grid-template-columns:92px minmax(0,1fr);align-items:center;gap:6px}
+.section-fields>label:nth-child(-n+3) input,.section-fields>label:nth-child(-n+3) select{width:100%;min-width:0;box-sizing:border-box}
+.section-fields>label:nth-child(2) input{direction:ltr;border:1px solid var(--line);border-radius:5px;padding:5px;font:inherit}
+.section-fields>label:nth-child(3) input{direction:rtl;width:100%;border:1px solid var(--line);border-radius:5px;padding:5px;font:inherit}
+.section-fields>label:nth-child(3) .section-name{grid-column:auto}
+.section-fields>label:nth-child(-n+3) input:read-only{background:#f5f0e8;color:var(--muted)}
