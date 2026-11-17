@@ -4,13 +4,37 @@ on:
   push:
     branches: [main, master, professional-v1, technical-sheet-v1]
 permissions:
-  contents: read
+  contents: write
 jobs:
   build-windows-x64:
     runs-on: windows-2022
     steps:
       - name: Check out source
         uses: actions/checkout@v4
+      - name: Expand verified technical source update once
+        if: github.ref == 'refs/heads/technical-sheet-v1'
+        shell: pwsh
+        run: |
+          if (Test-Path 'technical-update.zip') {
+            $hash = (Get-FileHash 'technical-update.zip' -Algorithm SHA256).Hash.ToLower()
+            if ($hash -ne '7c3cfb3436c18341447f248770fd41148c541c97b444ff0f6719e5505705366d') { throw 'Source archive checksum mismatch' }
+            Add-Type -AssemblyName System.IO.Compression.FileSystem
+            $zip = [System.IO.Compression.ZipFile]::OpenRead((Join-Path $PWD 'technical-update.zip'))
+            try {
+              foreach ($entry in $zip.Entries) {
+                if ($entry.FullName -match '(^/|\\|(^|/)\.\.(/|$)|^\.git/|^\.github/|:)') { throw 'Unsafe source path' }
+              }
+            } finally { $zip.Dispose() }
+            Expand-Archive 'technical-update.zip' -DestinationPath '.' -Force
+            Remove-Item 'technical-update.zip'
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add --all
+            git commit -m 'Publish technical-sheet 1.2 alpha source as individual files'
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            git push origin HEAD:technical-sheet-v1
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -76,5 +100,6 @@ jobs:
             release/win/*.exe
             release/win/*.sha256
             docs/*ویندوز.fa.md
+            desktop/README.fa.md
           if-no-files-found: error
           retention-days: 30

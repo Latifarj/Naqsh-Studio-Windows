@@ -54,6 +54,22 @@ test('shelf packing duplicates with exact gutters and wraps',()=>{
  const p=project();p.sections[0].widthMm=40;p.sections[0].quantity=3;
  const a=E.layout(p,lib).sections;assert.deepEqual(a.map(s=>[s.xMm,s.yMm]),[[5,5],[50,5],[5,30]]);
 });
+test('manual section positioning is independent of shelf packing',()=>{
+ const p=project();p.sections[0].positionMode='manual';p.sections[0].sheetXmm=60;p.sections[0].sheetYmm=70;
+ const a=E.layout(p,lib).sections[0];assert.deepEqual([a.xMm,a.yMm],[60,70]);
+});
+test('manual placement preserves automatic cursor and maximum sheet extent',()=>{
+ const p=project();p.sections[0].positionMode='manual';p.sections[0].sheetXmm=60;p.sections[0].sheetYmm=70;
+ const automatic=clone(p.sections[0]);automatic.id='auto';automatic.positionMode='auto';p.sections.push(automatic);
+ const m=E.layout(p,lib);assert.deepEqual(m.sections.map(s=>[s.xMm,s.yMm]),[[60,70],[5,5]]);
+ p.sheet.autoHeight=true;const higher=clone(p.sections[0]);higher.id='higher';higher.sheetYmm=30;p.sections.push(higher);
+ assert.equal(E.layout(p,lib).sheet.heightMm,95);
+});
+test('manual section positioning validates bounds, quantity, and overlap',()=>{
+ const p=project();p.sections[0].positionMode='manual';p.sections[0].sheetXmm=0;p.sections[0].sheetYmm=5;assert.throws(()=>E.layout(p,lib),/داخل حاشیه/);
+ const q=project();q.sections[0].positionMode='manual';q.sections[0].quantity=2;q.sections[0].sheetXmm=5;q.sections[0].sheetYmm=5;assert.throws(()=>E.layout(q,lib),/دقیقاً ۱/);
+ const r=project();r.sections[0].positionMode='manual';r.sections[0].sheetXmm=5;r.sections[0].sheetYmm=5;const second=clone(r.sections[0]);second.id='s2';second.sheetXmm=20;second.sheetYmm=10;r.sections.push(second);assert.throws(()=>E.layout(r,lib),/هم‌پوشانی/);
+});
 test('numeric strings do not concatenate packing coordinates',()=>{
  const p=project();p.sections[0].widthMm='30';p.sections[0].heightMm='20';p.sections[0].quantity=2;
  const a=E.layout(p,lib).sections;assert.equal(a[1].xMm,40);assert.equal(a[0].widthMm,30);

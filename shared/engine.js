@@ -84,6 +84,11 @@
       if (!(number(s.widthMm, 0) > 0 && number(s.heightMm, 0) > 0)) { errors.push('اندازهٔ قطعهٔ «' + (s.name || i + 1) + '» باید مثبت باشد.'); }
       if (!(q >= 1 && q <= 100 && q === Math.floor(q))) { errors.push('تعداد قطعه باید عدد صحیح بین ۱ تا ۱۰۰ باشد.'); }
       if (s.shape && !/^(rect|trapezoid|pentagon|neck|polygon)$/.test(s.shape)) { errors.push('شکل قطعه شناخته نیست.'); }
+      if (s.positionMode !== undefined && !/^(auto|manual)$/.test(s.positionMode)) { errors.push('روش جایگذاری قطعه باید خودکار یا دستی باشد.'); }
+      if (s.positionMode === 'manual') {
+        if (q !== 1) { errors.push('برای جایگذاری دستی، تعداد قطعه باید دقیقاً ۱ باشد.'); }
+        if (!isFinite(Number(s.sheetXmm)) || !isFinite(Number(s.sheetYmm))) { errors.push('مختصات دستی قطعه باید عدد معتبر باشند.'); }
+      }
       if (s.shape === 'trapezoid' && !(number(s.topWidthMm, s.widthMm * 0.75) > 0 && number(s.topWidthMm, s.widthMm * 0.75) <= number(s.widthMm, 0))) { errors.push('عرض بالای ذوزنقه باید مثبت و حداکثر برابر عرض قطعه باشد.'); }
       if (s.rotateOnSheet !== undefined && typeof s.rotateOnSheet !== 'boolean') { errors.push('گزینهٔ چرخش قطعه روی شیت باید روشن یا خاموش باشد.'); }
       if (s.shape === 'polygon') {
@@ -184,19 +189,22 @@
   function layout(project, library, options) {
     var check = validateProject(project,library), sheet = project.sheet || {}, margin = number(sheet.marginMm,10), gutter = number(sheet.gutterMm,10);
     var sw = number(sheet.widthMm,2500), sh = number(sheet.heightMm,1500), x = margin, y = margin, row = 0, out = [], warnings = check.warnings.slice(0), counter = {count:0};
-    var sections = project.sections, i, j, k, s, qty, result, l, m, usedHeight, sectionW, sectionH, placedW, placedH, rotated, availableW, availableH, normalFits, rotatedFits, occupiedArea = 0, usableArea;
+    var sections = project.sections, i, j, k, s, qty, result, l, m, usedHeight, sectionW, sectionH, placedW, placedH, rotated, availableW, availableH, normalFits, rotatedFits, occupiedArea = 0, usableArea, occupied = [], manual, candidate, a, autoX, autoY, maxBottom = margin;
     if (check.errors.length) { throw new Error(check.errors.join('\n')); }
     if (sw <= margin*2 || sh <= margin*2) { throw new Error('حاشیه از اندازهٔ قابل‌استفادهٔ شیت بزرگ‌تر است.'); }
     for (i = 0; i < sections.length; i++) {
       s = sections[i]; qty = number(s.quantity,1); sectionW = number(s.widthMm,0); sectionH = number(s.heightMm,0);
       for (j = 0; j < qty; j++) {
         if (out.length >= 500) { throw new Error('بیش از ۵۰۰ قطعه در یک شیت مجاز نیست.'); }
+        manual = s.positionMode === 'manual';
+        if (manual && j > 0) { throw new Error('برای جایگذاری دستی، تعداد قطعه باید دقیقاً ۱ باشد.'); }
+        autoX = x; autoY = y;
         availableW = sw - margin - x; availableH = sheet.autoHeight ? 50000 : sh - margin - y;
         normalFits = sectionW <= availableW + 0.000001 && sectionH <= availableH + 0.000001;
         rotatedFits = !!s.rotateOnSheet && sectionH <= availableW + 0.000001 && sectionW <= availableH + 0.000001;
         rotated = !!s.rotateOnSheet && !normalFits && rotatedFits;
         placedW = rotated ? sectionH : sectionW; placedH = rotated ? sectionW : sectionH;
-        if (x+placedW > sw-margin+0.000001) {
+        if (!manual && x+placedW > sw-margin+0.000001) {
           x = margin; y += row+gutter; row = 0;
           availableW = sw-margin*2; availableH = sheet.autoHeight ? 50000 : sh-margin-y;
           normalFits = sectionW <= availableW + 0.000001 && sectionH <= availableH + 0.000001;
@@ -204,16 +212,26 @@
           rotated = !!s.rotateOnSheet && !normalFits && rotatedFits;
           placedW = rotated ? sectionH : sectionW; placedH = rotated ? sectionW : sectionH;
         }
-        if (placedW > sw-margin*2+0.000001) { throw new Error('قطعهٔ «' + (s.name || i+1) + '» از عرض مفید شیت بزرگ‌تر است؛ چرخش ۹۰ درجه هم مناسب نیست و هیچ تغییر اندازهٔ پنهانی انجام نشد.'); }
+        if (manual) {
+          if (s.rotateOnSheet) { placedW = sectionH; placedH = sectionW; rotated = true; }
+          x = number(s.sheetXmm, NaN); y = number(s.sheetYmm, NaN);
+          if (!(isFinite(x) && isFinite(y) && x >= margin - 0.000001 && y >= margin - 0.000001 && x + placedW <= sw - margin + 0.000001)) { throw new Error('مختصات دستی قطعهٔ «' + (s.name || i+1) + '» باید داخل حاشیهٔ شیت باشند.'); }
+          if (!sheet.autoHeight && y + placedH > sh - margin + 0.000001) { throw new Error('مختصات دستی قطعهٔ «' + (s.name || i+1) + '» باید داخل حاشیهٔ شیت باشند.'); }
+          if (sheet.autoHeight) { sh = Math.max(sh, y + placedH + margin); }
+        } else if (placedW > sw-margin*2+0.000001) { throw new Error('قطعهٔ «' + (s.name || i+1) + '» از عرض مفید شیت بزرگ‌تر است؛ چرخش ۹۰ درجه هم مناسب نیست و هیچ تغییر اندازهٔ پنهانی انجام نشد.'); }
         result = {id:String(s.id || 'section'+i)+'-'+(j+1),sourceId:String(s.id || 'section'+i),name:String(s.name || 'قطعه')+(qty>1?' — '+(j+1):''),partKind:String(s.partKind || 'custom'),partCode:String(s.partCode || ''),labelFa:String(s.labelFa || s.name || ''),xMm:round(x),yMm:round(y),widthMm:sectionW,heightMm:sectionH,placedWidthMm:placedW,placedHeightMm:placedH,rotationOnSheet:rotated?90:0,mirror:!!s.mirror,points:shapePoints(s),layers:[]};
         for (k = 0; k < (s.layers || []).length; k++) {
           l = s.layers[k]; if (l.enabled === false) { continue; } m = findMotif(library,l.code);
           result.layers.push(makePlacements(l,s,m,warnings,counter));
         }
-        out.push(result); occupiedArea += placedW*placedH; x += placedW+gutter; row = Math.max(row,placedH);
+        candidate = {x: x, y: y, width: placedW, height: placedH};
+        for (k = 0; k < occupied.length; k++) { a = occupied[k]; if (candidate.x < a.x + a.width - 0.000001 && candidate.x + candidate.width > a.x + 0.000001 && candidate.y < a.y + a.height - 0.000001 && candidate.y + candidate.height > a.y + 0.000001) { throw new Error('قطعهٔ «' + (s.name || i+1) + '» با قطعهٔ دیگری هم‌پوشانی دارد؛ مختصات دستی یا چیدمان شیت را اصلاح کنید.'); } }
+        occupied.push(candidate); out.push(result); occupiedArea += placedW*placedH; if (!manual) { x += placedW+gutter; row = Math.max(row,placedH); }
+        maxBottom = Math.max(maxBottom, candidate.y + placedH);
+        if (manual) { x = autoX; y = autoY; }
       }
     }
-    usedHeight = y+row+margin;
+    usedHeight = maxBottom+margin;
     if (sheet.autoHeight) { sh = Math.max(margin*2+1,usedHeight); }
     else if (usedHeight > sh+0.000001) { throw new Error('قطعات در ارتفاع شیت جا نمی‌شوند؛ ارتفاع یا چیدمان را تغییر دهید یا ارتفاع خودکار را روشن کنید.'); }
     if (sh > 50000) { throw new Error('ارتفاع شیت بیش از حد مجاز است.'); }

@@ -265,6 +265,9 @@
       $('.section-w', fragment).value = displayMm(section.widthMm);
       $('.section-h', fragment).value = displayMm(section.heightMm);
       $('.section-q', fragment).value = section.quantity || 1;
+      $('.section-position', fragment).value = section.positionMode || 'auto';
+      $('.section-x', fragment).value = section.sheetXmm == null ? '' : displayMm(section.sheetXmm);
+      $('.section-y', fragment).value = section.sheetYmm == null ? '' : displayMm(section.sheetYmm);
       $('.section-top', fragment).value = displayMm(section.topWidthMm ?? section.widthMm * 0.75);
       $('.section-neck', fragment).value = displayMm(section.neckWidthMm ?? section.widthMm * 0.3);
       $('.section-depth', fragment).value = displayMm(section.neckDepthMm ?? section.heightMm * 0.15);
@@ -297,8 +300,8 @@
       };
       $('.section-code', fragment).onchange = event => { remember(); section.partCode = event.target.value.trim(); commit(); };
       $('.section-name', fragment).onchange = event => { remember(); section.labelFa = event.target.value.trim(); section.name = section.labelFa; commit(); };
-      [['.section-shape', 'shape'], ['.section-w', 'widthMm'], ['.section-h', 'heightMm'], ['.section-q', 'quantity'], ['.section-top', 'topWidthMm'], ['.section-neck', 'neckWidthMm'], ['.section-depth', 'neckDepthMm'], ['.section-mirror', 'mirror'], ['.section-rotate', 'rotateOnSheet']].forEach(([selector, key]) => {
-        $(selector, fragment).onchange = event => { remember(); section[key] = ['name', 'shape'].includes(key) ? event.target.value : event.target.type === 'checkbox' ? event.target.checked : ['widthMm','heightMm','topWidthMm','neckWidthMm','neckDepthMm'].includes(key) ? parseMm(event.target.value) : Number(event.target.value); commit(); };
+      [['.section-shape', 'shape'], ['.section-w', 'widthMm'], ['.section-h', 'heightMm'], ['.section-q', 'quantity'], ['.section-position', 'positionMode'], ['.section-x', 'sheetXmm'], ['.section-y', 'sheetYmm'], ['.section-top', 'topWidthMm'], ['.section-neck', 'neckWidthMm'], ['.section-depth', 'neckDepthMm'], ['.section-mirror', 'mirror'], ['.section-rotate', 'rotateOnSheet']].forEach(([selector, key]) => {
+        $(selector, fragment).onchange = event => { remember(); section[key] = event.target.type === 'checkbox' ? event.target.checked : ['widthMm','heightMm','sheetXmm','sheetYmm','topWidthMm','neckWidthMm','neckDepthMm'].includes(key) ? parseMm(event.target.value) : ['shape','positionMode'].includes(key) ? event.target.value : Number(event.target.value); commit(); };
       });
       box.appendChild(fragment);
     });
