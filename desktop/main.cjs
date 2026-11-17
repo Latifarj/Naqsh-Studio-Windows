@@ -1,7 +1,8 @@
 'use strict';
 
-const { app, BrowserWindow, dialog, Menu, session } = require('electron');
+const { app, BrowserWindow, dialog, Menu, session, ipcMain } = require('electron');
 const { spawn } = require('node:child_process');
+const fs = require('node:fs/promises');
 const path = require('node:path');
 
 const isPackaged = app.isPackaged;
@@ -13,6 +14,65 @@ let backendClosePromise = null;
 let backendStopPromise = null;
 let quitCleanupStarted = false;
 let allowQuit = false;
+const PROJECT_ID = /^project-[a-z0-9]+$/;
+const MAX_PROJECT_BYTES = 100 * 1024 * 1024;
+const MAX_PROJECT_VERSIONS = 5;
+
+function projectsDirectory() { return path.join(app.getPath('userData'), 'projects'); }
+function projectFile(id) {
+  if (typeof id !== 'string' || !PROJECT_ID.test(id)) throw new Error('شناسهٔ پروژه نامعتبر است.');
+  return path.join(projectsDirectory(), `${id}.json`);
+}
+async function readProject(id) {
+  try {
+    const text = await fs.readFile(projectFile(id), 'utf8');
+    if (Buffer.byteLength(text, 'utf8') > MAX_PROJECT_BYTES) throw new Error('فایل پروژه از سقف اندازه بیشتر است.');
+    return JSON.parse(text);
+  } catch (error) {
+    if (error.code === 'ENOENT') return null;
+    throw error;
+  }
+}
+async function writeProjectAtomic(id, record) {
+  const file = projectFile(id);
+  const directory = projectsDirectory();
+  await fs.mkdir(directory, { recursive: true });
+  const text = JSON.stringify(record);
+  if (Buffer.byteLength(text, 'utf8') > MAX_PROJECT_BYTES) throw new Error('حجم پروژه از سقف ۱۰۰ مگابایت بیشتر است؛ تصاویر بزرگ را کوچک کنید یا پروژه را به‌صورت فایل جدا نگه دارید.');
+  const temporary = `${file}.${process.pid}.${Date.now()}.tmp`;
+  try { await fs.writeFile(temporary, text, { encoding: 'utf8', flag: 'wx' }); await fs.rename(temporary, file); }
+  catch (error) { await fs.unlink(temporary).catch(() => {}); throw error; }
+}
+
+function assertProjectIpc(event) {
+  if (!event.senderFrame || event.senderFrame !== event.sender.mainFrame || !isAppUrl(event.senderFrame.url)) {
+    throw new Error('درخواست ذخیره‌سازی از صفحهٔ معتبر نقش‌یار ارسال نشده است.');
+  }
+}
+
+ipcMain.handle('naqsh:projects:list', async event => {
+  assertProjectIpc(event);
+  await fs.mkdir(projectsDirectory(), { recursive: true });
+  const names = await fs.readdir(projectsDirectory());
+  const records = await Promise.all(names.filter(name => PROJECT_ID.test(name.replace(/\.json$/, '')) && name.endsWith('.json')).map(name => readProject(name.slice(0, -5))));
+  return records.filter(Boolean).map(record => ({ id: record.id, name: record.name, customerName: record.customerName, orderNumber: record.orderNumber, status: record.status, createdAt: record.createdAt, updatedAt: record.updatedAt, versions: (record.versions || []).length })).sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt)));
+});
+ipcMain.handle('naqsh:projects:get', async (event, id) => { assertProjectIpc(event); return readProject(id); });
+ipcMain.handle('naqsh:projects:save', async (event, id, payload) => {
+  assertProjectIpc(event);
+  if (!payload || payload.format !== 'naqsh-project' || Number(payload.schemaVersion) !== 2 || !payload.project || !Array.isArray(payload.project.sections) || !payload.project.sheet) throw new Error('ساختار نسخه‌بندی‌شدهٔ پروژه معتبر نیست.');
+  const previous = await readProject(id);
+  const data = JSON.stringify(payload);
+  if (Buffer.byteLength(data, 'utf8') > MAX_PROJECT_BYTES) throw new Error('حجم پروژه از سقف ۱۰۰ مگابایت بیشتر است.');
+  const versions = previous && Array.isArray(previous.versions) ? previous.versions.slice() : [];
+  if (previous && previous.data !== data) { versions.push({ savedAt: previous.updatedAt, data: previous.data }); while (versions.length > MAX_PROJECT_VERSIONS) versions.shift(); }
+  const p = payload.project;
+  const record = { id, name: String(p.name || 'سفارش جدید'), customerName: String(p.customerName || ''), orderNumber: String(p.orderNumber || ''), status: String(p.status || 'draft'), createdAt: previous ? previous.createdAt : String(payload.createdAt || new Date().toISOString()), updatedAt: String(payload.updatedAt || new Date().toISOString()), data, versions };
+  while (record.versions.length && Buffer.byteLength(JSON.stringify(record), 'utf8') > MAX_PROJECT_BYTES) record.versions.shift();
+  await writeProjectAtomic(id, record);
+  return record;
+});
+ipcMain.handle('naqsh:projects:remove', async (event, id) => { assertProjectIpc(event); try { await fs.unlink(projectFile(id)); } catch (error) { if (error.code !== 'ENOENT') throw error; } return true; });
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -209,6 +269,7 @@ async function createWindow() {
     autoHideMenuBar: true,
     backgroundColor: '#f3f0e8',
     webPreferences: {
+      preload: path.join(__dirname, 'preload.cjs'),
       nodeIntegration: false,
       contextIsolation: true,
       sandbox: true
@@ -224,7 +285,9 @@ async function createWindow() {
 }
 
 app.whenReady().then(async () => {
-  app.setAppUserModelId('com.naqshstudio.desktop');
+  app.setName('Naqsh Studio 1.1 Beta');
+  app.setPath('userData', path.join(app.getPath('appData'), 'Naqsh Studio 1.1 Beta'));
+  app.setAppUserModelId('com.naqshstudio.desktop.beta');
   installDownloadDialog();
   try {
     await createWindow();
