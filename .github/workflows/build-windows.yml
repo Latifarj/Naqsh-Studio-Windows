@@ -2,7 +2,7 @@ name: Windows desktop build
 on:
   workflow_dispatch:
   push:
-    branches: [main, master, professional-v1]
+    branches: [main, master, professional-v1, technical-sheet-v1]
 permissions:
   contents: read
 jobs:
@@ -50,12 +50,12 @@ jobs:
           try {
             $ready = $false
             for ($i=0; $i -lt 60; $i++) {
-              try { $h = Invoke-RestMethod 'http://127.0.0.1:18765/api/health'; if ($h.ok) { $ready=$true; break } } catch {}
+              try { $h = Invoke-RestMethod 'http://127.0.0.1:18765/api/health'; if ($h.ok -and $h.printProfile -eq 'technical-bw-v1') { $ready=$true; break } } catch {}
               if ($p.HasExited) { Get-Content backend-error.log; throw "Packaged backend exited early" }
               Start-Sleep -Seconds 1
             }
             if (-not $ready) { Get-Content backend-error.log; throw "Backend did not become ready" }
-            $body = @{svg='<svg xmlns="http://www.w3.org/2000/svg" width="10mm" height="10mm"><rect width="10" height="10" fill="red"/></svg>'; expected_width_mm=10; expected_height_mm=10} | ConvertTo-Json
+            $body = @{svg='<svg xmlns="http://www.w3.org/2000/svg" data-print-profile="technical-bw-v1" width="10mm" height="10mm" viewBox="0 0 10 10"><rect width="10" height="10" fill="red"/><text x="5" y="5" text-anchor="middle" direction="rtl" font-size="1.5" fill="#000">آستین</text></svg>'; profile='technical-bw-v1'; expected_width_mm=10; expected_height_mm=10} | ConvertTo-Json
             Invoke-WebRequest 'http://127.0.0.1:18765/api/export/pdf' -Method Post -ContentType 'application/json' -Body $body -OutFile smoke.pdf
             $bytes = [System.IO.File]::ReadAllBytes((Join-Path $PWD 'smoke.pdf'))
             if ([System.Text.Encoding]::ASCII.GetString($bytes,0,4) -ne '%PDF') { throw 'Invalid PDF' }
@@ -71,7 +71,7 @@ jobs:
       - name: Upload installer artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Naqsh-Studio-1.1.0-beta-Windows-x64
+          name: Naqsh-Studio-technical-sheet-v1-Windows-x64
           path: |
             release/win/*.exe
             release/win/*.sha256

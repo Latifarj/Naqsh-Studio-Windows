@@ -25,6 +25,10 @@ test('leading zeros match but missing codes do not substitute',()=>{
  assert.equal(E.findMotif(lib,'v6').code,'V006');assert.equal(E.findMotif(lib,'P999'),null);
  const p=project();layer(p).code='P999';assert.throws(()=>E.layout(p,lib),/P999/);
 });
+test('garment-part catalog exposes the requested bilingual codes exactly',()=>{
+ assert.deepEqual(E.garmentParts().map(p=>[p.code,p.nameFa]),[['Astin','آستین'],['tak','تک'],['Pan','پانچک'],['zih','زیح']]);
+ assert.equal(E.getGarmentPart('آستین').kind,'astin');assert.equal(E.getGarmentPart('Pan').nameFa,'پانچک');assert.equal(E.getGarmentPart('sleeve-left').code,'Astin');assert.equal(E.getGarmentPart('unknown'),null);
+});
 test('millimetres and aspect ratio remain exact',()=>{
  const p=project();const a=placements(p)[0];
  assert.equal(a.widthMm,10);assert.equal(a.heightMm,5);assert.equal(a.xMm,10);assert.equal(a.yMm,7.5);
@@ -85,6 +89,20 @@ test('neck, trapezoid and custom polygon masks validate',()=>{
 test('SVG embeds each source once and reuses native SVG references',()=>{
  const p=project();layer(p).mode='grid';const m=E.layout(p,lib);const svg=E.renderSvg(m,{P1:data},{guides:false});
  assert.equal((svg.match(/<image /g)||[]).length,1);assert.equal((svg.match(/<use /g)||[]).length,20);assert(svg.includes('width="100mm"'));assert(svg.includes('clipPath'));assert(!svg.includes('id="cut-guides"'));
+ const vector='data:image/svg+xml;base64,'+Buffer.from('<svg xmlns="http://www.w3.org/2000/svg"/>').toString('base64');
+ assert(E.renderSvg(m,{P1:vector},{guides:false}).includes('data-raster="false"'));
+});
+test('technical profile marks the SVG, uses only black vector guides, and prints bilingual labels',()=>{
+ const p=project(),m=E.layout(p,lib),svg=E.renderSvg(m,{P1:data},{profile:E.PRINT_PROFILE,guides:true,labels:true,background:'#ffffff'});
+ assert(svg.includes('data-print-profile="technical-bw-v1"'));assert(svg.includes('stroke="#000000"'));assert(svg.includes('Astin'));assert(svg.includes('آستین'));
+ assert(!svg.includes('#158779'));assert(!svg.includes('#3b4d4a'));assert(svg.includes('data-output-width-mm="10"'));assert(svg.includes('data-source-width-px="200"'));
+});
+test('print labels stay horizontal on rotated pieces and require at least 9 mm top margin',()=>{
+ const p=project();p.sheet.widthMm=45;p.sheet.heightMm=50;p.sheet.marginMm=9;p.sections[0].rotateOnSheet=true;
+ const m=E.layout(p,lib);assert.ok(m.sections[0].rotationOnSheet);
+ const svg=E.renderSvg(m,{P1:data},{profile:E.PRINT_PROFILE,guides:true,labels:true});
+ const labelGroup=svg.match(/<g id="cut-labels">([\s\S]*?)<\/g>/);assert(labelGroup);assert(labelGroup[1].includes('direction="ltr"'));assert(labelGroup[1].includes('direction="rtl"'));
+ const shallow=project();shallow.sheet.marginMm=5;const check=E.productionCheck(shallow,lib);assert(!check.ready);assert(check.errors.some(e=>e.includes('۹ میلی‌متر')));
 });
 test('SVG escapes metadata and rejects external asset paths',()=>{
  const p=project();p.name='<script>alert(1)</script>';const m=E.layout(p,lib);const svg=E.renderSvg(m,{P1:data});assert(!svg.includes('<script>'));assert(svg.includes('&lt;script&gt;'));
@@ -116,13 +134,20 @@ test('unconfirmed catalog display dimensions do not become physical output dimen
 test('production check blocks uncalibrated art and names raster/approval limitations',()=>{
  const p=project();const unconfirmed={version:1,motifs:[{code:'P1',asset:'assets/motifs/P1.png',needsCalibration:true,pixelWidth:200,pixelHeight:100}]};
  assert.equal(E.productionCheck(p,unconfirmed).ready,false);
- const ready=E.productionCheck(p,lib);assert.equal(ready.ready,true);assert(ready.warnings.some(w=>w.includes('تأیید نهایی تولید')));assert(ready.warnings.some(w=>w.includes('CMYK')));
+ const readyProject=project();readyProject.sheet.marginMm=9;const ready=E.productionCheck(readyProject,lib);assert.equal(ready.ready,true);assert(ready.warnings.some(w=>w.includes('تأیید نهایی تولید')));assert(ready.warnings.some(w=>w.includes('CMYK')));
+});
+test('technical preflight blocks missing bilingual labels and raster below 300 PPI',()=>{
+ const p=project();p.sections[0].partKind='custom';p.sections[0].partCode='';p.sections[0].labelFa='';
+ const report=E.productionCheck(p,lib);assert.equal(report.ready,false);assert(report.errors.some(x=>x.includes('کد انگلیسی')));
+ const q=project();lib.motifs[0].pixelWidth=80;lib.motifs[0].pixelHeight=40;
+ const low=E.productionCheck(q,lib);assert.equal(low.ready,false);assert(low.errors.some(x=>x.includes('حداقل ۳۰۰ PPI')));
+ lib.motifs[0].pixelWidth=200;lib.motifs[0].pixelHeight=100;
 });
 test('100 percent scale-test SVG declares exact physical dimensions and a 100 mm line',()=>{
  const svg=E.renderPrintScaleSvg();assert(svg.includes('width="120mm" height="45mm"'));assert(svg.includes('M 10 25 H 110'));assert(svg.includes('۱۰۰ میلی‌متر'));
 });
 test('full garment demo includes the five verified part names',()=>{
- const p=E.makeDefaultProject(lib),m=E.layout(p,lib);assert.equal(p.sections.length,5);assert.equal(m.sections.length,8);assert(p.sections.some(s=>s.name==='گواتنام'));assert.equal(m.sheet.widthMm,2500);assert.equal(m.sheet.heightMm,1500);
+ const p=E.makeDefaultProject(lib),m=E.layout(p,lib);assert.equal(p.sections.length,5);assert.equal(m.sections.length,8);assert.equal(p.sections.find(s=>s.name==='گواتنام').partCode,'Gwatnam');assert.equal(m.sections.find(s=>s.sourceId==='sleeve').partCode,'Astin');assert.equal(m.sections.find(s=>s.sourceId==='pan').partCode,'Pan');assert.equal(m.sheet.widthMm,2500);assert.equal(m.sheet.heightMm,1500);
 });
 test('Illustrator bundle is byte-identical to the shared engine',()=>{
  assert.equal(fs.readFileSync(require.resolve('../illustrator/lib/engine.js'),'utf8'),fs.readFileSync(require.resolve('../shared/engine.js'),'utf8'));

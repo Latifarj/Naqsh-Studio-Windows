@@ -6,7 +6,7 @@
   'use strict';
   var FORMAT = 'naqsh-project';
   var SCHEMA_VERSION = 2;
-  var APP_VERSION = '1.1.0-beta';
+  var APP_VERSION = '1.2.0-alpha.1';
   var DB_NAME = 'naqsh-studio-projects';
   var DB_VERSION = 1;
   var FALLBACK_KEY = 'naqsh-project-store-v2';

@@ -78,6 +78,11 @@
     p.sections.forEach(section => {
       section.id = String(section.id || uid('s'));
       section.name = String(section.name || 'بخش جدید');
+      const standardPart = engine()?.getGarmentPart(section.partKind) || engine()?.getGarmentPart(section.id) || engine()?.getGarmentPart(section.name);
+      section.partKind = standardPart?.kind || section.partKind || 'custom';
+      section.partCode = String(section.partCode ?? standardPart?.code ?? '');
+      section.labelFa = String(section.labelFa ?? standardPart?.nameFa ?? section.name);
+      if (standardPart) section.name = standardPart.nameFa;
       section.layers = Array.isArray(section.layers) ? section.layers : [];
       section.layers.forEach(layer => {
         layer.id = String(layer.id || uid('l'));
@@ -96,7 +101,7 @@
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       state.baseLibrary = await response.json();
       state.library = clone(state.baseLibrary);
-      $('#statusPill').textContent = `بتا ۱.۱ · ${fa(state.library.motifs?.length || 0)} نقش`;
+      $('#statusPill').textContent = `آلفا ۱.۲ · ${fa(state.library.motifs?.length || 0)} نقش`;
       $('#statusPill').classList.add('ok');
     } catch (error) {
       $('#statusPill').textContent = 'خطا در بارگذاری کتابخانه';
@@ -249,8 +254,13 @@
       const fragment = document.importNode($('#sectionTemplate').content, true);
       const card = $('.section-card', fragment);
       if (section.id === state.selectedSection) card.classList.add('selected');
-      $('.section-select', fragment).textContent = section.name || 'بدون نام';
-      $('.section-name', fragment).value = section.name || '';
+      $('.section-select', fragment).textContent = `${section.partCode || '—'} / ${section.labelFa || section.name || 'بدون نام'}`;
+      $('.section-kind', fragment).value = section.partKind || 'custom';
+      $('.section-code', fragment).value = section.partCode || '';
+      $('.section-name', fragment).value = section.labelFa || section.name || '';
+      const standardPart = engine()?.getGarmentPart(section.partKind);
+      $('.section-code', fragment).readOnly = !!standardPart;
+      $('.section-name', fragment).readOnly = !!standardPart;
       $('.section-shape', fragment).value = section.shape || 'rect';
       $('.section-w', fragment).value = displayMm(section.widthMm);
       $('.section-h', fragment).value = displayMm(section.heightMm);
@@ -278,7 +288,16 @@
         remember(); const layer = defaultLayer(section); section.layers.push(layer);
         state.selectedSection = section.id; state.selectedLayer = layer.id; commit();
       };
-      [['.section-name', 'name'], ['.section-shape', 'shape'], ['.section-w', 'widthMm'], ['.section-h', 'heightMm'], ['.section-q', 'quantity'], ['.section-top', 'topWidthMm'], ['.section-neck', 'neckWidthMm'], ['.section-depth', 'neckDepthMm'], ['.section-mirror', 'mirror'], ['.section-rotate', 'rotateOnSheet']].forEach(([selector, key]) => {
+      $('.section-kind', fragment).onchange = event => {
+        remember(); section.partKind = event.target.value;
+        const part = engine()?.getGarmentPart(section.partKind);
+        if (part) { section.partCode = part.code; section.labelFa = part.nameFa; section.name = part.nameFa; }
+        else { section.partCode = ''; section.labelFa = section.labelFa || section.name || ''; }
+        commit();
+      };
+      $('.section-code', fragment).onchange = event => { remember(); section.partCode = event.target.value.trim(); commit(); };
+      $('.section-name', fragment).onchange = event => { remember(); section.labelFa = event.target.value.trim(); section.name = section.labelFa; commit(); };
+      [['.section-shape', 'shape'], ['.section-w', 'widthMm'], ['.section-h', 'heightMm'], ['.section-q', 'quantity'], ['.section-top', 'topWidthMm'], ['.section-neck', 'neckWidthMm'], ['.section-depth', 'neckDepthMm'], ['.section-mirror', 'mirror'], ['.section-rotate', 'rotateOnSheet']].forEach(([selector, key]) => {
         $(selector, fragment).onchange = event => { remember(); section[key] = ['name', 'shape'].includes(key) ? event.target.value : event.target.type === 'checkbox' ? event.target.checked : ['widthMm','heightMm','topWidthMm','neckWidthMm','neckDepthMm'].includes(key) ? parseMm(event.target.value) : Number(event.target.value); commit(); };
       });
       box.appendChild(fragment);
@@ -382,7 +401,7 @@
     try {
       if (!engine()?.layout || !engine()?.renderSvg) throw new Error('NaqshEngine بارگذاری نشده است');
       const manifest = engine().layout(state.project, state.library);
-      const svg = engine().renderSvg(manifest, undefined, { guides: state.project.guides !== false, labels: true, background: '#ffffff' });
+      const svg = engine().renderSvg(manifest, undefined, { guides: state.project.guides !== false, labels: true, background: '#ffffff', profile: engine().PRINT_PROFILE });
       $('#svgHost').innerHTML = svg; state.warnings = manifest.warnings || [];
       $('#placementInfo').textContent = `${fa(manifest.placementCount || 0)} جایگذاری · ${fa(manifest.nesting?.utilizationPercent || 0)}٪ استفادهٔ تقریبی`;
       $('#warningInfo').textContent = state.warnings.length ? `${fa(state.warnings.length)} هشدار` : 'آماده';
@@ -422,9 +441,9 @@
       if (kind === 'project') { const envelope = projectPayload(); download(`${state.project.name || 'naqsh'}-project.json`, JSON.stringify(envelope, null, 2), 'application/json'); return; }
       const manifest = engine().layout(state.project, state.library); const assets = await assetMapForExport();
       if (kind === 'exchange') { const exchange = engine().createExchange(state.project, state.library, assets); exchange.library.motifs.forEach(motif => { if (state.customAssets[motif.code]) motif.asset = state.customAssets[motif.code]; }); exchange.assets = Object.assign(exchange.assets, state.customAssets); download('naqsh-self-contained-exchange.json', JSON.stringify(exchange, null, 2), 'application/json'); return; }
-      const svg = engine().renderSvg(manifest, assets, { guides: state.project.guides !== false, labels: true, background: '#ffffff' });
+      const svg = engine().renderSvg(manifest, assets, { guides: state.project.guides !== false, labels: true, background: '#ffffff', profile: engine().PRINT_PROFILE });
       if (kind === 'svg') { download(`${state.project.name || 'naqsh'}.svg`, svg, 'image/svg+xml'); return; }
-      const response = await fetch('/api/export/pdf', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ svg, filename: state.project.name || 'naqsh', expected_width_mm: manifest.sheet.widthMm, expected_height_mm: manifest.sheet.heightMm }) });
+      const response = await fetch('/api/export/pdf', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ svg, filename: state.project.name || 'naqsh', profile: engine().PRINT_PROFILE, expected_width_mm: manifest.sheet.widthMm, expected_height_mm: manifest.sheet.heightMm }) });
       if (!response.ok) { let message = `سرور PDF خطا داد (${response.status})`; try { const body = await response.json(); message = body.error || body.message || message; } catch (_) {} throw new Error(message); }
       download(`${state.project.name || 'naqsh'}.pdf`, await response.blob(), 'application/pdf');
     } catch (error) { toast(`خروجی انجام نشد: ${error.message}`); }
@@ -498,14 +517,14 @@
     list.replaceChildren();
     [...report.errors.map(text => `خطا: ${text}`), ...report.warnings].forEach(text => { const item = document.createElement('li'); item.textContent = text; list.appendChild(item); });
     if (!list.children.length) { const item = document.createElement('li'); item.textContent = 'موردی برای هشدار خودکار پیدا نشد؛ همچنان یک چاپ آزمایشی انجام دهید.'; list.appendChild(item); }
-    $('#productionIntro').textContent = 'این کنترل ابعاد ثبت‌شده، کالیبراسیون، وضوح رستر و چیدمان را بررسی می‌کند؛ صحت فیزیکی نقش را مستقلاً اندازه‌گیری نمی‌کند و جایگزین تأیید چاپخانه نیست.';
+    $('#productionIntro').textContent = 'PDF فنی با زمینهٔ سفید، اجزای برداری مشکی و تبدیل آستانه‌ای ثابت ۱۲۸ برای تصاویر به سیاه‌وسفید ساخته می‌شود. وضوح مؤثر هر نقش باید حداقل ۳۰۰ PPI باشد؛ صحت اندازه را با چاپ خط‌کش ۱۰۰ میلی‌متری و خاموش‌کردن Fit to page بررسی کنید.';
     ack.checked = false; ack.disabled = !report.ready; proceed.hidden = !kind; proceed.disabled = true;
     dialog.showModal();
   }
 
   function exportScaleTest() {
     const svg = engine().renderPrintScaleSvg();
-    fetch('/api/export/pdf', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ svg, filename: 'naqsh-scale-test', expected_width_mm: 120, expected_height_mm: 45 }) })
+    fetch('/api/export/pdf', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ svg, filename: 'naqsh-scale-test', profile: engine().PRINT_PROFILE, expected_width_mm: 120, expected_height_mm: 45 }) })
       .then(async response => { if (!response.ok) { const body = await response.json().catch(() => ({})); throw new Error(body.error || `سرور PDF خطا داد (${response.status})`); } download('naqsh-scale-test-100-percent.pdf', await response.blob(), 'application/pdf'); toast('PDF تست مقیاس آماده است؛ خط‌کش ۱۰۰ میلی‌متری را پس از چاپ اندازه بگیرید.'); })
       .catch(error => toast(`ساخت PDF تست مقیاس ناموفق بود: ${error.message}`));
   }
@@ -519,7 +538,7 @@
     $('#autoHeight').onchange = e => { remember(); state.project.sheet.autoHeight = e.target.checked; commit(); };
     $('#guidesToggle').onchange = e => { state.project.guides = e.target.checked; commit(); };
     $('#librarySearch').oninput = () => { state.visible = 24; renderLibrary(); }; $('#clearSearch').onclick = () => { $('#librarySearch').value = ''; renderLibrary(); }; $('#loadMoreBtn').onclick = () => { state.visible += 24; renderLibrary(); };
-    $('#addSectionBtn').onclick = () => { remember(); const section = { id: uid('s'), name: 'بخش جدید', widthMm: 350, heightMm: 550, quantity: 1, shape: 'rect', topWidthMm: 280, neckWidthMm: 90, neckDepthMm: 100, mirror: false, rotateOnSheet: false, layers: [] }; state.project.sections.push(section); state.selectedSection = section.id; state.selectedLayer = null; commit(); };
+    $('#addSectionBtn').onclick = () => { remember(); const section = { id: uid('s'), name: 'قطعهٔ سفارشی', partKind: 'custom', partCode: '', labelFa: 'قطعهٔ سفارشی', widthMm: 350, heightMm: 550, quantity: 1, shape: 'rect', topWidthMm: 280, neckWidthMm: 90, neckDepthMm: 100, mirror: false, rotateOnSheet: false, layers: [] }; state.project.sections.push(section); state.selectedSection = section.id; state.selectedLayer = null; commit(); };
     $('#loadSampleBtn').onclick = () => { remember(); state.project = engine().makeDefaultProject(state.library); selectFirst(); commit(); toast('نمونهٔ نمایشی بارگذاری شد؛ اندازه‌های آن فرضی‌اند.'); };
     $('#saveBtn').onclick = () => saveLocal(true); $('#newProjectBtn').onclick = async () => { if (window.confirm('پروژهٔ فعلی حفظ می‌شود و یک پروژهٔ خالی تازه ساخته خواهد شد. ادامه؟')) { if (!await saveLocal(false)) return; state.library = clone(state.baseLibrary); state.customAssets = {}; state.history = []; state.future = []; state.project = makeFallback(); state.projectId = uid('project-'); selectFirst(); commit(); } };
     $('#undoBtn').onclick = () => { if (!state.history.length) return; state.future.push(clone(state.project)); state.project = state.history.pop(); selectFirst(); renderAll(); scheduleSave(); }; $('#redoBtn').onclick = () => { if (!state.future.length) return; state.history.push(clone(state.project)); state.project = state.future.pop(); selectFirst(); renderAll(); scheduleSave(); };
