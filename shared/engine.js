@@ -346,24 +346,27 @@
         if (motif.associationReview === true || motif.codeVerified === false) { errors.push('«'+code+'»: تطبیق کد و تصویر تأیید نشده است.'); }
         if (motif.productionApproved !== true) { warnings.push('«'+code+'»: تأیید نهایی تولید برای این نقش ثبت نشده است.'); }
         if (motif.seamlessVerified !== true) { warnings.push('«'+code+'»: seamless بودن نقش تأیید نشده است؛ درز تکرار را بررسی کنید.'); }
-        minPpi = Infinity;
-        if (manifest && manifest.sections) {
-          for (k = 0; k < manifest.sections.length; k++) {
-            var layers = manifest.sections[k].layers || [];
-            for (var li = 0; li < layers.length; li++) {
-              if (normalizeCode(layers[li].name) === normalizeCode(motif.code)) { /* Names are not a stable key; placement codes below are authoritative. */ }
-              placements = layers[li].placements || [];
-              for (var pi = 0; pi < placements.length; pi++) {
-                if (normalizeCode(placements[pi].code) !== code) { continue; }
-                ppi = Math.min(number(motif.pixelWidth,0)/(placements[pi].widthMm/25.4), number(motif.pixelHeight,0)/(placements[pi].heightMm/25.4));
-                if (ppi > 0) minPpi = Math.min(minPpi, ppi);
+        var vectorSource = /^data:image\/svg\+xml(?:;|$)/i.test(String(motif.asset || '')) || /\.svg(?:$|[?#])/i.test(String(motif.asset || ''));
+        if (!vectorSource) {
+          minPpi = Infinity;
+          if (manifest && manifest.sections) {
+            for (k = 0; k < manifest.sections.length; k++) {
+              var layers = manifest.sections[k].layers || [];
+              for (var li = 0; li < layers.length; li++) {
+                if (normalizeCode(layers[li].name) === normalizeCode(motif.code)) { /* Names are not a stable key; placement codes below are authoritative. */ }
+                placements = layers[li].placements || [];
+                for (var pi = 0; pi < placements.length; pi++) {
+                  if (normalizeCode(placements[pi].code) !== code) { continue; }
+                  ppi = Math.min(number(motif.pixelWidth,0)/(placements[pi].widthMm/25.4), number(motif.pixelHeight,0)/(placements[pi].heightMm/25.4));
+                  if (ppi > 0) minPpi = Math.min(minPpi, ppi);
+                }
               }
             }
           }
+          if (minPpi === Infinity) { errors.push('«'+code+'»: وضوح مؤثر تصویر قابل محاسبه نیست؛ برای چاپ فنی منبع پیکسلی معتبر لازم است.'); }
+          else if (minPpi < 300) { errors.push('«'+code+'»: وضوح مؤثر '+Math.round(minPpi)+' ppi است؛ برای PDF فنی اندازه را کوچک‌تر یا منبع باکیفیت‌تر کنید (حداقل ۳۰۰ PPI).'); }
+          else if (minPpi < 600) { warnings.push('«'+code+'»: وضوح مؤثر حدود '+Math.round(minPpi)+' ppi است؛ ۳۰۰ PPI حداقل چاپ است و ۶۰۰ PPI کیفیت بیشتری می‌دهد.'); }
         }
-        if (minPpi === Infinity) { errors.push('«'+code+'»: وضوح مؤثر تصویر قابل محاسبه نیست؛ برای چاپ فنی منبع پیکسلی معتبر لازم است.'); }
-        else if (minPpi < 300) { errors.push('«'+code+'»: وضوح مؤثر '+Math.round(minPpi)+' ppi است؛ برای PDF فنی اندازه را کوچک‌تر یا منبع باکیفیت‌تر کنید (حداقل ۳۰۰ PPI).'); }
-        else if (minPpi < 600) { warnings.push('«'+code+'»: وضوح مؤثر حدود '+Math.round(minPpi)+' ppi است؛ ۳۰۰ PPI حداقل چاپ است و ۶۰۰ PPI کیفیت بیشتری می‌دهد.'); }
       }
     }
     warnings.push('این نسخه چیدمان صنعتیِ بهینه، چندشیتی، CMYK یا PDF/X را تضمین نمی‌کند.');

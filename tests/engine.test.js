@@ -152,6 +152,14 @@ test('production check blocks uncalibrated art and names raster/approval limitat
  assert.equal(E.productionCheck(p,unconfirmed).ready,false);
  const readyProject=project();readyProject.sheet.marginMm=9;const ready=E.productionCheck(readyProject,lib);assert.equal(ready.ready,true);assert(ready.warnings.some(w=>w.includes('تأیید نهایی تولید')));assert(ready.warnings.some(w=>w.includes('CMYK')));
 });
+test('vector sources with no pixel metadata bypass PPI but keep calibration checks',()=>{
+ const vectorLib={version:1,motifs:[{code:'P1',asset:'data:image/svg+xml;base64,'+Buffer.from('<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 50\"><path d=\"M0 0h100v50H0z\"/></svg>').toString('base64'),widthMm:20,heightMm:10,pixelWidth:0,pixelHeight:0,needsCalibration:false,codeVerified:true,associationReview:false}]};
+ const vectorProject=project(); vectorProject.sheet.marginMm=9;
+ const vectorReport=E.productionCheck(vectorProject,vectorLib);
+ assert.equal(vectorReport.ready,true); assert(!vectorReport.errors.some(error=>error.includes('PPI')));
+ const uncalibrated=clone(vectorLib); uncalibrated.motifs[0].needsCalibration=true;
+ assert.equal(E.productionCheck(vectorProject,uncalibrated).ready,false);
+});
 test('technical preflight blocks missing bilingual labels and raster below 300 PPI',()=>{
  const p=project();p.sections[0].partKind='custom';p.sections[0].partCode='';p.sections[0].labelFa='';
  const report=E.productionCheck(p,lib);assert.equal(report.ready,false);assert(report.errors.some(x=>x.includes('کد انگلیسی')));
