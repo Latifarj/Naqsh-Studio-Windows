@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "exclusions": [
+    {
+      "code": "Z340",
+      "sha256": "98950f42e4d0c999128d21f981699850c36c5b78e5816c21b3154a9ddd2b9aea",
+      "matches": [{"code": "V18", "asset": "assets/motifs/V18.png", "sharedPages": [19, 42]}],
+      "reason": "Exact image-file match to a V-family motif; both code labels appear on the listed catalog pages."
+    },
+    {
+      "code": "Z340",
+      "sha256": "969856577d99ae8dd40a269ebd77b5ce34f6701f0e49ecff520d3c5b10edd501",
+      "matches": [{"code": "V18", "asset": "assets/motifs/V18-variant-2.png", "sharedPages": [19, 42]}],
+      "reason": "Exact image-file match to a V-family motif; both code labels appear on the listed catalog pages."
+    },
+    {
+      "code": "Z340",
+      "sha256": "68d74661dd955884399d27b5a4deb31e174df207b72e22249ef6666ce2bc62b4",
+      "matches": [{"code": "V145", "asset": "assets/motifs/V145.png", "sharedPages": [43]}],
+      "reason": "Exact image-file match to a V-family motif; both code labels appear on the listed catalog page."
+    },
+    {
+      "code": "Z340",
+      "sha256": "bdafdd429009190233c6e62b32e217d75cb052b2b505c9a3c0b9d8acca03cf09",
+      "matches": [
+        {"code": "V209", "asset": "assets/motifs/V209.png", "sharedPages": [136]},
+        {"code": "V59", "asset": "assets/motifs/V59.png", "sharedPages": [90]},
+        {"code": "V67", "asset": "assets/motifs/V67-variant-2.png", "sharedPages": [64]}
+      ],
+      "reason": "Exact image-file match to V-family motifs; both code labels appear together on each listed catalog page."
+    },
+    {
+      "code": "Z340",
+      "sha256": "037e708e446af1a564f26de4c8a9573738d4da6d4b96f5d0f1d26dc402497e35",
+      "matches": [{"code": "V93", "asset": "assets/motifs/V93.png", "sharedPages": [78]}],
+      "reason": "Exact image-file match to a V-family motif; both code labels appear on the listed catalog page."
+    },
+    {
+      "code": "Z340",
+      "sha256": "935c3f2eddc55f0cbd77ae4e9e864c6875a803623f4b5c42ea774c3ef47014f3",
+      "matches": [{"code": "V126", "asset": "assets/motifs/V126.png", "sharedPages": [131]}],
+      "reason": "Exact image-file match to a V-family motif; both code labels appear on the listed catalog page."
+    }
+  ]
+}

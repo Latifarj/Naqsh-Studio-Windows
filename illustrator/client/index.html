@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>نقش‌یار</title><link rel="stylesheet" href="style.css"></head>
+<body><main><header><h1>نقش‌یار</h1><small>Illustrator / نسخهٔ آزمایشی</small></header>
+<label>پوشهٔ اصلی کتابخانه<input id="root" type="text" placeholder="پوشه‌ای که assets/library.json در آن است"></label><button id="chooseRoot">انتخاب پوشه…</button>
+<label>کد نقش<input id="code" value="P1775"></label>
+<div class="row"><label>عرض قطعه (mm)<input id="w" type="number" min="0.1" value="350"></label><label>ارتفاع قطعه (mm)<input id="h" type="number" min="0.1" value="550"></label></div>
+<div class="row"><label>تعداد<input id="qty" type="number" min="1" max="100" value="1"></label><label>عرض واقعی واحد نقش (mm)<input id="tile" type="number" min="0.1" placeholder="اندازه را وارد کنید" required></label></div>
+<label>چیدمان<select id="mode"><option value="repeatX">تکرار افقی</option><option value="repeatY">تکرار عمودی</option><option value="grid">شبکه</option><option value="contain">جاگیری کامل</option><option value="cover">پوشاندن</option><option value="single">تکی</option></select></label>
+<label>یا JSON تبادل خودبسنده از وب<textarea id="exchange" placeholder="در صورت خالی بودن، حالت مستقیم کد و اندازه اجرا می‌شود"></textarea></label>
+<div class="buttons"><button id="open">ساخت سند جدید</button><button id="file">ورود فایل تبادل ← سند جدید…</button><button id="clear">پاک‌کردن متن</button></div>
+<output id="status" role="status"></output><p class="note">فقط سند جدید ساخته می‌شود. واردکنندهٔ بومی PNG می‌پذیرد. تطبیق کد/تصویر و محدودهٔ تکرار کتابخانه قبل از تولید باید یک‌بار بازبینی شود.</p>
+</main><script src="CSInterface.js"></script><script src="app.js"></script></body></html>

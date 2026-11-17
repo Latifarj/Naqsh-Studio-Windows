@@ -1,0 +1,11 @@
+node_modules/
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+dist/
+build/
+release/
+.DS_Store
+Thumbs.db

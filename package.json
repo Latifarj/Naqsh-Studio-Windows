@@ -1,0 +1,57 @@
+{
+  "name": "naqsh-studio",
+  "version": "1.0.0-preview",
+  "private": true,
+  "description": "Persian garment motif layout studio and Illustrator extension",
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "start": "python3 server.py",
+    "desktop": "electron .",
+    "build:server": "pyinstaller --noconfirm --clean --distpath dist/server desktop/server.spec",
+    "dist:win": "npm run build:server && electron-builder --win nsis --x64",
+    "test": "node tests/engine.test.js && node tests/web-unit-labels.test.js && node illustrator/tests/test.js && node tests/desktop-config.test.js && python3 -m pytest -q tests/test_server.py tests/test_catalog_curation.py"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "electron": "^45.3.2",
+    "electron-builder": "26.18.0"
+  },
+  "overrides": {
+    "minimatch": "^11.0.1"
+  },
+  "build": {
+    "appId": "com.naqshstudio.desktop",
+    "productName": "Naqsh Studio",
+    "asar": true,
+    "directories": {
+      "output": "release/win",
+      "buildResources": "desktop"
+    },
+    "files": [
+      "desktop/main.cjs",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "dist/server/naqsh-server.exe",
+        "to": "server/naqsh-server.exe"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "artifactName": "Naqsh-Studio-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "نقش‌یار"
+    }
+  }
+}

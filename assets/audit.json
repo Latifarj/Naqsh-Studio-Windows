@@ -1,0 +1,8891 @@
+{
+  "version": 1,
+  "source": "Katalog-1000-1200.pdf",
+  "allAssociationReview": true,
+  "pages": [
+    {
+      "page": 1,
+      "setCode": "K1000",
+      "labelCodes": [
+        "K1000",
+        "P1775",
+        "D1282",
+        "B737",
+        "B737",
+        "Z347"
+      ],
+      "imageCandidates": 7,
+      "assignments": [
+        {
+          "code": "P1775",
+          "variants": 1
+        },
+        {
+          "code": "D1282",
+          "variants": 1
+        },
+        {
+          "code": "B737",
+          "variants": 1
+        },
+        {
+          "code": "B737",
+          "variants": 1
+        },
+        {
+          "code": "Z347",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "setCode": "K1001",
+      "labelCodes": [
+        "K1001",
+        "P1526",
+        "D1025",
+        "V6",
+        "Z338"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1526",
+          "variants": 1
+        },
+        {
+          "code": "D1025",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z338",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "setCode": "K1002",
+      "labelCodes": [
+        "K1002",
+        "P489",
+        "D1363",
+        "B388",
+        "B388",
+        "V176",
+        "Z147"
+      ],
+      "imageCandidates": 7,
+      "assignments": [
+        {
+          "code": "P489",
+          "variants": 1
+        },
+        {
+          "code": "D1363",
+          "variants": 1
+        },
+        {
+          "code": "B388",
+          "variants": 1
+        },
+        {
+          "code": "B388",
+          "variants": 1
+        },
+        {
+          "code": "V176",
+          "variants": 1
+        },
+        {
+          "code": "Z147",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "setCode": "K1003",
+      "labelCodes": [
+        "K1003",
+        "P1495",
+        "D1310",
+        "B1718",
+        "B1718",
+        "V177",
+        "Z478"
+      ],
+      "imageCandidates": 7,
+      "assignments": [
+        {
+          "code": "P1495",
+          "variants": 1
+        },
+        {
+          "code": "D1310",
+          "variants": 1
+        },
+        {
+          "code": "B1718",
+          "variants": 2
+        },
+        {
+          "code": "B1718",
+          "variants": 2
+        },
+        {
+          "code": "V177",
+          "variants": 1
+        },
+        {
+          "code": "Z478",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "setCode": "K1005",
+      "labelCodes": [
+        "K1005",
+        "P1504",
+        "D1086",
+        "V178",
+        "Z369"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1504",
+          "variants": 1
+        },
+        {
+          "code": "D1086",
+          "variants": 1
+        },
+        {
+          "code": "V178",
+          "variants": 1
+        },
+        {
+          "code": "Z369",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "setCode": "K1007",
+      "labelCodes": [
+        "K1007",
+        "P1473",
+        "D595",
+        "B959",
+        "V180",
+        "Z246"
+      ],
+      "imageCandidates": 6,
+      "assignments": [
+        {
+          "code": "P1473",
+          "variants": 1
+        },
+        {
+          "code": "D595",
+          "variants": 1
+        },
+        {
+          "code": "B959",
+          "variants": 1
+        },
+        {
+          "code": "V180",
+          "variants": 1
+        },
+        {
+          "code": "Z246",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "setCode": "K1008",
+      "labelCodes": [
+        "K1008",
+        "P1476",
+        "D1268",
+        "V140",
+        "Z519"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1476",
+          "variants": 1
+        },
+        {
+          "code": "D1268",
+          "variants": 1
+        },
+        {
+          "code": "V140",
+          "variants": 1
+        },
+        {
+          "code": "Z519",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 8,
+      "setCode": "K1009",
+      "labelCodes": [
+        "K1009",
+        "P1487",
+        "D1005",
+        "V181",
+        "Z479"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1487",
+          "variants": 1
+        },
+        {
+          "code": "D1005",
+          "variants": 1
+        },
+        {
+          "code": "V181",
+          "variants": 1
+        },
+        {
+          "code": "Z479",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 9,
+      "setCode": "K1010",
+      "labelCodes": [
+        "K1010",
+        "P1444",
+        "D1311",
+        "V182",
+        "Z248"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1444",
+          "variants": 1
+        },
+        {
+          "code": "D1311",
+          "variants": 1
+        },
+        {
+          "code": "V182",
+          "variants": 1
+        },
+        {
+          "code": "Z248",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 10,
+      "setCode": "K1011",
+      "labelCodes": [
+        "K1011",
+        "P1445",
+        "D296",
+        "V70",
+        "Z416"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1445",
+          "variants": 1
+        },
+        {
+          "code": "D296",
+          "variants": 1
+        },
+        {
+          "code": "V70",
+          "variants": 1
+        },
+        {
+          "code": "Z416",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 11,
+      "setCode": "K1012",
+      "labelCodes": [
+        "K1012",
+        "P1455",
+        "D622",
+        "V119",
+        "Z423"
+      ],
+      "imageCandidates": 4,
+      "assignments": [
+        {
+          "code": "P1455",
+          "variants": 1
+        },
+        {
+          "code": "D622",
+          "variants": 1
+        },
+        {
+          "code": "V119",
+          "variants": 1
+        },
+        {
+          "code": "Z423",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 12,
+      "setCode": "K1013",
+      "labelCodes": [
+        "K1013",
+        "P1457",
+        "D951",
+        "B817",
+        "B817",
+        "V73",
+        "Z227"
+      ],
+      "imageCandidates": 9,
+      "assignments": [
+        {
+          "code": "P1457",
+          "variants": 1
+        },
+        {
+          "code": "D951",
+          "variants": 1
+        },
+        {
+          "code": "B817",
+          "variants": 1
+        },
+        {
+          "code": "B817",
+          "variants": 1
+        },
+        {
+          "code": "V73",
+          "variants": 1
+        },
+        {
+          "code": "Z227",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 13,
+      "setCode": "K1014",
+      "labelCodes": [
+        "K1014",
+        "P1461",
+        "D964",
+        "V68",
+        "Z363"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1461",
+          "variants": 1
+        },
+        {
+          "code": "D964",
+          "variants": 1
+        },
+        {
+          "code": "V68",
+          "variants": 1
+        },
+        {
+          "code": "Z363",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 14,
+      "setCode": "K1015",
+      "labelCodes": [
+        "K1015",
+        "P1459",
+        "D1312",
+        "B1023",
+        "B1023",
+        "Z520"
+      ],
+      "imageCandidates": 9,
+      "assignments": [
+        {
+          "code": "P1459",
+          "variants": 1
+        },
+        {
+          "code": "D1312",
+          "variants": 1
+        },
+        {
+          "code": "B1023",
+          "variants": 1
+        },
+        {
+          "code": "B1023",
+          "variants": 1
+        },
+        {
+          "code": "Z520",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 15,
+      "setCode": "K1016",
+      "labelCodes": [
+        "K1016",
+        "P1425",
+        "D924",
+        "B767",
+        "V95",
+        "Z124"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1425",
+          "variants": 1
+        },
+        {
+          "code": "D924",
+          "variants": 1
+        },
+        {
+          "code": "B767",
+          "variants": 1
+        },
+        {
+          "code": "V95",
+          "variants": 1
+        },
+        {
+          "code": "Z124",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 16,
+      "setCode": "K1017",
+      "labelCodes": [
+        "K1017",
+        "P1427",
+        "D929",
+        "V141",
+        "Z521"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1427",
+          "variants": 1
+        },
+        {
+          "code": "D929",
+          "variants": 1
+        },
+        {
+          "code": "V141",
+          "variants": 1
+        },
+        {
+          "code": "Z521",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 17,
+      "setCode": "K1018",
+      "labelCodes": [
+        "K1018",
+        "P1424",
+        "D1063",
+        "V45",
+        "Z522"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1424",
+          "variants": 1
+        },
+        {
+          "code": "D1063",
+          "variants": 1
+        },
+        {
+          "code": "V45",
+          "variants": 1
+        },
+        {
+          "code": "Z522",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 18,
+      "setCode": "K1019",
+      "labelCodes": [
+        "K1019",
+        "P1400",
+        "D915",
+        "B668",
+        "B668",
+        "V86",
+        "Z418"
+      ],
+      "imageCandidates": 9,
+      "assignments": [
+        {
+          "code": "P1400",
+          "variants": 1
+        },
+        {
+          "code": "D915",
+          "variants": 1
+        },
+        {
+          "code": "B668",
+          "variants": 1
+        },
+        {
+          "code": "B668",
+          "variants": 1
+        },
+        {
+          "code": "V86",
+          "variants": 1
+        },
+        {
+          "code": "Z418",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 19,
+      "setCode": "K1020",
+      "labelCodes": [
+        "K1020",
+        "P1399",
+        "D998",
+        "V18",
+        "Z340"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1399",
+          "variants": 1
+        },
+        {
+          "code": "D998",
+          "variants": 1
+        },
+        {
+          "code": "V18",
+          "variants": 1
+        },
+        {
+          "code": "Z340",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 20,
+      "setCode": "K1021",
+      "labelCodes": [
+        "K1021",
+        "P1403",
+        "D907",
+        "V183",
+        "Z359"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1403",
+          "variants": 1
+        },
+        {
+          "code": "D907",
+          "variants": 1
+        },
+        {
+          "code": "V183",
+          "variants": 1
+        },
+        {
+          "code": "Z359",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 21,
+      "setCode": "K1022",
+      "labelCodes": [
+        "K1022",
+        "P1407",
+        "D1039",
+        "V184",
+        "Z49"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1407",
+          "variants": 1
+        },
+        {
+          "code": "D1039",
+          "variants": 1
+        },
+        {
+          "code": "V184",
+          "variants": 1
+        },
+        {
+          "code": "Z49",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 22,
+      "setCode": "K1023",
+      "labelCodes": [
+        "K1023",
+        "P1377",
+        "D805",
+        "V96",
+        "Z480"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1377",
+          "variants": 1
+        },
+        {
+          "code": "D805",
+          "variants": 1
+        },
+        {
+          "code": "V96",
+          "variants": 1
+        },
+        {
+          "code": "Z480",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 23,
+      "setCode": "K1024",
+      "labelCodes": [
+        "K1024",
+        "P1379",
+        "D967",
+        "V62",
+        "Z355"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1379",
+          "variants": 1
+        },
+        {
+          "code": "D967",
+          "variants": 1
+        },
+        {
+          "code": "V62",
+          "variants": 1
+        },
+        {
+          "code": "Z355",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 24,
+      "setCode": "K1026",
+      "labelCodes": [
+        "K1026",
+        "P1378",
+        "D614",
+        "V142",
+        "Z306"
+      ],
+      "imageCandidates": 6,
+      "assignments": [
+        {
+          "code": "P1378",
+          "variants": 1
+        },
+        {
+          "code": "D614",
+          "variants": 1
+        },
+        {
+          "code": "V142",
+          "variants": 1
+        },
+        {
+          "code": "Z306",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 25,
+      "setCode": "K1027",
+      "labelCodes": [
+        "K1027",
+        "P1375",
+        "D954",
+        "V57",
+        "Z287"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1375",
+          "variants": 1
+        },
+        {
+          "code": "D954",
+          "variants": 1
+        },
+        {
+          "code": "V57",
+          "variants": 1
+        },
+        {
+          "code": "Z287",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 26,
+      "setCode": "K1028",
+      "labelCodes": [
+        "K1028",
+        "P1383",
+        "D1366",
+        "V70",
+        "Z287"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1383",
+          "variants": 1
+        },
+        {
+          "code": "D1366",
+          "variants": 1
+        },
+        {
+          "code": "V70",
+          "variants": 1
+        },
+        {
+          "code": "Z287",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 27,
+      "setCode": "K1029",
+      "labelCodes": [
+        "K1029",
+        "P1391",
+        "D1313",
+        "V7",
+        "Z167"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1391",
+          "variants": 1
+        },
+        {
+          "code": "D1313",
+          "variants": 1
+        },
+        {
+          "code": "V7",
+          "variants": 1
+        },
+        {
+          "code": "Z167",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 28,
+      "setCode": "K1030",
+      "labelCodes": [
+        "K1030",
+        "P1351",
+        "D1097",
+        "V185",
+        "Z343"
+      ],
+      "imageCandidates": 4,
+      "assignments": [
+        {
+          "code": "P1351",
+          "variants": 1
+        },
+        {
+          "code": "D1097",
+          "variants": 1
+        },
+        {
+          "code": "V185",
+          "variants": 1
+        },
+        {
+          "code": "Z343",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 29,
+      "setCode": "K1031",
+      "labelCodes": [
+        "K1031",
+        "P1366",
+        "D881",
+        "V30",
+        "Z426"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1366",
+          "variants": 1
+        },
+        {
+          "code": "D881",
+          "variants": 1
+        },
+        {
+          "code": "V30",
+          "variants": 1
+        },
+        {
+          "code": "Z426",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 30,
+      "setCode": "K1032",
+      "labelCodes": [
+        "K1032",
+        "P1329",
+        "D1099",
+        "V186",
+        "Z339"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1329",
+          "variants": 1
+        },
+        {
+          "code": "D1099",
+          "variants": 1
+        },
+        {
+          "code": "V186",
+          "variants": 1
+        },
+        {
+          "code": "Z339",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 31,
+      "setCode": "K1033",
+      "labelCodes": [
+        "K1033",
+        "P1335",
+        "D1104",
+        "V187",
+        "Z481"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1335",
+          "variants": 1
+        },
+        {
+          "code": "D1104",
+          "variants": 1
+        },
+        {
+          "code": "V187",
+          "variants": 1
+        },
+        {
+          "code": "Z481",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 32,
+      "setCode": "K1034",
+      "labelCodes": [
+        "K1034",
+        "P1343",
+        "D856",
+        "V30",
+        "Z56"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1343",
+          "variants": 1
+        },
+        {
+          "code": "D856",
+          "variants": 1
+        },
+        {
+          "code": "V30",
+          "variants": 1
+        },
+        {
+          "code": "Z56",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 33,
+      "setCode": "K1035",
+      "labelCodes": [
+        "K1035",
+        "P1301",
+        "D830",
+        "V188",
+        "Z482"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1301",
+          "variants": 1
+        },
+        {
+          "code": "D830",
+          "variants": 1
+        },
+        {
+          "code": "V188",
+          "variants": 1
+        },
+        {
+          "code": "Z482",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 34,
+      "setCode": "K1036",
+      "labelCodes": [
+        "K1036",
+        "P1309",
+        "D965",
+        "V80",
+        "Z523"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1309",
+          "variants": 1
+        },
+        {
+          "code": "D965",
+          "variants": 1
+        },
+        {
+          "code": "V80",
+          "variants": 1
+        },
+        {
+          "code": "Z523",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 35,
+      "setCode": "K1037",
+      "labelCodes": [
+        "K1037",
+        "P1313",
+        "D827",
+        "V75",
+        "Z213"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1313",
+          "variants": 1
+        },
+        {
+          "code": "D827",
+          "variants": 1
+        },
+        {
+          "code": "V75",
+          "variants": 1
+        },
+        {
+          "code": "Z213",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 36,
+      "setCode": "K1038",
+      "labelCodes": [
+        "K1038",
+        "P1316",
+        "D990",
+        "V141",
+        "Z521"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1316",
+          "variants": 1
+        },
+        {
+          "code": "D990",
+          "variants": 1
+        },
+        {
+          "code": "V141",
+          "variants": 1
+        },
+        {
+          "code": "Z521",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 37,
+      "setCode": "K1039",
+      "labelCodes": [
+        "K1039",
+        "P1312",
+        "D1013",
+        "V143",
+        "Z469"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1312",
+          "variants": 1
+        },
+        {
+          "code": "D1013",
+          "variants": 1
+        },
+        {
+          "code": "V143",
+          "variants": 1
+        },
+        {
+          "code": "Z469",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 38,
+      "setCode": "K1040",
+      "labelCodes": [
+        "K1040",
+        "P1319",
+        "D912",
+        "V122",
+        "Z362"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1319",
+          "variants": 1
+        },
+        {
+          "code": "D912",
+          "variants": 1
+        },
+        {
+          "code": "V122",
+          "variants": 1
+        },
+        {
+          "code": "Z362",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 39,
+      "setCode": "K1041",
+      "labelCodes": [
+        "K1041",
+        "P1314",
+        "D1047",
+        "V30",
+        "Z272"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1314",
+          "variants": 1
+        },
+        {
+          "code": "D1047",
+          "variants": 1
+        },
+        {
+          "code": "V30",
+          "variants": 1
+        },
+        {
+          "code": "Z272",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 40,
+      "setCode": "K1042",
+      "labelCodes": [
+        "K1042",
+        "P1274",
+        "D1314",
+        "V144",
+        "Z524"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1274",
+          "variants": 1
+        },
+        {
+          "code": "D1314",
+          "variants": 1
+        },
+        {
+          "code": "V144",
+          "variants": 1
+        },
+        {
+          "code": "Z524",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 41,
+      "setCode": "K1043",
+      "labelCodes": [
+        "K1043",
+        "P1276",
+        "D744",
+        "V72",
+        "G1276"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1276",
+          "variants": 1
+        },
+        {
+          "code": "D744",
+          "variants": 1
+        },
+        {
+          "code": "V72",
+          "variants": 1
+        },
+        {
+          "code": "G1276",
+          "variants": 1
+        }
+      ]
+    },
+    {
+      "page": 42,
+      "setCode": "K1044",
+      "labelCodes": [
+        "K1044",
+        "P1280",
+        "D1065",
+        "B978",
+        "B122",
+        "V18",
+        "Z340"
+      ],
+      "imageCandidates": 7,
+      "assignments": [
+        {
+          "code": "P1280",
+          "variants": 1
+        },
+        {
+          "code": "D1065",
+          "variants": 1
+        },
+        {
+          "code": "B978",
+          "variants": 2
+        },
+        {
+          "code": "B122",
+          "variants": 2
+        },
+        {
+          "code": "V18",
+          "variants": 1
+        },
+        {
+          "code": "Z340",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 43,
+      "setCode": "K1045",
+      "labelCodes": [
+        "K1045",
+        "P1289",
+        "D820",
+        "V145",
+        "Z340"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1289",
+          "variants": 1
+        },
+        {
+          "code": "D820",
+          "variants": 1
+        },
+        {
+          "code": "V145",
+          "variants": 1
+        },
+        {
+          "code": "Z340",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 44,
+      "setCode": "K1046",
+      "labelCodes": [
+        "K1046",
+        "P1292",
+        "D967",
+        "V62",
+        "Z355"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1292",
+          "variants": 1
+        },
+        {
+          "code": "D967",
+          "variants": 1
+        },
+        {
+          "code": "V62",
+          "variants": 1
+        },
+        {
+          "code": "Z355",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 45,
+      "setCode": "K1047",
+      "labelCodes": [
+        "K1047",
+        "P1260",
+        "D951",
+        "V140",
+        "Z287"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1260",
+          "variants": 1
+        },
+        {
+          "code": "D951",
+          "variants": 1
+        },
+        {
+          "code": "V140",
+          "variants": 1
+        },
+        {
+          "code": "Z287",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 46,
+      "setCode": "K1048",
+      "labelCodes": [
+        "K1048",
+        "P1256",
+        "D958",
+        "V189",
+        "Z483"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1256",
+          "variants": 1
+        },
+        {
+          "code": "D958",
+          "variants": 1
+        },
+        {
+          "code": "V189",
+          "variants": 1
+        },
+        {
+          "code": "Z483",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 47,
+      "setCode": "K1049",
+      "labelCodes": [
+        "K1049",
+        "P1263",
+        "D1014",
+        "V68",
+        "Z345"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1263",
+          "variants": 1
+        },
+        {
+          "code": "D1014",
+          "variants": 1
+        },
+        {
+          "code": "V68",
+          "variants": 1
+        },
+        {
+          "code": "Z345",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 48,
+      "setCode": "K1050",
+      "labelCodes": [
+        "K1050",
+        "P1227",
+        "D777",
+        "V67",
+        "Z402"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1227",
+          "variants": 1
+        },
+        {
+          "code": "D777",
+          "variants": 1
+        },
+        {
+          "code": "V67",
+          "variants": 1
+        },
+        {
+          "code": "Z402",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 49,
+      "setCode": "K1051",
+      "labelCodes": [
+        "K1051",
+        "P1229",
+        "D809",
+        "V37",
+        "Z335"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1229",
+          "variants": 1
+        },
+        {
+          "code": "D809",
+          "variants": 1
+        },
+        {
+          "code": "V37",
+          "variants": 1
+        },
+        {
+          "code": "Z335",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 50,
+      "setCode": "K1052",
+      "labelCodes": [
+        "K1052",
+        "P1234",
+        "D1123",
+        "V115",
+        "Z314"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1234",
+          "variants": 1
+        },
+        {
+          "code": "D1123",
+          "variants": 1
+        },
+        {
+          "code": "V115",
+          "variants": 1
+        },
+        {
+          "code": "Z314",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 51,
+      "setCode": "K1053",
+      "labelCodes": [
+        "K1053",
+        "P1208",
+        "D738",
+        "V22",
+        "Z283"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1208",
+          "variants": 1
+        },
+        {
+          "code": "D738",
+          "variants": 1
+        },
+        {
+          "code": "V22",
+          "variants": 1
+        },
+        {
+          "code": "Z283",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 52,
+      "setCode": "K1054",
+      "labelCodes": [
+        "K1054",
+        "P1207",
+        "D1315",
+        "V96",
+        "Z342"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1207",
+          "variants": 1
+        },
+        {
+          "code": "D1315",
+          "variants": 1
+        },
+        {
+          "code": "V96",
+          "variants": 1
+        },
+        {
+          "code": "Z342",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 53,
+      "setCode": "K1055",
+      "labelCodes": [
+        "K1055",
+        "P1210",
+        "D58",
+        "V190",
+        "Z218"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1210",
+          "variants": 1
+        },
+        {
+          "code": "D58",
+          "variants": 1
+        },
+        {
+          "code": "V190",
+          "variants": 1
+        },
+        {
+          "code": "Z218",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 54,
+      "setCode": "K1056",
+      "labelCodes": [
+        "K1056",
+        "P1216",
+        "D745",
+        "V191",
+        "G1216"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1216",
+          "variants": 1
+        },
+        {
+          "code": "D745",
+          "variants": 1
+        },
+        {
+          "code": "V191",
+          "variants": 1
+        },
+        {
+          "code": "G1216",
+          "variants": 1
+        }
+      ]
+    },
+    {
+      "page": 55,
+      "setCode": "K1057",
+      "labelCodes": [
+        "K1057",
+        "P1219",
+        "D792",
+        "B829",
+        "B829",
+        "V163",
+        "Z321"
+      ],
+      "imageCandidates": 7,
+      "assignments": [
+        {
+          "code": "P1219",
+          "variants": 1
+        },
+        {
+          "code": "D792",
+          "variants": 1
+        },
+        {
+          "code": "B829",
+          "variants": 2
+        },
+        {
+          "code": "B829",
+          "variants": 2
+        },
+        {
+          "code": "V163",
+          "variants": 1
+        },
+        {
+          "code": "Z321",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 56,
+      "setCode": "K1058",
+      "labelCodes": [
+        "K1058",
+        "P1203",
+        "D735",
+        "V192",
+        "G1203"
+      ],
+      "imageCandidates": 4,
+      "assignments": [
+        {
+          "code": "P1203",
+          "variants": 1
+        },
+        {
+          "code": "D735",
+          "variants": 1
+        },
+        {
+          "code": "V192",
+          "variants": 0
+        },
+        {
+          "code": "G1203",
+          "variants": 1
+        }
+      ]
+    },
+    {
+      "page": 57,
+      "setCode": "K1059",
+      "labelCodes": [
+        "K1059",
+        "P769",
+        "D1317",
+        "V124",
+        "Z484"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P769",
+          "variants": 1
+        },
+        {
+          "code": "D1317",
+          "variants": 1
+        },
+        {
+          "code": "V124",
+          "variants": 1
+        },
+        {
+          "code": "Z484",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 58,
+      "setCode": "K1060",
+      "labelCodes": [
+        "K1060",
+        "P783",
+        "D620",
+        "V58",
+        "Z244"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P783",
+          "variants": 1
+        },
+        {
+          "code": "D620",
+          "variants": 1
+        },
+        {
+          "code": "V58",
+          "variants": 1
+        },
+        {
+          "code": "Z244",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 59,
+      "setCode": "K1061",
+      "labelCodes": [
+        "K1061",
+        "P1224",
+        "D1129",
+        "V6",
+        "Z485"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1224",
+          "variants": 1
+        },
+        {
+          "code": "D1129",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z485",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 60,
+      "setCode": "K1062",
+      "labelCodes": [
+        "K1062",
+        "P1185",
+        "D771",
+        "B840",
+        "V30",
+        "Z312"
+      ],
+      "imageCandidates": 6,
+      "assignments": [
+        {
+          "code": "P1185",
+          "variants": 1
+        },
+        {
+          "code": "D771",
+          "variants": 1
+        },
+        {
+          "code": "B840",
+          "variants": 1
+        },
+        {
+          "code": "V30",
+          "variants": 1
+        },
+        {
+          "code": "Z312",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 61,
+      "setCode": "K1063",
+      "labelCodes": [
+        "K1063",
+        "P1191",
+        "D900",
+        "V6",
+        "Z399"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1191",
+          "variants": 1
+        },
+        {
+          "code": "D900",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z399",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 62,
+      "setCode": "K1064",
+      "labelCodes": [
+        "K1064",
+        "P1179",
+        "D863",
+        "V193",
+        "Z486"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1179",
+          "variants": 1
+        },
+        {
+          "code": "D863",
+          "variants": 1
+        },
+        {
+          "code": "V193",
+          "variants": 1
+        },
+        {
+          "code": "Z486",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 63,
+      "setCode": "K1065",
+      "labelCodes": [
+        "K1065",
+        "P1172",
+        "D714",
+        "V26",
+        "Z333"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1172",
+          "variants": 1
+        },
+        {
+          "code": "D714",
+          "variants": 1
+        },
+        {
+          "code": "V26",
+          "variants": 1
+        },
+        {
+          "code": "Z333",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 64,
+      "setCode": "K1066",
+      "labelCodes": [
+        "K1066",
+        "P1173",
+        "D1318",
+        "V67",
+        "Z340"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1173",
+          "variants": 1
+        },
+        {
+          "code": "D1318",
+          "variants": 1
+        },
+        {
+          "code": "V67",
+          "variants": 1
+        },
+        {
+          "code": "Z340",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 65,
+      "setCode": "K1067",
+      "labelCodes": [
+        "K1067",
+        "P1174",
+        "D1319",
+        "V194",
+        "Z275"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1174",
+          "variants": 1
+        },
+        {
+          "code": "D1319",
+          "variants": 1
+        },
+        {
+          "code": "V194",
+          "variants": 1
+        },
+        {
+          "code": "Z275",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 66,
+      "setCode": "K1068",
+      "labelCodes": [
+        "K1068",
+        "P1133",
+        "D712",
+        "V95",
+        "Z334"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1133",
+          "variants": 1
+        },
+        {
+          "code": "D712",
+          "variants": 1
+        },
+        {
+          "code": "V95",
+          "variants": 1
+        },
+        {
+          "code": "Z334",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 67,
+      "setCode": "K1069",
+      "labelCodes": [
+        "K1069",
+        "P1137",
+        "D689",
+        "B827",
+        "V18",
+        "Z525"
+      ],
+      "imageCandidates": 6,
+      "assignments": [
+        {
+          "code": "P1137",
+          "variants": 1
+        },
+        {
+          "code": "D689",
+          "variants": 1
+        },
+        {
+          "code": "B827",
+          "variants": 1
+        },
+        {
+          "code": "V18",
+          "variants": 1
+        },
+        {
+          "code": "Z525",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 68,
+      "setCode": "K1070",
+      "labelCodes": [
+        "K1070",
+        "P1140",
+        "D686",
+        "V30",
+        "Z260"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1140",
+          "variants": 1
+        },
+        {
+          "code": "D686",
+          "variants": 1
+        },
+        {
+          "code": "V30",
+          "variants": 1
+        },
+        {
+          "code": "Z260",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 69,
+      "setCode": "K1071",
+      "labelCodes": [
+        "K1071",
+        "P1138",
+        "D905",
+        "V52"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1138",
+          "variants": 1
+        },
+        {
+          "code": "D905",
+          "variants": 1
+        },
+        {
+          "code": "V52",
+          "variants": 1
+        }
+      ]
+    },
+    {
+      "page": 70,
+      "setCode": "K1072",
+      "labelCodes": [
+        "K1072",
+        "P1143",
+        "D852",
+        "V29",
+        "Z10"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1143",
+          "variants": 1
+        },
+        {
+          "code": "D852",
+          "variants": 1
+        },
+        {
+          "code": "V29",
+          "variants": 1
+        },
+        {
+          "code": "Z10",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 71,
+      "setCode": "K1073",
+      "labelCodes": [
+        "K1073",
+        "P1146",
+        "D917",
+        "V138",
+        "Z286"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1146",
+          "variants": 1
+        },
+        {
+          "code": "D917",
+          "variants": 1
+        },
+        {
+          "code": "V138",
+          "variants": 1
+        },
+        {
+          "code": "Z286",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 72,
+      "setCode": "K1074",
+      "labelCodes": [
+        "K1074",
+        "P1151",
+        "D1006",
+        "V32",
+        "Z282"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1151",
+          "variants": 1
+        },
+        {
+          "code": "D1006",
+          "variants": 1
+        },
+        {
+          "code": "V32",
+          "variants": 1
+        },
+        {
+          "code": "Z282",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 73,
+      "setCode": "K1075",
+      "labelCodes": [
+        "K1075",
+        "P1117",
+        "D743",
+        "V27",
+        "Z348"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1117",
+          "variants": 1
+        },
+        {
+          "code": "D743",
+          "variants": 1
+        },
+        {
+          "code": "V27",
+          "variants": 1
+        },
+        {
+          "code": "Z348",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 74,
+      "setCode": "K1076",
+      "labelCodes": [
+        "K1076",
+        "P1126",
+        "D685",
+        "V146",
+        "Z275"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1126",
+          "variants": 1
+        },
+        {
+          "code": "D685",
+          "variants": 1
+        },
+        {
+          "code": "V146",
+          "variants": 1
+        },
+        {
+          "code": "Z275",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 75,
+      "setCode": "K1077",
+      "labelCodes": [
+        "K1077",
+        "P1092",
+        "D1320",
+        "V196",
+        "Z285"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1092",
+          "variants": 1
+        },
+        {
+          "code": "D1320",
+          "variants": 1
+        },
+        {
+          "code": "V196",
+          "variants": 1
+        },
+        {
+          "code": "Z285",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 76,
+      "setCode": "K1078",
+      "labelCodes": [
+        "K1078",
+        "P1098",
+        "D1321",
+        "V197",
+        "Z218"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1098",
+          "variants": 1
+        },
+        {
+          "code": "D1321",
+          "variants": 1
+        },
+        {
+          "code": "V197",
+          "variants": 1
+        },
+        {
+          "code": "Z218",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 77,
+      "setCode": "K1079",
+      "labelCodes": [
+        "K1079",
+        "P1097",
+        "D538",
+        "V8",
+        "Z256"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1097",
+          "variants": 1
+        },
+        {
+          "code": "D538",
+          "variants": 1
+        },
+        {
+          "code": "V8",
+          "variants": 1
+        },
+        {
+          "code": "Z256",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 78,
+      "setCode": "K1080",
+      "labelCodes": [
+        "K1080",
+        "P1057",
+        "D639",
+        "V93",
+        "Z340"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1057",
+          "variants": 1
+        },
+        {
+          "code": "D639",
+          "variants": 1
+        },
+        {
+          "code": "V93",
+          "variants": 1
+        },
+        {
+          "code": "Z340",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 79,
+      "setCode": "K1081",
+      "labelCodes": [
+        "K1081",
+        "P1058",
+        "D955",
+        "V81",
+        "Z371"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1058",
+          "variants": 1
+        },
+        {
+          "code": "D955",
+          "variants": 1
+        },
+        {
+          "code": "V81",
+          "variants": 1
+        },
+        {
+          "code": "Z371",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 80,
+      "setCode": "K1082",
+      "labelCodes": [
+        "K1082",
+        "P1059",
+        "D613",
+        "V4",
+        "Z297"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1059",
+          "variants": 1
+        },
+        {
+          "code": "D613",
+          "variants": 1
+        },
+        {
+          "code": "V4",
+          "variants": 1
+        },
+        {
+          "code": "Z297",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 81,
+      "setCode": "K1083",
+      "labelCodes": [
+        "K1083",
+        "P1060",
+        "D614",
+        "B140",
+        "B140",
+        "V173",
+        "Z306"
+      ],
+      "imageCandidates": 9,
+      "assignments": [
+        {
+          "code": "P1060",
+          "variants": 1
+        },
+        {
+          "code": "D614",
+          "variants": 1
+        },
+        {
+          "code": "B140",
+          "variants": 1
+        },
+        {
+          "code": "B140",
+          "variants": 1
+        },
+        {
+          "code": "V173",
+          "variants": 1
+        },
+        {
+          "code": "Z306",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 82,
+      "setCode": "K1084",
+      "labelCodes": [
+        "K1084",
+        "P1066",
+        "D694",
+        "V198",
+        "Z10"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1066",
+          "variants": 1
+        },
+        {
+          "code": "D694",
+          "variants": 1
+        },
+        {
+          "code": "V198",
+          "variants": 1
+        },
+        {
+          "code": "Z10",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 83,
+      "setCode": "K1085",
+      "labelCodes": [
+        "K1085",
+        "P1079",
+        "D804",
+        "V93",
+        "Z526"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1079",
+          "variants": 1
+        },
+        {
+          "code": "D804",
+          "variants": 1
+        },
+        {
+          "code": "V93",
+          "variants": 1
+        },
+        {
+          "code": "Z526",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 84,
+      "setCode": "K1086",
+      "labelCodes": [
+        "K1086",
+        "P1076",
+        "D679",
+        "V199",
+        "Z275"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1076",
+          "variants": 1
+        },
+        {
+          "code": "D679",
+          "variants": 1
+        },
+        {
+          "code": "V199",
+          "variants": 1
+        },
+        {
+          "code": "Z275",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 85,
+      "setCode": "K1087",
+      "labelCodes": [
+        "K1087",
+        "P1034",
+        "D587",
+        "V15",
+        "Z347"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1034",
+          "variants": 1
+        },
+        {
+          "code": "D587",
+          "variants": 1
+        },
+        {
+          "code": "V15",
+          "variants": 1
+        },
+        {
+          "code": "Z347",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 86,
+      "setCode": "K1088",
+      "labelCodes": [
+        "K1088",
+        "P1017",
+        "D561",
+        "V55",
+        "Z227"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1017",
+          "variants": 1
+        },
+        {
+          "code": "D561",
+          "variants": 1
+        },
+        {
+          "code": "V55",
+          "variants": 1
+        },
+        {
+          "code": "Z227",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 87,
+      "setCode": "K1089",
+      "labelCodes": [
+        "K1089",
+        "P1019",
+        "D563",
+        "V89",
+        "Z124"
+      ],
+      "imageCandidates": 4,
+      "assignments": [
+        {
+          "code": "P1019",
+          "variants": 1
+        },
+        {
+          "code": "D563",
+          "variants": 1
+        },
+        {
+          "code": "V89",
+          "variants": 1
+        },
+        {
+          "code": "Z124",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 88,
+      "setCode": "K1090",
+      "labelCodes": [
+        "K1090",
+        "P1030",
+        "D578",
+        "V200",
+        "Z232"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1030",
+          "variants": 1
+        },
+        {
+          "code": "D578",
+          "variants": 1
+        },
+        {
+          "code": "V200",
+          "variants": 1
+        },
+        {
+          "code": "Z232",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 89,
+      "setCode": "K1091",
+      "labelCodes": [
+        "K1091",
+        "P986",
+        "D648",
+        "V38",
+        "Z237"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P986",
+          "variants": 1
+        },
+        {
+          "code": "D648",
+          "variants": 1
+        },
+        {
+          "code": "V38",
+          "variants": 1
+        },
+        {
+          "code": "Z237",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 90,
+      "setCode": "K1092",
+      "labelCodes": [
+        "K1092",
+        "P1006",
+        "D591",
+        "V59",
+        "Z340"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1006",
+          "variants": 1
+        },
+        {
+          "code": "D591",
+          "variants": 1
+        },
+        {
+          "code": "V59",
+          "variants": 1
+        },
+        {
+          "code": "Z340",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 91,
+      "setCode": "K1093",
+      "labelCodes": [
+        "K1093",
+        "P1008",
+        "D550",
+        "V201",
+        "Z217"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1008",
+          "variants": 1
+        },
+        {
+          "code": "D550",
+          "variants": 1
+        },
+        {
+          "code": "V201",
+          "variants": 1
+        },
+        {
+          "code": "Z217",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 92,
+      "setCode": "K1094",
+      "labelCodes": [
+        "K1094",
+        "P969",
+        "D548",
+        "V68",
+        "Z356"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P969",
+          "variants": 1
+        },
+        {
+          "code": "D548",
+          "variants": 1
+        },
+        {
+          "code": "V68",
+          "variants": 1
+        },
+        {
+          "code": "Z356",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 93,
+      "setCode": "K1095",
+      "labelCodes": [
+        "K1095",
+        "P971",
+        "D740",
+        "V11",
+        "Z385"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P971",
+          "variants": 1
+        },
+        {
+          "code": "D740",
+          "variants": 1
+        },
+        {
+          "code": "V11",
+          "variants": 1
+        },
+        {
+          "code": "Z385",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 94,
+      "setCode": "K1096",
+      "labelCodes": [
+        "K1096",
+        "P959",
+        "D507",
+        "V3",
+        "Z322"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P959",
+          "variants": 1
+        },
+        {
+          "code": "D507",
+          "variants": 1
+        },
+        {
+          "code": "V3",
+          "variants": 1
+        },
+        {
+          "code": "Z322",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 95,
+      "setCode": "K1097",
+      "labelCodes": [
+        "K1097",
+        "P870",
+        "D646",
+        "V58",
+        "Z422"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P870",
+          "variants": 1
+        },
+        {
+          "code": "D646",
+          "variants": 1
+        },
+        {
+          "code": "V58",
+          "variants": 1
+        },
+        {
+          "code": "Z422",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 96,
+      "setCode": "K1098",
+      "labelCodes": [
+        "K1098",
+        "P879",
+        "D463",
+        "V23",
+        "Z219"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P879",
+          "variants": 1
+        },
+        {
+          "code": "D463",
+          "variants": 1
+        },
+        {
+          "code": "V23",
+          "variants": 1
+        },
+        {
+          "code": "Z219",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 97,
+      "setCode": "K1099",
+      "labelCodes": [
+        "K1099",
+        "P886",
+        "D726",
+        "V58",
+        "Z268"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P886",
+          "variants": 1
+        },
+        {
+          "code": "D726",
+          "variants": 1
+        },
+        {
+          "code": "V58",
+          "variants": 1
+        },
+        {
+          "code": "Z268",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 98,
+      "setCode": "K1100",
+      "labelCodes": [
+        "K1100",
+        "P863",
+        "D713",
+        "V108",
+        "Z194"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P863",
+          "variants": 1
+        },
+        {
+          "code": "D713",
+          "variants": 1
+        },
+        {
+          "code": "V108",
+          "variants": 1
+        },
+        {
+          "code": "Z194",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 99,
+      "setCode": "K1101",
+      "labelCodes": [
+        "K1101",
+        "P823",
+        "D549",
+        "V202",
+        "Z487"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P823",
+          "variants": 1
+        },
+        {
+          "code": "D549",
+          "variants": 1
+        },
+        {
+          "code": "V202",
+          "variants": 1
+        },
+        {
+          "code": "Z487",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 100,
+      "setCode": "K1102",
+      "labelCodes": [
+        "K1102",
+        "P826",
+        "D441",
+        "V75",
+        "Z333"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P826",
+          "variants": 1
+        },
+        {
+          "code": "D441",
+          "variants": 1
+        },
+        {
+          "code": "V75",
+          "variants": 1
+        },
+        {
+          "code": "Z333",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 101,
+      "setCode": "K1103",
+      "labelCodes": [
+        "K1103",
+        "P784",
+        "D1322",
+        "V203",
+        "Z390"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P784",
+          "variants": 1
+        },
+        {
+          "code": "D1322",
+          "variants": 1
+        },
+        {
+          "code": "V203",
+          "variants": 1
+        },
+        {
+          "code": "Z390",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 102,
+      "setCode": "K1104",
+      "labelCodes": [
+        "K1104",
+        "P748",
+        "D539",
+        "V116",
+        "Z243"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P748",
+          "variants": 1
+        },
+        {
+          "code": "D539",
+          "variants": 1
+        },
+        {
+          "code": "V116",
+          "variants": 1
+        },
+        {
+          "code": "Z243",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 103,
+      "setCode": "K1105",
+      "labelCodes": [
+        "K1105",
+        "P746",
+        "D1067",
+        "V71",
+        "Z419"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P746",
+          "variants": 1
+        },
+        {
+          "code": "D1067",
+          "variants": 1
+        },
+        {
+          "code": "V71",
+          "variants": 1
+        },
+        {
+          "code": "Z419",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 104,
+      "setCode": "K1106",
+      "labelCodes": [
+        "K1106",
+        "P747",
+        "D437",
+        "V70",
+        "Z224"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P747",
+          "variants": 1
+        },
+        {
+          "code": "D437",
+          "variants": 1
+        },
+        {
+          "code": "V70",
+          "variants": 1
+        },
+        {
+          "code": "Z224",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 105,
+      "setCode": "K1107",
+      "labelCodes": [
+        "K1107",
+        "P705",
+        "D318",
+        "V6",
+        "Z186"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P705",
+          "variants": 1
+        },
+        {
+          "code": "D318",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z186",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 106,
+      "setCode": "K1108",
+      "labelCodes": [
+        "K1108",
+        "P717",
+        "D392",
+        "V23",
+        "Z219"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P717",
+          "variants": 1
+        },
+        {
+          "code": "D392",
+          "variants": 1
+        },
+        {
+          "code": "V23",
+          "variants": 1
+        },
+        {
+          "code": "Z219",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 107,
+      "setCode": "K1109",
+      "labelCodes": [
+        "K1109",
+        "P674",
+        "D273",
+        "V204",
+        "Z284"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P674",
+          "variants": 1
+        },
+        {
+          "code": "D273",
+          "variants": 1
+        },
+        {
+          "code": "V204",
+          "variants": 1
+        },
+        {
+          "code": "Z284",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 108,
+      "setCode": "K1110",
+      "labelCodes": [
+        "K1110",
+        "P694",
+        "D945",
+        "V81",
+        "G694"
+      ],
+      "imageCandidates": 7,
+      "assignments": [
+        {
+          "code": "P694",
+          "variants": 1
+        },
+        {
+          "code": "D945",
+          "variants": 1
+        },
+        {
+          "code": "V81",
+          "variants": 1
+        },
+        {
+          "code": "G694",
+          "variants": 1
+        }
+      ]
+    },
+    {
+      "page": 109,
+      "setCode": "K1111",
+      "labelCodes": [
+        "K1111",
+        "P631",
+        "D454",
+        "V73",
+        "Z131"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P631",
+          "variants": 1
+        },
+        {
+          "code": "D454",
+          "variants": 1
+        },
+        {
+          "code": "V73",
+          "variants": 1
+        },
+        {
+          "code": "Z131",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 110,
+      "setCode": "K1112",
+      "labelCodes": [
+        "K1112",
+        "P635",
+        "D247",
+        "V58",
+        "Z126"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P635",
+          "variants": 1
+        },
+        {
+          "code": "D247",
+          "variants": 1
+        },
+        {
+          "code": "V58",
+          "variants": 1
+        },
+        {
+          "code": "Z126",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 111,
+      "setCode": "K1113",
+      "labelCodes": [
+        "K1113",
+        "P643",
+        "D1116",
+        "V6",
+        "Z260"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P643",
+          "variants": 1
+        },
+        {
+          "code": "D1116",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z260",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 112,
+      "setCode": "K1114",
+      "labelCodes": [
+        "K1114",
+        "P587",
+        "D428",
+        "V28",
+        "Z238"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P587",
+          "variants": 1
+        },
+        {
+          "code": "D428",
+          "variants": 1
+        },
+        {
+          "code": "V28",
+          "variants": 1
+        },
+        {
+          "code": "Z238",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 113,
+      "setCode": "K1115",
+      "labelCodes": [
+        "K1115",
+        "P593",
+        "D255",
+        "V69",
+        "Z245"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P593",
+          "variants": 1
+        },
+        {
+          "code": "D255",
+          "variants": 1
+        },
+        {
+          "code": "V69",
+          "variants": 1
+        },
+        {
+          "code": "Z245",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 114,
+      "setCode": "K1116",
+      "labelCodes": [
+        "K1116",
+        "P556",
+        "D196",
+        "B429",
+        "B428",
+        "V205",
+        "Z114"
+      ],
+      "imageCandidates": 7,
+      "assignments": [
+        {
+          "code": "P556",
+          "variants": 1
+        },
+        {
+          "code": "D196",
+          "variants": 1
+        },
+        {
+          "code": "B429",
+          "variants": 2
+        },
+        {
+          "code": "B428",
+          "variants": 2
+        },
+        {
+          "code": "V205",
+          "variants": 1
+        },
+        {
+          "code": "Z114",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 115,
+      "setCode": "K1117",
+      "labelCodes": [
+        "K1117",
+        "P558",
+        "D28",
+        "V49",
+        "Z170"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P558",
+          "variants": 1
+        },
+        {
+          "code": "D28",
+          "variants": 1
+        },
+        {
+          "code": "V49",
+          "variants": 1
+        },
+        {
+          "code": "Z170",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 116,
+      "setCode": "K1118",
+      "labelCodes": [
+        "K1118",
+        "P570",
+        "D564",
+        "V206",
+        "Z135"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P570",
+          "variants": 1
+        },
+        {
+          "code": "D564",
+          "variants": 1
+        },
+        {
+          "code": "V206",
+          "variants": 1
+        },
+        {
+          "code": "Z135",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 117,
+      "setCode": "K1119",
+      "labelCodes": [
+        "K1119",
+        "P529",
+        "D159",
+        "V207",
+        "Z137"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P529",
+          "variants": 1
+        },
+        {
+          "code": "D159",
+          "variants": 1
+        },
+        {
+          "code": "V207",
+          "variants": 1
+        },
+        {
+          "code": "Z137",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 118,
+      "setCode": "K1120",
+      "labelCodes": [
+        "K1120",
+        "P481",
+        "D136",
+        "V104",
+        "Z124"
+      ],
+      "imageCandidates": 6,
+      "assignments": [
+        {
+          "code": "P481",
+          "variants": 1
+        },
+        {
+          "code": "D136",
+          "variants": 1
+        },
+        {
+          "code": "V104",
+          "variants": 1
+        },
+        {
+          "code": "Z124",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 119,
+      "setCode": "K1121",
+      "labelCodes": [
+        "K1121",
+        "P483",
+        "D1257",
+        "V58",
+        "Z488"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P483",
+          "variants": 1
+        },
+        {
+          "code": "D1257",
+          "variants": 1
+        },
+        {
+          "code": "V58",
+          "variants": 1
+        },
+        {
+          "code": "Z488",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 120,
+      "setCode": "K1122",
+      "labelCodes": [
+        "K1122",
+        "P491",
+        "D214",
+        "B392",
+        "V13",
+        "Z102"
+      ],
+      "imageCandidates": 6,
+      "assignments": [
+        {
+          "code": "P491",
+          "variants": 1
+        },
+        {
+          "code": "D214",
+          "variants": 1
+        },
+        {
+          "code": "B392",
+          "variants": 1
+        },
+        {
+          "code": "V13",
+          "variants": 1
+        },
+        {
+          "code": "Z102",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 121,
+      "setCode": "K1123",
+      "labelCodes": [
+        "K1123",
+        "P494",
+        "D138",
+        "V76",
+        "Z1"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P494",
+          "variants": 1
+        },
+        {
+          "code": "D138",
+          "variants": 1
+        },
+        {
+          "code": "V76",
+          "variants": 1
+        },
+        {
+          "code": "Z1",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 122,
+      "setCode": "K1124",
+      "labelCodes": [
+        "K1124",
+        "P1538",
+        "D1035",
+        "V67",
+        "Z389"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1538",
+          "variants": 1
+        },
+        {
+          "code": "D1035",
+          "variants": 1
+        },
+        {
+          "code": "V67",
+          "variants": 1
+        },
+        {
+          "code": "Z389",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 123,
+      "setCode": "K1125",
+      "labelCodes": [
+        "K1125",
+        "P1545",
+        "D1043",
+        "V6",
+        "Z403"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1545",
+          "variants": 1
+        },
+        {
+          "code": "D1043",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z403",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 124,
+      "setCode": "K1126",
+      "labelCodes": [
+        "K1126",
+        "P1428",
+        "D1104",
+        "V147",
+        "Z422"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1428",
+          "variants": 1
+        },
+        {
+          "code": "D1104",
+          "variants": 1
+        },
+        {
+          "code": "V147",
+          "variants": 1
+        },
+        {
+          "code": "Z422",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 125,
+      "setCode": "K1127",
+      "labelCodes": [
+        "K1127",
+        "P1408",
+        "D914",
+        "V55",
+        "Z400"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1408",
+          "variants": 1
+        },
+        {
+          "code": "D914",
+          "variants": 1
+        },
+        {
+          "code": "V55",
+          "variants": 1
+        },
+        {
+          "code": "Z400",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 126,
+      "setCode": "K1128",
+      "labelCodes": [
+        "K1128",
+        "P1406",
+        "D824",
+        "V68",
+        "Z480"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1406",
+          "variants": 1
+        },
+        {
+          "code": "D824",
+          "variants": 1
+        },
+        {
+          "code": "V68",
+          "variants": 1
+        },
+        {
+          "code": "Z480",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 127,
+      "setCode": "K1129",
+      "labelCodes": [
+        "K1129",
+        "P1527",
+        "D1045",
+        "V115",
+        "Z362"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1527",
+          "variants": 1
+        },
+        {
+          "code": "D1045",
+          "variants": 1
+        },
+        {
+          "code": "V115",
+          "variants": 1
+        },
+        {
+          "code": "Z362",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 128,
+      "setCode": "K1130",
+      "labelCodes": [
+        "K1130",
+        "P1533",
+        "D1030"
+      ],
+      "imageCandidates": 3,
+      "assignments": [
+        {
+          "code": "P1533",
+          "variants": 1
+        },
+        {
+          "code": "D1030",
+          "variants": 1
+        }
+      ]
+    },
+    {
+      "page": 129,
+      "setCode": "K1131",
+      "labelCodes": [
+        "K1131",
+        "P1523",
+        "D1022",
+        "V6",
+        "Z248"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1523",
+          "variants": 1
+        },
+        {
+          "code": "D1022",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z248",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 130,
+      "setCode": "K1132",
+      "labelCodes": [
+        "K1132",
+        "P1520",
+        "D1019",
+        "V208",
+        "Z489"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1520",
+          "variants": 1
+        },
+        {
+          "code": "D1019",
+          "variants": 1
+        },
+        {
+          "code": "V208",
+          "variants": 1
+        },
+        {
+          "code": "Z489",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 131,
+      "setCode": "K1133",
+      "labelCodes": [
+        "K1133",
+        "P1559",
+        "D1054",
+        "V126",
+        "Z340"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1559",
+          "variants": 1
+        },
+        {
+          "code": "D1054",
+          "variants": 1
+        },
+        {
+          "code": "V126",
+          "variants": 1
+        },
+        {
+          "code": "Z340",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 132,
+      "setCode": "K1134",
+      "labelCodes": [
+        "K1134",
+        "P1557",
+        "D1061",
+        "V73",
+        "Z49"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1557",
+          "variants": 1
+        },
+        {
+          "code": "D1061",
+          "variants": 1
+        },
+        {
+          "code": "V73",
+          "variants": 1
+        },
+        {
+          "code": "Z49",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 133,
+      "setCode": "K1135",
+      "labelCodes": [
+        "K1135",
+        "P1546",
+        "D1193",
+        "V23",
+        "Z145"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1546",
+          "variants": 1
+        },
+        {
+          "code": "D1193",
+          "variants": 1
+        },
+        {
+          "code": "V23",
+          "variants": 1
+        },
+        {
+          "code": "Z145",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 134,
+      "setCode": "K1136",
+      "labelCodes": [
+        "K1136",
+        "P1549",
+        "D1048",
+        "V58",
+        "Z49"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1549",
+          "variants": 1
+        },
+        {
+          "code": "D1048",
+          "variants": 1
+        },
+        {
+          "code": "V58",
+          "variants": 1
+        },
+        {
+          "code": "Z49",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 135,
+      "setCode": "K1137",
+      "labelCodes": [
+        "K1137",
+        "P1727",
+        "D1323",
+        "V6",
+        "Z527"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1727",
+          "variants": 1
+        },
+        {
+          "code": "D1323",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z527",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 136,
+      "setCode": "K1138",
+      "labelCodes": [
+        "K1138",
+        "P1707",
+        "D1324",
+        "V209",
+        "Z340"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1707",
+          "variants": 1
+        },
+        {
+          "code": "D1324",
+          "variants": 1
+        },
+        {
+          "code": "V209",
+          "variants": 1
+        },
+        {
+          "code": "Z340",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 137,
+      "setCode": "K1139",
+      "labelCodes": [
+        "K1139",
+        "P1711",
+        "D686",
+        "V30",
+        "Z259"
+      ],
+      "imageCandidates": 4,
+      "assignments": [
+        {
+          "code": "P1711",
+          "variants": 1
+        },
+        {
+          "code": "D686",
+          "variants": 1
+        },
+        {
+          "code": "V30",
+          "variants": 1
+        },
+        {
+          "code": "Z259",
+          "variants": 1
+        }
+      ]
+    },
+    {
+      "page": 138,
+      "setCode": "K1140",
+      "labelCodes": [
+        "K1140",
+        "P1591",
+        "D1093",
+        "V116",
+        "Z490"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1591",
+          "variants": 1
+        },
+        {
+          "code": "D1093",
+          "variants": 1
+        },
+        {
+          "code": "V116",
+          "variants": 1
+        },
+        {
+          "code": "Z490",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 139,
+      "setCode": "K1141",
+      "labelCodes": [
+        "K1141",
+        "P1564",
+        "D159",
+        "V108",
+        "Z251"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1564",
+          "variants": 1
+        },
+        {
+          "code": "D159",
+          "variants": 1
+        },
+        {
+          "code": "V108",
+          "variants": 1
+        },
+        {
+          "code": "Z251",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 140,
+      "setCode": "K1142",
+      "labelCodes": [
+        "K1142",
+        "P1568",
+        "D1325",
+        "V6",
+        "Z163"
+      ],
+      "imageCandidates": 4,
+      "assignments": [
+        {
+          "code": "P1568",
+          "variants": 1
+        },
+        {
+          "code": "D1325",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z163",
+          "variants": 1
+        }
+      ]
+    },
+    {
+      "page": 141,
+      "setCode": "K1143",
+      "labelCodes": [
+        "K1143",
+        "P1777",
+        "D1326",
+        "B793",
+        "B793",
+        "V148",
+        "Z181"
+      ],
+      "imageCandidates": 9,
+      "assignments": [
+        {
+          "code": "P1777",
+          "variants": 1
+        },
+        {
+          "code": "D1326",
+          "variants": 1
+        },
+        {
+          "code": "B793",
+          "variants": 1
+        },
+        {
+          "code": "B793",
+          "variants": 1
+        },
+        {
+          "code": "V148",
+          "variants": 1
+        },
+        {
+          "code": "Z181",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 142,
+      "setCode": "K1144",
+      "labelCodes": [
+        "K1144",
+        "P1756",
+        "D1262",
+        "V96",
+        "Z1"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1756",
+          "variants": 1
+        },
+        {
+          "code": "D1262",
+          "variants": 1
+        },
+        {
+          "code": "V96",
+          "variants": 1
+        },
+        {
+          "code": "Z1",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 143,
+      "setCode": "K1145",
+      "labelCodes": [
+        "K1145",
+        "P1765",
+        "D1270",
+        "B1689",
+        "B1690",
+        "V96",
+        "Z491"
+      ],
+      "imageCandidates": 7,
+      "assignments": [
+        {
+          "code": "P1765",
+          "variants": 1
+        },
+        {
+          "code": "D1270",
+          "variants": 1
+        },
+        {
+          "code": "B1689",
+          "variants": 2
+        },
+        {
+          "code": "B1690",
+          "variants": 2
+        },
+        {
+          "code": "V96",
+          "variants": 1
+        },
+        {
+          "code": "Z491",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 144,
+      "setCode": "K1146",
+      "labelCodes": [
+        "K1146",
+        "P1728",
+        "D1327",
+        "V6",
+        "Z492"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1728",
+          "variants": 1
+        },
+        {
+          "code": "D1327",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z492",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 145,
+      "setCode": "K1148",
+      "labelCodes": [
+        "K1148",
+        "P1705",
+        "D1226",
+        "V80",
+        "Z418"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1705",
+          "variants": 1
+        },
+        {
+          "code": "D1226",
+          "variants": 1
+        },
+        {
+          "code": "V80",
+          "variants": 1
+        },
+        {
+          "code": "Z418",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 146,
+      "setCode": "K1150",
+      "labelCodes": [
+        "K1150",
+        "P1706",
+        "D1228",
+        "B1663",
+        "B1663",
+        "V6",
+        "Z449"
+      ],
+      "imageCandidates": 7,
+      "assignments": [
+        {
+          "code": "P1706",
+          "variants": 1
+        },
+        {
+          "code": "D1228",
+          "variants": 1
+        },
+        {
+          "code": "B1663",
+          "variants": 2
+        },
+        {
+          "code": "B1663",
+          "variants": 2
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z449",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 147,
+      "setCode": "K1151",
+      "labelCodes": [
+        "K1151",
+        "P1712",
+        "D1232",
+        "V198",
+        "Z1"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1712",
+          "variants": 1
+        },
+        {
+          "code": "D1232",
+          "variants": 1
+        },
+        {
+          "code": "V198",
+          "variants": 1
+        },
+        {
+          "code": "Z1",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 148,
+      "setCode": "K1152",
+      "labelCodes": [
+        "K1152",
+        "P1680",
+        "D1328",
+        "V149",
+        "Z391"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1680",
+          "variants": 1
+        },
+        {
+          "code": "D1328",
+          "variants": 1
+        },
+        {
+          "code": "V149",
+          "variants": 1
+        },
+        {
+          "code": "Z391",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 149,
+      "setCode": "K1153",
+      "labelCodes": [
+        "K1153",
+        "P1688",
+        "D1238",
+        "V150",
+        "Z443"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1688",
+          "variants": 1
+        },
+        {
+          "code": "D1238",
+          "variants": 1
+        },
+        {
+          "code": "V150",
+          "variants": 1
+        },
+        {
+          "code": "Z443",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 150,
+      "setCode": "K1154",
+      "labelCodes": [
+        "K1154",
+        "P1610",
+        "D1210",
+        "V68",
+        "Z49"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1610",
+          "variants": 1
+        },
+        {
+          "code": "D1210",
+          "variants": 1
+        },
+        {
+          "code": "V68",
+          "variants": 1
+        },
+        {
+          "code": "Z49",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 151,
+      "setCode": "K1155",
+      "labelCodes": [
+        "K1155",
+        "P1693",
+        "D1329",
+        "V102",
+        "Z396"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1693",
+          "variants": 1
+        },
+        {
+          "code": "D1329",
+          "variants": 1
+        },
+        {
+          "code": "V102",
+          "variants": 1
+        },
+        {
+          "code": "Z396",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 152,
+      "setCode": "K1156",
+      "labelCodes": [
+        "K1156",
+        "P1695",
+        "D1214",
+        "B1652",
+        "B1652",
+        "V6",
+        "Z493"
+      ],
+      "imageCandidates": 9,
+      "assignments": [
+        {
+          "code": "P1695",
+          "variants": 1
+        },
+        {
+          "code": "D1214",
+          "variants": 1
+        },
+        {
+          "code": "B1652",
+          "variants": 1
+        },
+        {
+          "code": "B1652",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z493",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 153,
+      "setCode": "K1157",
+      "labelCodes": [
+        "K1157",
+        "P1701",
+        "D1330",
+        "B1658",
+        "B1658",
+        "V210",
+        "Z6"
+      ],
+      "imageCandidates": 9,
+      "assignments": [
+        {
+          "code": "P1701",
+          "variants": 1
+        },
+        {
+          "code": "D1330",
+          "variants": 1
+        },
+        {
+          "code": "B1658",
+          "variants": 1
+        },
+        {
+          "code": "B1658",
+          "variants": 1
+        },
+        {
+          "code": "V210",
+          "variants": 1
+        },
+        {
+          "code": "Z6",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 154,
+      "setCode": "K1158",
+      "labelCodes": [
+        "K1158",
+        "P1657",
+        "D1129",
+        "V6",
+        "Z494"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1657",
+          "variants": 1
+        },
+        {
+          "code": "D1129",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z494",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 155,
+      "setCode": "K1159",
+      "labelCodes": [
+        "K1159",
+        "P1658",
+        "D1169",
+        "V28",
+        "Z472"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1658",
+          "variants": 1
+        },
+        {
+          "code": "D1169",
+          "variants": 1
+        },
+        {
+          "code": "V28",
+          "variants": 1
+        },
+        {
+          "code": "Z472",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 156,
+      "setCode": "K1160",
+      "labelCodes": [
+        "K1160",
+        "P1669",
+        "D1181",
+        "V70",
+        "Z441"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1669",
+          "variants": 1
+        },
+        {
+          "code": "D1181",
+          "variants": 1
+        },
+        {
+          "code": "V70",
+          "variants": 1
+        },
+        {
+          "code": "Z441",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 157,
+      "setCode": "K1161",
+      "labelCodes": [
+        "K1161",
+        "P1665",
+        "D1176",
+        "V6",
+        "Z495"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1665",
+          "variants": 1
+        },
+        {
+          "code": "D1176",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z495",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 158,
+      "setCode": "K1162",
+      "labelCodes": [
+        "K1162",
+        "P1675",
+        "D1184",
+        "V30",
+        "Z418"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1675",
+          "variants": 1
+        },
+        {
+          "code": "D1184",
+          "variants": 1
+        },
+        {
+          "code": "V30",
+          "variants": 1
+        },
+        {
+          "code": "Z418",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 159,
+      "setCode": "K1163",
+      "labelCodes": [
+        "K1163",
+        "P1674",
+        "D1331",
+        "V93",
+        "Z496"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1674",
+          "variants": 1
+        },
+        {
+          "code": "D1331",
+          "variants": 1
+        },
+        {
+          "code": "V93",
+          "variants": 1
+        },
+        {
+          "code": "Z496",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 160,
+      "setCode": "K1164",
+      "labelCodes": [
+        "K1164",
+        "P1632",
+        "D1331",
+        "V6",
+        "Z496"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1632",
+          "variants": 1
+        },
+        {
+          "code": "D1331",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z496",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 161,
+      "setCode": "K1165",
+      "labelCodes": [
+        "K1165",
+        "P1633",
+        "D1149",
+        "B1620",
+        "B1621",
+        "V211",
+        "Z218"
+      ],
+      "imageCandidates": 7,
+      "assignments": [
+        {
+          "code": "P1633",
+          "variants": 1
+        },
+        {
+          "code": "D1149",
+          "variants": 1
+        },
+        {
+          "code": "B1620",
+          "variants": 2
+        },
+        {
+          "code": "B1621",
+          "variants": 2
+        },
+        {
+          "code": "V211",
+          "variants": 1
+        },
+        {
+          "code": "Z218",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 162,
+      "setCode": "K1166",
+      "labelCodes": [
+        "K1166",
+        "P1636",
+        "D1156",
+        "V6",
+        "Z6"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1636",
+          "variants": 1
+        },
+        {
+          "code": "D1156",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z6",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 163,
+      "setCode": "K1167",
+      "labelCodes": [
+        "K1167",
+        "P1610",
+        "D1120",
+        "V151",
+        "Z6"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1610",
+          "variants": 1
+        },
+        {
+          "code": "D1120",
+          "variants": 1
+        },
+        {
+          "code": "V151",
+          "variants": 1
+        },
+        {
+          "code": "Z6",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 164,
+      "setCode": "K1168",
+      "labelCodes": [
+        "K1168",
+        "P1628",
+        "D1143",
+        "V53",
+        "Z432"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1628",
+          "variants": 1
+        },
+        {
+          "code": "D1143",
+          "variants": 1
+        },
+        {
+          "code": "V53",
+          "variants": 1
+        },
+        {
+          "code": "Z432",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 165,
+      "setCode": "K1169",
+      "labelCodes": [
+        "K1169",
+        "P1630",
+        "D1332",
+        "B840",
+        "V30",
+        "Z312"
+      ],
+      "imageCandidates": 6,
+      "assignments": [
+        {
+          "code": "P1630",
+          "variants": 1
+        },
+        {
+          "code": "D1332",
+          "variants": 1
+        },
+        {
+          "code": "B840",
+          "variants": 1
+        },
+        {
+          "code": "V30",
+          "variants": 1
+        },
+        {
+          "code": "Z312",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 166,
+      "setCode": "K1170",
+      "labelCodes": [
+        "K1170",
+        "P1585",
+        "D1369",
+        "V116",
+        "Z344"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1585",
+          "variants": 1
+        },
+        {
+          "code": "D1369",
+          "variants": 1
+        },
+        {
+          "code": "V116",
+          "variants": 1
+        },
+        {
+          "code": "Z344",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 167,
+      "setCode": "K1171",
+      "labelCodes": [
+        "K1171",
+        "P1587",
+        "D989",
+        "V15",
+        "Z507"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1587",
+          "variants": 1
+        },
+        {
+          "code": "D989",
+          "variants": 1
+        },
+        {
+          "code": "V15",
+          "variants": 1
+        },
+        {
+          "code": "Z507",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 168,
+      "setCode": "K1172",
+      "labelCodes": [
+        "K1172",
+        "P1592",
+        "D1139",
+        "V32",
+        "Z431"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1592",
+          "variants": 1
+        },
+        {
+          "code": "D1139",
+          "variants": 1
+        },
+        {
+          "code": "V32",
+          "variants": 1
+        },
+        {
+          "code": "Z431",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 169,
+      "setCode": "K1173",
+      "labelCodes": [
+        "K1173",
+        "P1594",
+        "D1333",
+        "V23",
+        "Z1"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1594",
+          "variants": 1
+        },
+        {
+          "code": "D1333",
+          "variants": 1
+        },
+        {
+          "code": "V23",
+          "variants": 1
+        },
+        {
+          "code": "Z1",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 170,
+      "setCode": "K1174",
+      "labelCodes": [
+        "K1174",
+        "P1595",
+        "D1334",
+        "V152",
+        "Z528"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1595",
+          "variants": 1
+        },
+        {
+          "code": "D1334",
+          "variants": 1
+        },
+        {
+          "code": "V152",
+          "variants": 1
+        },
+        {
+          "code": "Z528",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 171,
+      "setCode": "K1175",
+      "labelCodes": [
+        "K1175",
+        "P1604",
+        "D1111",
+        "V98",
+        "Z497"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1604",
+          "variants": 1
+        },
+        {
+          "code": "D1111",
+          "variants": 1
+        },
+        {
+          "code": "V98",
+          "variants": 1
+        },
+        {
+          "code": "Z497",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 172,
+      "setCode": "K1176",
+      "labelCodes": [
+        "K1176",
+        "P1608",
+        "D947",
+        "V90",
+        "Z377"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1608",
+          "variants": 1
+        },
+        {
+          "code": "D947",
+          "variants": 1
+        },
+        {
+          "code": "V90",
+          "variants": 1
+        },
+        {
+          "code": "Z377",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 173,
+      "setCode": "K1177",
+      "labelCodes": [
+        "K1177",
+        "P1565",
+        "D714",
+        "V102",
+        "Z283"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1565",
+          "variants": 1
+        },
+        {
+          "code": "D714",
+          "variants": 1
+        },
+        {
+          "code": "V102",
+          "variants": 1
+        },
+        {
+          "code": "Z283",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 174,
+      "setCode": "K1178",
+      "labelCodes": [
+        "K1178",
+        "P1570",
+        "D1072",
+        "V153",
+        "Z351"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1570",
+          "variants": 1
+        },
+        {
+          "code": "D1072",
+          "variants": 1
+        },
+        {
+          "code": "V153",
+          "variants": 1
+        },
+        {
+          "code": "Z351",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 175,
+      "setCode": "K1179",
+      "labelCodes": [
+        "K1179",
+        "P1571",
+        "D1037",
+        "V212",
+        "Z489"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1571",
+          "variants": 1
+        },
+        {
+          "code": "D1037",
+          "variants": 1
+        },
+        {
+          "code": "V212",
+          "variants": 1
+        },
+        {
+          "code": "Z489",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 176,
+      "setCode": "K1180",
+      "labelCodes": [
+        "K1180",
+        "P1575",
+        "D1336",
+        "V213",
+        "Z415"
+      ],
+      "imageCandidates": 4,
+      "assignments": [
+        {
+          "code": "P1575",
+          "variants": 1
+        },
+        {
+          "code": "D1336",
+          "variants": 1
+        },
+        {
+          "code": "V213",
+          "variants": 1
+        },
+        {
+          "code": "Z415",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 177,
+      "setCode": "K1181",
+      "labelCodes": [
+        "K1181",
+        "P1577",
+        "D1080",
+        "V214",
+        "Z417"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1577",
+          "variants": 1
+        },
+        {
+          "code": "D1080",
+          "variants": 1
+        },
+        {
+          "code": "V214",
+          "variants": 1
+        },
+        {
+          "code": "Z417",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 178,
+      "setCode": "K1183",
+      "labelCodes": [
+        "K1183",
+        "P1583",
+        "D1086",
+        "V154",
+        "Z369"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1583",
+          "variants": 1
+        },
+        {
+          "code": "D1086",
+          "variants": 1
+        },
+        {
+          "code": "V154",
+          "variants": 1
+        },
+        {
+          "code": "Z369",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 179,
+      "setCode": "K1184",
+      "labelCodes": [
+        "K1184",
+        "P1537",
+        "D856",
+        "V116",
+        "Z56"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1537",
+          "variants": 1
+        },
+        {
+          "code": "D856",
+          "variants": 1
+        },
+        {
+          "code": "V116",
+          "variants": 1
+        },
+        {
+          "code": "Z56",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 180,
+      "setCode": "K1185",
+      "labelCodes": [
+        "K1185",
+        "P1539",
+        "D1370",
+        "B769",
+        "V30",
+        "Z344"
+      ],
+      "imageCandidates": 6,
+      "assignments": [
+        {
+          "code": "P1539",
+          "variants": 1
+        },
+        {
+          "code": "D1370",
+          "variants": 1
+        },
+        {
+          "code": "B769",
+          "variants": 1
+        },
+        {
+          "code": "V30",
+          "variants": 1
+        },
+        {
+          "code": "Z344",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 181,
+      "setCode": "K1186",
+      "labelCodes": [
+        "K1186",
+        "P1553",
+        "D1147",
+        "V32",
+        "Z369"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1553",
+          "variants": 1
+        },
+        {
+          "code": "D1147",
+          "variants": 1
+        },
+        {
+          "code": "V32",
+          "variants": 1
+        },
+        {
+          "code": "Z369",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 182,
+      "setCode": "K1187",
+      "labelCodes": [
+        "K1187",
+        "P1400",
+        "D1037",
+        "V86",
+        "Z393"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1400",
+          "variants": 1
+        },
+        {
+          "code": "D1037",
+          "variants": 1
+        },
+        {
+          "code": "V86",
+          "variants": 1
+        },
+        {
+          "code": "Z393",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 183,
+      "setCode": "K1188",
+      "labelCodes": [
+        "K1188",
+        "P1615",
+        "D1130",
+        "V6",
+        "Z529"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1615",
+          "variants": 1
+        },
+        {
+          "code": "D1130",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z529",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 184,
+      "setCode": "K1189",
+      "labelCodes": [
+        "K1189",
+        "P1574",
+        "D1198",
+        "V6",
+        "Z259"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1574",
+          "variants": 1
+        },
+        {
+          "code": "D1198",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z259",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 185,
+      "setCode": "K1190",
+      "labelCodes": [
+        "K1190",
+        "P1573",
+        "D1371",
+        "V216",
+        "Z530"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1573",
+          "variants": 1
+        },
+        {
+          "code": "D1371",
+          "variants": 1
+        },
+        {
+          "code": "V216",
+          "variants": 1
+        },
+        {
+          "code": "Z530",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 186,
+      "setCode": "K1191",
+      "labelCodes": [
+        "K1191",
+        "P1580",
+        "D1082",
+        "V217",
+        "Z531"
+      ],
+      "imageCandidates": 4,
+      "assignments": [
+        {
+          "code": "P1580",
+          "variants": 1
+        },
+        {
+          "code": "D1082",
+          "variants": 1
+        },
+        {
+          "code": "V217",
+          "variants": 1
+        },
+        {
+          "code": "Z531",
+          "variants": 1
+        }
+      ]
+    },
+    {
+      "page": 187,
+      "setCode": "K1192",
+      "labelCodes": [
+        "K1192",
+        "P1579",
+        "D1081",
+        "V155",
+        "Z532"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1579",
+          "variants": 1
+        },
+        {
+          "code": "D1081",
+          "variants": 1
+        },
+        {
+          "code": "V155",
+          "variants": 1
+        },
+        {
+          "code": "Z532",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 188,
+      "setCode": "K1193",
+      "labelCodes": [
+        "K1193",
+        "P1560",
+        "D1335",
+        "V6",
+        "Z301"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1560",
+          "variants": 1
+        },
+        {
+          "code": "D1335",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z301",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 189,
+      "setCode": "K1194",
+      "labelCodes": [
+        "K1194",
+        "P1532",
+        "D1372",
+        "V218",
+        "Z296"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1532",
+          "variants": 1
+        },
+        {
+          "code": "D1372",
+          "variants": 1
+        },
+        {
+          "code": "V218",
+          "variants": 1
+        },
+        {
+          "code": "Z296",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 190,
+      "setCode": "K1195",
+      "labelCodes": [
+        "K1195",
+        "P1488",
+        "D992",
+        "V30",
+        "Z390"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1488",
+          "variants": 1
+        },
+        {
+          "code": "D992",
+          "variants": 1
+        },
+        {
+          "code": "V30",
+          "variants": 1
+        },
+        {
+          "code": "Z390",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 191,
+      "setCode": "K1196",
+      "labelCodes": [
+        "K1196",
+        "P1384",
+        "D1373",
+        "V90",
+        "Z430"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1384",
+          "variants": 1
+        },
+        {
+          "code": "D1373",
+          "variants": 1
+        },
+        {
+          "code": "V90",
+          "variants": 1
+        },
+        {
+          "code": "Z430",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 192,
+      "setCode": "K1197",
+      "labelCodes": [
+        "K1197",
+        "P1310",
+        "D900",
+        "V6",
+        "Z359"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1310",
+          "variants": 1
+        },
+        {
+          "code": "D900",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z359",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 193,
+      "setCode": "K1198",
+      "labelCodes": [
+        "K1198",
+        "P1250",
+        "D973",
+        "B140",
+        "B140",
+        "V134",
+        "Z3"
+      ],
+      "imageCandidates": 9,
+      "assignments": [
+        {
+          "code": "P1250",
+          "variants": 1
+        },
+        {
+          "code": "D973",
+          "variants": 1
+        },
+        {
+          "code": "B140",
+          "variants": 1
+        },
+        {
+          "code": "B140",
+          "variants": 1
+        },
+        {
+          "code": "V134",
+          "variants": 1
+        },
+        {
+          "code": "Z3",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 194,
+      "setCode": "K1199",
+      "labelCodes": [
+        "K1199",
+        "P1226",
+        "D762",
+        "B140",
+        "B140",
+        "V6",
+        "Z306"
+      ],
+      "imageCandidates": 9,
+      "assignments": [
+        {
+          "code": "P1226",
+          "variants": 1
+        },
+        {
+          "code": "D762",
+          "variants": 1
+        },
+        {
+          "code": "B140",
+          "variants": 1
+        },
+        {
+          "code": "B140",
+          "variants": 1
+        },
+        {
+          "code": "V6",
+          "variants": 1
+        },
+        {
+          "code": "Z306",
+          "variants": 2
+        }
+      ]
+    },
+    {
+      "page": 195,
+      "setCode": "K1200",
+      "labelCodes": [
+        "K1200",
+        "P1236",
+        "D769",
+        "V15",
+        "Z344"
+      ],
+      "imageCandidates": 5,
+      "assignments": [
+        {
+          "code": "P1236",
+          "variants": 1
+        },
+        {
+          "code": "D769",
+          "variants": 1
+        },
+        {
+          "code": "V15",
+          "variants": 1
+        },
+        {
+          "code": "Z344",
+          "variants": 2
+        }
+      ]
+    }
+  ],
+  "ambiguous": [
+    {
+      "page": 1,
+      "code": "B737",
+      "labelBbox": [
+        48.30500030517578,
+        767.1865234375,
+        135.7861785888672,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 1,
+      "code": "B737",
+      "labelBbox": [
+        324.50579833984375,
+        767.1865234375,
+        411.9869384765625,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 1,
+      "code": "Z347",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 2,
+      "code": "Z338",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 3,
+      "code": "B388",
+      "labelBbox": [
+        48.30500030517578,
+        767.1865234375,
+        135.7861785888672,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 3,
+      "code": "B388",
+      "labelBbox": [
+        324.50579833984375,
+        767.1865234375,
+        411.9869384765625,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 3,
+      "code": "Z147",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 4,
+      "code": "B1718",
+      "labelBbox": [
+        20.7135009765625,
+        767.1865234375,
+        128.5459442138672,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 4,
+      "code": "B1718",
+      "labelBbox": [
+        309.44677734375,
+        767.1865234375,
+        417.2791748046875,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 4,
+      "code": "Z478",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 5,
+      "code": "Z369",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 6,
+      "code": "Z246",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 7,
+      "code": "Z519",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 8,
+      "code": "Z479",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 9,
+      "code": "Z248",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 10,
+      "code": "Z416",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 11,
+      "code": "Z423",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 12,
+      "code": "B817",
+      "labelBbox": [
+        20.7135009765625,
+        767.1865234375,
+        108.1946792602539,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 12,
+      "code": "B817",
+      "labelBbox": [
+        309.44677734375,
+        767.1865234375,
+        396.92791748046875,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 12,
+      "code": "Z227",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 13,
+      "code": "Z363",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 14,
+      "code": "B1023",
+      "labelBbox": [
+        20.7135009765625,
+        767.1865234375,
+        128.5459442138672,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 14,
+      "code": "B1023",
+      "labelBbox": [
+        309.44677734375,
+        767.1865234375,
+        417.2791748046875,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 14,
+      "code": "Z520",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 15,
+      "code": "Z124",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 16,
+      "code": "Z521",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 17,
+      "code": "Z522",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 18,
+      "code": "B668",
+      "labelBbox": [
+        20.7135009765625,
+        767.1865234375,
+        108.1946792602539,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 18,
+      "code": "B668",
+      "labelBbox": [
+        310.1488952636719,
+        767.3416137695312,
+        397.6300354003906,
+        803.9446411132812
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 18,
+      "code": "Z418",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 19,
+      "code": "Z340",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 20,
+      "code": "Z359",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 21,
+      "code": "Z49",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 22,
+      "code": "Z480",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 23,
+      "code": "Z355",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 24,
+      "code": "Z306",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 25,
+      "code": "Z287",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 26,
+      "code": "Z287",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 27,
+      "code": "Z167",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 28,
+      "code": "Z343",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 29,
+      "code": "Z426",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 30,
+      "code": "Z339",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 31,
+      "code": "Z481",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 32,
+      "code": "Z56",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 33,
+      "code": "Z482",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 34,
+      "code": "Z523",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 35,
+      "code": "Z213",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 36,
+      "code": "Z521",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 37,
+      "code": "Z469",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 38,
+      "code": "Z362",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 39,
+      "code": "Z272",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 40,
+      "code": "Z524",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 42,
+      "code": "B978",
+      "labelBbox": [
+        20.7135009765625,
+        767.1865234375,
+        108.1946792602539,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 42,
+      "code": "B122",
+      "labelBbox": [
+        309.44677734375,
+        767.1865234375,
+        396.92791748046875,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 42,
+      "code": "Z340",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 43,
+      "code": "Z340",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 44,
+      "code": "Z355",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 45,
+      "code": "Z287",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 46,
+      "code": "Z483",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 47,
+      "code": "Z345",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 48,
+      "code": "Z402",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 49,
+      "code": "Z335",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 50,
+      "code": "Z314",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 51,
+      "code": "Z283",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 52,
+      "code": "Z342",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 53,
+      "code": "Z218",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 55,
+      "code": "B829",
+      "labelBbox": [
+        20.7135009765625,
+        767.1865234375,
+        108.1946792602539,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 55,
+      "code": "B829",
+      "labelBbox": [
+        309.44677734375,
+        767.1865234375,
+        396.92791748046875,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 55,
+      "code": "Z321",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 56,
+      "code": "G1203",
+      "labelBbox": [
+        113.25809478759766,
+        606.3294677734375,
+        223.1403350830078,
+        642.9324951171875
+      ],
+      "candidateCount": 1,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 57,
+      "code": "Z484",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 58,
+      "code": "Z244",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 59,
+      "code": "Z485",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 60,
+      "code": "Z312",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 61,
+      "code": "Z399",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 62,
+      "code": "Z486",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 63,
+      "code": "Z333",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 64,
+      "code": "Z340",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 65,
+      "code": "Z275",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 66,
+      "code": "Z334",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 67,
+      "code": "Z525",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 68,
+      "code": "Z260",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 70,
+      "code": "Z10",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 71,
+      "code": "Z286",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 72,
+      "code": "Z282",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 73,
+      "code": "Z348",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 74,
+      "code": "Z275",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 75,
+      "code": "Z285",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 76,
+      "code": "Z218",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 77,
+      "code": "Z256",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 78,
+      "code": "Z340",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 79,
+      "code": "Z371",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 80,
+      "code": "Z297",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 81,
+      "code": "B140",
+      "labelBbox": [
+        20.7135009765625,
+        767.1865234375,
+        108.1946792602539,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 81,
+      "code": "B140",
+      "labelBbox": [
+        309.44677734375,
+        767.1865234375,
+        396.92791748046875,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 81,
+      "code": "Z306",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 82,
+      "code": "Z10",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 83,
+      "code": "Z526",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 84,
+      "code": "Z275",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 85,
+      "code": "Z347",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 86,
+      "code": "Z227",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 87,
+      "code": "Z124",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 88,
+      "code": "Z232",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 89,
+      "code": "Z237",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 90,
+      "code": "Z340",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 91,
+      "code": "Z217",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 92,
+      "code": "Z356",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 93,
+      "code": "Z385",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 94,
+      "code": "Z322",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 95,
+      "code": "Z422",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 96,
+      "code": "Z219",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 97,
+      "code": "Z268",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 98,
+      "code": "Z194",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 99,
+      "code": "Z487",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 100,
+      "code": "Z333",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 101,
+      "code": "Z390",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 102,
+      "code": "Z243",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 103,
+      "code": "Z419",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 104,
+      "code": "Z224",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 105,
+      "code": "Z186",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 106,
+      "code": "Z219",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 107,
+      "code": "Z284",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 108,
+      "code": "V81",
+      "labelBbox": [
+        304.8310852050781,
+        673.6890869140625,
+        390.299072265625,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 108,
+      "code": "G694",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        229.01356506347656,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 109,
+      "code": "Z131",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 110,
+      "code": "Z126",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 111,
+      "code": "Z260",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 112,
+      "code": "Z238",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 113,
+      "code": "Z245",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 114,
+      "code": "B429",
+      "labelBbox": [
+        20.7135009765625,
+        767.1865234375,
+        108.1946792602539,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 114,
+      "code": "B428",
+      "labelBbox": [
+        309.44677734375,
+        767.1865234375,
+        396.92791748046875,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 114,
+      "code": "Z114",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        220.88185119628906,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 115,
+      "code": "Z170",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 116,
+      "code": "Z135",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 117,
+      "code": "Z137",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 118,
+      "code": "Z124",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 119,
+      "code": "Z488",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 120,
+      "code": "Z102",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 121,
+      "code": "Z1",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 122,
+      "code": "Z389",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 123,
+      "code": "Z403",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 124,
+      "code": "Z422",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 125,
+      "code": "Z400",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 126,
+      "code": "Z480",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 127,
+      "code": "Z362",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 129,
+      "code": "Z248",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 130,
+      "code": "Z489",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 131,
+      "code": "Z340",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 132,
+      "code": "Z49",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 133,
+      "code": "Z145",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 134,
+      "code": "Z49",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 135,
+      "code": "Z527",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 136,
+      "code": "Z340",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 138,
+      "code": "Z490",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 139,
+      "code": "Z251",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 141,
+      "code": "B793",
+      "labelBbox": [
+        20.7135009765625,
+        767.1865234375,
+        108.1946792602539,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 141,
+      "code": "B793",
+      "labelBbox": [
+        309.44677734375,
+        767.1865234375,
+        396.92791748046875,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 141,
+      "code": "Z181",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 142,
+      "code": "Z1",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 143,
+      "code": "B1689",
+      "labelBbox": [
+        20.7135009765625,
+        767.1865234375,
+        128.5459442138672,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 143,
+      "code": "B1690",
+      "labelBbox": [
+        309.44677734375,
+        767.1865234375,
+        417.2791748046875,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 143,
+      "code": "Z491",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 144,
+      "code": "Z492",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 145,
+      "code": "Z418",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 146,
+      "code": "B1663",
+      "labelBbox": [
+        20.7135009765625,
+        767.1865234375,
+        128.5459442138672,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 146,
+      "code": "B1663",
+      "labelBbox": [
+        309.44677734375,
+        767.1865234375,
+        417.2791748046875,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 146,
+      "code": "Z449",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 147,
+      "code": "Z1",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 148,
+      "code": "Z391",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 149,
+      "code": "Z443",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 150,
+      "code": "Z49",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 151,
+      "code": "Z396",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 152,
+      "code": "B1652",
+      "labelBbox": [
+        20.7135009765625,
+        767.1865234375,
+        128.5459442138672,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 152,
+      "code": "B1652",
+      "labelBbox": [
+        309.44677734375,
+        767.1865234375,
+        417.2791748046875,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 152,
+      "code": "Z493",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 153,
+      "code": "B1658",
+      "labelBbox": [
+        20.7135009765625,
+        767.1865234375,
+        128.5459442138672,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 153,
+      "code": "B1658",
+      "labelBbox": [
+        309.44677734375,
+        767.1865234375,
+        417.2791748046875,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 153,
+      "code": "Z6",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 154,
+      "code": "Z494",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 155,
+      "code": "Z472",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 156,
+      "code": "Z441",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 157,
+      "code": "Z495",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 158,
+      "code": "Z418",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 159,
+      "code": "Z496",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 160,
+      "code": "Z496",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 161,
+      "code": "B1620",
+      "labelBbox": [
+        20.7135009765625,
+        767.1865234375,
+        128.5459442138672,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 161,
+      "code": "B1621",
+      "labelBbox": [
+        309.44677734375,
+        767.1865234375,
+        417.2791748046875,
+        803.78955078125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 161,
+      "code": "Z218",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 162,
+      "code": "Z6",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 163,
+      "code": "Z6",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 164,
+      "code": "Z432",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 165,
+      "code": "Z312",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 166,
+      "code": "Z344",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 167,
+      "code": "Z507",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 168,
+      "code": "Z431",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 169,
+      "code": "Z1",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 170,
+      "code": "Z528",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 171,
+      "code": "Z497",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 172,
+      "code": "Z377",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 173,
+      "code": "Z283",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 174,
+      "code": "Z351",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 175,
+      "code": "Z489",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 176,
+      "code": "Z415",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 177,
+      "code": "Z417",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 178,
+      "code": "Z369",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 179,
+      "code": "Z56",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 180,
+      "code": "Z344",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 181,
+      "code": "Z369",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 182,
+      "code": "Z393",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 183,
+      "code": "Z529",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 184,
+      "code": "Z259",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 185,
+      "code": "Z530",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 187,
+      "code": "Z532",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 188,
+      "code": "Z301",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 189,
+      "code": "Z296",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 190,
+      "code": "Z390",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 191,
+      "code": "Z430",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 192,
+      "code": "Z359",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 193,
+      "code": "B140",
+      "labelBbox": [
+        20.7135009765625,
+        767.1865234375,
+        108.1946792602539,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 193,
+      "code": "B140",
+      "labelBbox": [
+        309.44677734375,
+        767.1865234375,
+        396.92791748046875,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 193,
+      "code": "Z3",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 194,
+      "code": "B140",
+      "labelBbox": [
+        20.7135009765625,
+        767.1865234375,
+        108.1946792602539,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 194,
+      "code": "B140",
+      "labelBbox": [
+        309.44677734375,
+        767.1865234375,
+        396.92791748046875,
+        803.78955078125
+      ],
+      "candidateCount": 4,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 194,
+      "code": "Z306",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    },
+    {
+      "page": 195,
+      "code": "Z344",
+      "labelBbox": [
+        139.48260498046875,
+        673.6890869140625,
+        222.90084838867188,
+        710.2921142578125
+      ],
+      "candidateCount": 2,
+      "note": "association is provisional; variants retained"
+    }
+  ],
+  "withoutImage": [
+    {
+      "page": 56,
+      "code": "V192",
+      "labelBbox": [
+        304.8310852050781,
+        673.6890869140625,
+        390.299072265625,
+        710.2921142578125
+      ],
+      "reason": "no-conservative-image-match"
+    }
+  ],
+  "unmatchedImages": 0,
+  "summary": {
+    "totalUniqueCodes": 658,
+    "familyCounts": {
+      "B": 26,
+      "D": 182,
+      "G": 4,
+      "P": 193,
+      "V": 115,
+      "Z": 138
+    },
+    "usableMotifs": 657,
+    "uniqueCodesWithImage": 657,
+    "ambiguousAssociations": 225,
+    "codesWithoutImage": 1,
+    "extractedUniqueImages": 777,
+    "curatedVariantExclusions": 6
+  },
+  "libraryCuration": {
+    "file": "tools/catalog-curation.json",
+    "exclusions": [
+      {
+        "excludedAsset": "assets/motifs/Z340-variant-2.png",
+        "code": "Z340",
+        "sha256": "98950f42e4d0c999128d21f981699850c36c5b78e5816c21b3154a9ddd2b9aea",
+        "matches": [
+          {
+            "code": "V18",
+            "asset": "assets/motifs/V18.png",
+            "sharedPages": [
+              19,
+              42
+            ]
+          }
+        ],
+        "reason": "Exact image-file match to a V-family motif; both code labels appear on the listed catalog pages."
+      },
+      {
+        "excludedAsset": "assets/motifs/Z340-variant-4.png",
+        "code": "Z340",
+        "sha256": "969856577d99ae8dd40a269ebd77b5ce34f6701f0e49ecff520d3c5b10edd501",
+        "matches": [
+          {
+            "code": "V18",
+            "asset": "assets/motifs/V18-variant-2.png",
+            "sharedPages": [
+              19,
+              42
+            ]
+          }
+        ],
+        "reason": "Exact image-file match to a V-family motif; both code labels appear on the listed catalog pages."
+      },
+      {
+        "excludedAsset": "assets/motifs/Z340-variant-6.png",
+        "code": "Z340",
+        "sha256": "68d74661dd955884399d27b5a4deb31e174df207b72e22249ef6666ce2bc62b4",
+        "matches": [
+          {
+            "code": "V145",
+            "asset": "assets/motifs/V145.png",
+            "sharedPages": [
+              43
+            ]
+          }
+        ],
+        "reason": "Exact image-file match to a V-family motif; both code labels appear on the listed catalog page."
+      },
+      {
+        "excludedAsset": "assets/motifs/Z340-variant-8.png",
+        "code": "Z340",
+        "sha256": "bdafdd429009190233c6e62b32e217d75cb052b2b505c9a3c0b9d8acca03cf09",
+        "matches": [
+          {
+            "code": "V209",
+            "asset": "assets/motifs/V209.png",
+            "sharedPages": [
+              136
+            ]
+          },
+          {
+            "code": "V59",
+            "asset": "assets/motifs/V59.png",
+            "sharedPages": [
+              90
+            ]
+          },
+          {
+            "code": "V67",
+            "asset": "assets/motifs/V67-variant-2.png",
+            "sharedPages": [
+              64
+            ]
+          }
+        ],
+        "reason": "Exact image-file match to V-family motifs; both code labels appear together on each listed catalog page."
+      },
+      {
+        "excludedAsset": "assets/motifs/Z340-variant-10.png",
+        "code": "Z340",
+        "sha256": "037e708e446af1a564f26de4c8a9573738d4da6d4b96f5d0f1d26dc402497e35",
+        "matches": [
+          {
+            "code": "V93",
+            "asset": "assets/motifs/V93.png",
+            "sharedPages": [
+              78
+            ]
+          }
+        ],
+        "reason": "Exact image-file match to a V-family motif; both code labels appear on the listed catalog page."
+      },
+      {
+        "excludedAsset": "assets/motifs/Z340-variant-13.png",
+        "code": "Z340",
+        "sha256": "935c3f2eddc55f0cbd77ae4e9e864c6875a803623f4b5c42ea774c3ef47014f3",
+        "matches": [
+          {
+            "code": "V126",
+            "asset": "assets/motifs/V126.png",
+            "sharedPages": [
+              131
+            ]
+          }
+        ],
+        "reason": "Exact image-file match to a V-family motif; both code labels appear on the listed catalog page."
+      }
+    ]
+  }
+}

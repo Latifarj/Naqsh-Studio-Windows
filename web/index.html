@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self';">
+  <title>نقش‌یار | استودیو طراحی نقش لباس</title>
+  <link rel="stylesheet" href="/web/styles.css">
+  <script src="/shared/engine.js" defer></script>
+  <script src="/web/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brandmark">ن</span><div><b>نقش‌یار</b><small>استودیو طراحی خودکار نقش لباس</small></div></div>
+    <div class="top-actions"><span id="statusPill" class="pill">در حال آماده‌سازی</span><button id="undoBtn" class="icon-btn" title="واگرد">↶</button><button id="redoBtn" class="icon-btn" title="بازانجام">↷</button><button id="saveBtn" class="btn secondary">ذخیره محلی</button><button id="exportMenuBtn" class="btn primary">خروجی گرفتن ▾</button></div>
+  </header>
+  <main class="workspace">
+    <aside class="sidebar left-panel">
+      <section class="panel-head"><h2>پروژه</h2><button id="newProjectBtn" class="small-btn">پروژه نو</button></section>
+      <input id="projectName" class="text-input" placeholder="نام پروژه">
+      <div class="project-meta"><label>عرض ورق <input id="sheetW" type="number" min="1"> <em class="unit-label">mm</em></label><label>ارتفاع <input id="sheetH" type="number" min="1"> <em class="unit-label">mm</em></label><label class="check"><input id="autoHeight" type="checkbox"> ارتفاع خودکار</label><label>واحد نمایش <select id="unitSelector"><option value="mm">میلی‌متر (mm)</option><option value="cm">سانتی‌متر (cm)</option></select></label></div>
+      <div class="section-title"><b>بخش‌ها</b><button id="addSectionBtn" class="small-btn">＋ افزودن</button></div>
+      <div id="sectionsList" class="sections-list"></div>
+      <div class="dropzone" id="projectDrop">فایل پروژه یا تبادل را اینجا رها کنید<br><span>یا <button id="importProjectBtn">انتخاب فایل JSON</button></span><input id="projectFile" type="file" accept=".json,application/json" hidden></div>
+    </aside>
+    <section class="stage-area">
+      <div class="stage-toolbar"><div class="tool-group"><button id="fitBtn" class="tool active">برازش ورق</button><button id="zoomOut" class="tool">−</button><span id="zoomLabel">۱۰۰٪</span><button id="zoomIn" class="tool">＋</button></div><div class="tool-group"><label class="toggle"><input id="guidesToggle" type="checkbox" checked><span></span>راهنما</label><button id="gridBtn" class="tool">شبکه</button></div><span id="renderMessage" class="render-message"></span></div>
+      <div id="canvasWrap" class="canvas-wrap"><div class="empty-state" id="emptyState"><strong>فضای طراحی آماده است</strong><p>از کتابخانه نقش انتخاب کنید یا ابتدا اندازهٔ قطعه را وارد کنید.</p><button id="loadSampleBtn" class="small-btn" type="button">بارگذاری نمونهٔ نمایشی با اندازه‌های فرضی</button></div><div id="svgHost" class="svg-host"></div></div>
+      <div class="stage-footer"><span>واحد داخلی: میلی‌متر</span><span id="placementInfo">۰ جایگذاری</span><span id="warningInfo">—</span></div>
+      <details class="warning-details"><summary>جزئیات هشدارها</summary><ul id="warningDetails"></ul></details>
+    </section>
+    <aside class="sidebar right-panel"><div class="tabs"><button class="tab active" data-tab="library">کتابخانه نقش</button><button class="tab" data-tab="properties">ویژگی‌ها</button></div><div id="libraryTab" class="tab-content"><div class="library-tools"><input id="librarySearch" class="text-input" placeholder="جستجوی کد نقش یا K-set…"><button id="clearSearch" class="small-btn">پاک</button></div><div class="library-note">کاتالوگ استخراج‌شده از PDF؛ نقش‌ها برای استفاده تکراری نیازمند کالیبراسیون‌اند.</div><div id="libraryList" class="library-list"></div><button id="loadMoreBtn" class="load-more">بارگذاری بیشتر</button><label class="import-art"><span>＋ وارد کردن PNG / JPEG / SVG</span><input id="assetFile" type="file" accept="image/png,image/jpeg,image/svg+xml" hidden></label></div><div id="propertiesTab" class="tab-content hidden"><div id="propertiesPanel"><div class="hint">برای ویرایش، یک بخش یا لایه را انتخاب کنید.</div></div></div></aside>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <div id="exportMenu" class="export-menu hidden"><button id="exportSvgBtn">SVG خودبسنده با زمینه سفید</button><button id="exportExchangeBtn">JSON تبادل خودبسنده</button><button id="exportProjectBtn">JSON تنظیمات پروژه</button><button id="exportPdfBtn">PDF از سرور</button></div>
+  <dialog id="calibrationDialog"><form method="dialog" class="calibration-form"><h3 id="calibrationTitle">کالیبراسیون نقش</h3><p>برای طرح کاتالوگی، اندازهٔ صفحهٔ نمایش را اندازهٔ تولید فرض نکنید. تصویر نقش و صفحهٔ مرجع را تطبیق دهید و اندازهٔ فیزیکی واقعی را وارد کنید.</p><div class="calibration-preview"><img id="calibrationPreview" alt="پیش‌نمایش نقش برای تعیین محدوده crop"></div><label>صفحهٔ مرجع کاتالوگ <select id="calibrationCollection"></select></label><div id="calibrationReferenceWrap" class="calibration-preview hidden"><img id="calibrationReference" alt="صفحهٔ مرجع کاتالوگ برای بررسی کد و نقش"></div><div class="calibration-grid"><label>pixel X <input id="calibrationX" type="number" min="0"></label><label>pixel Y <input id="calibrationY" type="number" min="0"></label><label>pixel width <input id="calibrationW" type="number" min="1"></label><label>pixel height <input id="calibrationH" type="number" min="1"></label><label>عرض فیزیکی واقعی <input id="physicalW" type="number" min="0.1" step="any" required><span class="unit-label">mm</span></label><label>ارتفاع فیزیکی واقعی <input id="physicalH" type="number" min="0.1" step="any" required><span class="unit-label">mm</span></label></div><label class="review-check"><input id="calibrationReviewed" type="checkbox"> پس از مقایسه با صفحهٔ مرجع، تطبیق کد و تصویر را تأیید می‌کنم</label><div class="dialog-actions"><button id="calibrationCancel" type="button">لغو</button><button id="calibrationApply" type="button" class="btn primary">ذخیره override</button></div></form></dialog>
+  <template id="sectionTemplate"><div class="section-card"><div class="section-row"><button class="move-up" type="button" title="انتقال به بالا">↑</button><button class="move-down" type="button" title="انتقال به پایین">↓</button><button class="section-select" type="button"></button><button class="duplicate" type="button">⧉</button><button class="delete" type="button">×</button></div><div class="section-fields"><input class="section-name" placeholder="نام بخش"><select class="section-shape"><option value="rect">مستطیل</option><option value="trapezoid">ذوزنقه</option><option value="pentagon">پنج‌ضلعی</option><option value="neck">یقه / گردن</option><option value="polygon">چندضلعی</option></select><label>عرض <input class="section-w" type="number"><span class="unit-label">mm</span></label><label>ارتفاع <input class="section-h" type="number"><span class="unit-label">mm</span></label><label>تعداد <input class="section-q" type="number" min="1"></label><label>عرض بالایی <input class="section-top" type="number" min="0.1"><span class="unit-label">mm</span></label><label>عرض گردن <input class="section-neck" type="number" min="0.1"><span class="unit-label">mm</span></label><label>عمق گردن <input class="section-depth" type="number" min="0.1"><span class="unit-label">mm</span></label><label class="check"><input class="section-mirror" type="checkbox"> آینه بخش</label></div><div class="layer-mini"></div><button class="add-layer" type="button">＋ افزودن لایه نقش</button></div></template>
+</body>
+</html>

@@ -1,0 +1,7 @@
+.git
+__pycache__
+**/__pycache__
+.pytest_cache
+shared/CONTRACT.md
+docs/SOURCE_NOTES.md
+*.zip
