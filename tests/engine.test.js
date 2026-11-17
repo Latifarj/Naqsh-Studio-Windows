@@ -1,5 +1,6 @@
 'use strict';
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
 const E = require('../shared/engine.js');
 let passed = 0;
 function test(name, fn) { fn(); passed++; console.log('PASS', name); }
@@ -53,6 +54,21 @@ test('numeric strings do not concatenate packing coordinates',()=>{
  const p=project();p.sections[0].widthMm='30';p.sections[0].heightMm='20';p.sections[0].quantity=2;
  const a=E.layout(p,lib).sections;assert.equal(a[1].xMm,40);assert.equal(a[0].widthMm,30);
 });
+test('optional 90 degree piece rotation fits the current shelf without rescaling',()=>{
+ const p=project();p.sheet.widthMm=80;p.sheet.heightMm=120;p.sections[0].widthMm=40;p.sections[0].heightMm=20;
+ const second=clone(p.sections[0]);second.id='s2';second.name='یقه';second.widthMm=60;second.heightMm=20;second.rotateOnSheet=true;p.sections.push(second);
+ const m=E.layout(p,lib), placed=m.sections[1];assert.equal(placed.rotationOnSheet,90);assert.equal(placed.placedWidthMm,20);assert.equal(placed.placedHeightMm,60);assert.equal(placed.widthMm,60);
+ const svg=E.renderSvg(m,{P1:data},{guides:true});assert(svg.includes('translate(70 5) rotate(90)'));
+ assert.equal(m.nesting.method,'deterministic-shelf');assert.equal(m.nesting.sheetCount,1);assert(m.nesting.utilizationPercent>0);
+});
+test('piece rotation can satisfy remaining sheet height without scaling',()=>{
+ const p=project();p.sheet.widthMm=100;p.sheet.heightMm=80;p.sections[0].widthMm=40;p.sections[0].heightMm=80;p.sections[0].rotateOnSheet=true;
+ const placed=E.layout(p,lib).sections[0];assert.equal(placed.rotationOnSheet,90);assert.equal(placed.placedWidthMm,80);assert.equal(placed.placedHeightMm,40);
+});
+test('a wrapped piece keeps its unrotated orientation when it fits the new row',()=>{
+ const p=project();p.sections[0].widthMm=50;p.sections[0].heightMm=20;const second=clone(p.sections[0]);second.id='s2';second.widthMm=50;second.heightMm=40;second.rotateOnSheet=true;p.sections.push(second);
+ const placed=E.layout(p,lib).sections[1];assert.equal(placed.xMm,5);assert.equal(placed.rotationOnSheet,0);assert.equal(placed.placedWidthMm,50);
+});
 test('undersized sheets never silently rescale',()=>{
  const p=project();p.sections[0].widthMm=95;assert.throws(()=>E.layout(p,lib),/عرض/);
  const q=project();q.sheet.heightMm=20;assert.throws(()=>E.layout(q,lib),/ارتفاع/);q.sheet.autoHeight=true;assert.equal(E.layout(q,lib).sheet.heightMm,30);
@@ -97,7 +113,18 @@ test('unconfirmed catalog display dimensions do not become physical output dimen
  const placed=E.layout(p,unconfirmed).sections[0].layers[0].placements[0];
  assert.equal(placed.widthMm,12);assert.equal(placed.heightMm,4);
 });
+test('production check blocks uncalibrated art and names raster/approval limitations',()=>{
+ const p=project();const unconfirmed={version:1,motifs:[{code:'P1',asset:'assets/motifs/P1.png',needsCalibration:true,pixelWidth:200,pixelHeight:100}]};
+ assert.equal(E.productionCheck(p,unconfirmed).ready,false);
+ const ready=E.productionCheck(p,lib);assert.equal(ready.ready,true);assert(ready.warnings.some(w=>w.includes('تأیید نهایی تولید')));assert(ready.warnings.some(w=>w.includes('CMYK')));
+});
+test('100 percent scale-test SVG declares exact physical dimensions and a 100 mm line',()=>{
+ const svg=E.renderPrintScaleSvg();assert(svg.includes('width="120mm" height="45mm"'));assert(svg.includes('M 10 25 H 110'));assert(svg.includes('۱۰۰ میلی‌متر'));
+});
 test('full garment demo includes the five verified part names',()=>{
  const p=E.makeDefaultProject(lib),m=E.layout(p,lib);assert.equal(p.sections.length,5);assert.equal(m.sections.length,8);assert(p.sections.some(s=>s.name==='گواتنام'));assert.equal(m.sheet.widthMm,2500);assert.equal(m.sheet.heightMm,1500);
+});
+test('Illustrator bundle is byte-identical to the shared engine',()=>{
+ assert.equal(fs.readFileSync(require.resolve('../illustrator/lib/engine.js'),'utf8'),fs.readFileSync(require.resolve('../shared/engine.js'),'utf8'));
 });
 console.log(`\n${passed} engine tests passed.`);
