@@ -19,7 +19,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import unquote, urlsplit
 
 import cairosvg
-import fitz
+import pymupdf as fitz
 from defusedxml import ElementTree as ET
 from PIL import Image
 
