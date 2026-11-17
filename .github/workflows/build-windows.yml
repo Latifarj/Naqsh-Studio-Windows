@@ -2,15 +2,39 @@ name: Windows desktop build
 on:
   workflow_dispatch:
   push:
-    branches: [main, master, professional-v1]
+    branches: [main, master, professional-v1, technical-sheet-v1]
 permissions:
-  contents: read
+  contents: write
 jobs:
   build-windows-x64:
     runs-on: windows-2022
     steps:
       - name: Check out source
         uses: actions/checkout@v4
+      - name: Expand verified technical source update once
+        if: github.ref == 'refs/heads/technical-sheet-v1'
+        shell: pwsh
+        run: |
+          if (Test-Path 'technical-update.zip') {
+            $hash = (Get-FileHash 'technical-update.zip' -Algorithm SHA256).Hash.ToLower()
+            if ($hash -ne '7c3cfb3436c18341447f248770fd41148c541c97b444ff0f6719e5505705366d') { throw 'Source archive checksum mismatch' }
+            Add-Type -AssemblyName System.IO.Compression.FileSystem
+            $zip = [System.IO.Compression.ZipFile]::OpenRead((Join-Path $PWD 'technical-update.zip'))
+            try {
+              foreach ($entry in $zip.Entries) {
+                if ($entry.FullName -match '(^/|\\|(^|/)\.\.(/|$)|^\.git/|^\.github/|:)') { throw 'Unsafe source path' }
+              }
+            } finally { $zip.Dispose() }
+            Expand-Archive 'technical-update.zip' -DestinationPath '.' -Force
+            Remove-Item 'technical-update.zip'
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add --all
+            git commit -m 'Publish technical-sheet 1.2 alpha source as individual files'
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            git push origin HEAD:technical-sheet-v1
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -50,12 +74,12 @@ jobs:
           try {
             $ready = $false
             for ($i=0; $i -lt 60; $i++) {
-              try { $h = Invoke-RestMethod 'http://127.0.0.1:18765/api/health'; if ($h.ok) { $ready=$true; break } } catch {}
+              try { $h = Invoke-RestMethod 'http://127.0.0.1:18765/api/health'; if ($h.ok -and $h.printProfile -eq 'technical-bw-v1') { $ready=$true; break } } catch {}
               if ($p.HasExited) { Get-Content backend-error.log; throw "Packaged backend exited early" }
               Start-Sleep -Seconds 1
             }
             if (-not $ready) { Get-Content backend-error.log; throw "Backend did not become ready" }
-            $body = @{svg='<svg xmlns="http://www.w3.org/2000/svg" width="10mm" height="10mm"><rect width="10" height="10" fill="red"/></svg>'; expected_width_mm=10; expected_height_mm=10} | ConvertTo-Json
+            $body = @{svg='<svg xmlns="http://www.w3.org/2000/svg" data-print-profile="technical-bw-v1" width="10mm" height="10mm" viewBox="0 0 10 10"><rect width="10" height="10" fill="red"/><text x="5" y="5" text-anchor="middle" direction="rtl" font-size="1.5" fill="#000">آستین</text></svg>'; profile='technical-bw-v1'; expected_width_mm=10; expected_height_mm=10} | ConvertTo-Json
             Invoke-WebRequest 'http://127.0.0.1:18765/api/export/pdf' -Method Post -ContentType 'application/json' -Body $body -OutFile smoke.pdf
             $bytes = [System.IO.File]::ReadAllBytes((Join-Path $PWD 'smoke.pdf'))
             if ([System.Text.Encoding]::ASCII.GetString($bytes,0,4) -ne '%PDF') { throw 'Invalid PDF' }
@@ -71,10 +95,11 @@ jobs:
       - name: Upload installer artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Naqsh-Studio-1.1.0-beta-Windows-x64
+          name: Naqsh-Studio-technical-sheet-v1-Windows-x64
           path: |
             release/win/*.exe
             release/win/*.sha256
             docs/*ویندوز.fa.md
+            desktop/README.fa.md
           if-no-files-found: error
           retention-days: 30
