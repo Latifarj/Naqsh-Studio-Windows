@@ -300,17 +300,88 @@
   }
   function makeDefaultProject(library) {
     var motifs = library && library.motifs ? library.motifs : [], pick = function (preferred,family) { var m=findMotif(library,preferred),i; if(m){return m.code;} for(i=0;i<motifs.length;i++){if(motifs[i].family===family){return motifs[i].code;}} return motifs.length?motifs[0].code:''; };
-    var P=pick('P1775','P'),D=pick('D1282','D'),Z=pick('Z347','Z'),V=pick('V006','V'),B=pick('B737','B'),G=pick('G1276','G'), a,b,c,d,e,l;
+    var P=pick('P1775','P'),D=pick('D1282','D'),Z=pick('Z347','Z'),V=pick('V6','V'),B=pick('B827','B'),Bfine=pick('B737','B'),G=pick('G1276','G'),a,b,c,d,e;
+    function layer(base,id,name,code,x,y,w,h,mode,tileW,rotation,gapX,gapY,opacity) {
+      var out=copy(base);
+      out.id=id;out.name=name;out.code=code;out.enabled=true;
+      out.xMm=x;out.yMm=y;out.widthMm=w;out.heightMm=h;out.mode=mode;out.lockAspect=true;
+      out.tileWidthMm=tileW;delete out.tileHeightMm;
+      out.gapXmm=gapX===undefined?0:gapX;out.gapYmm=gapY===undefined?0:gapY;
+      out.offsetXmm=0;out.offsetYmm=0;out.rotation=rotation||0;
+      out.mirrorX=false;out.mirrorY=false;out.alternateX=false;out.alternateY=false;
+      out.opacity=opacity===undefined?1:opacity;
+      return out;
+    }
     a=makeSection('sleeve','آستین',450,650,P); a.quantity=2; a.shape='trapezoid'; a.topWidthMm=350;
-    a.layers[0].heightMm=120; a.layers[0].yMm=530; a.layers[0].tileWidthMm=150;
-    l=copy(a.layers[0]); l.id='sleeve-background'; l.name='زمینه'; l.code=V; l.xMm=0;l.yMm=0;l.widthMm=450;l.heightMm=530;l.mode='grid';l.tileWidthMm=30;l.gapXmm=100;l.gapYmm=85; a.layers.unshift(l);
-    b=makeSection('pan','پانچک',450,1000,P); b.quantity=2; b.layers[0].heightMm=120; b.layers[0].tileWidthMm=150;
-    l=copy(b.layers[0]); l.id='pan-background';l.name='زمینهٔ میانی';l.code=Z;l.xMm=190;l.yMm=140;l.widthMm=70;l.heightMm=840;l.mode='repeatY';l.tileWidthMm=55;l.gapYmm=100; b.layers.unshift(l);
-    l=copy(b.layers[1]);l.id='pan-border';l.name='نوار کناری';l.code=B;l.xMm=0;l.yMm=0;l.widthMm=25;l.heightMm=1000;l.mode='repeatY';l.tileWidthMm=90;l.rotation=90;b.layers.push(l);
-    c=makeSection('tak','تک',150,600,D);c.quantity=2;c.layers[0].mode='cover';
-    d=makeSection('zih','زیح',300,700,D);d.shape='pentagon';d.layers[0].mode='contain';
-    e=makeSection('gwatnam','گواتنام',180,220,G);e.partCode='Gwatnam';e.layers[0].mode='contain';
-    return {version:1,name:'نمونهٔ آزمایشی — ابعاد فرضی',sheet:{widthMm:2500,heightMm:1500,autoHeight:false,gutterMm:12,marginMm:10},guides:true,metadata:{sample:true,note:'اندازه‌های این نمونه فرضی‌اند؛ پیش از تولید، اندازه و محدودهٔ تکرار هر نقش را کنترل کنید.'},sections:[a,b,c,d,e]};
+    a.layers=[
+      layer(a.layers[0],'sleeve-field','زمینهٔ ریزنقش',V,78,91,294,420,'grid',17,0,27,30,1),
+      layer(a.layers[0],'sleeve-medallions','ردیف مدالیون مرکزی',Z,180,111,90,430,'repeatY',68,0,0,20,1),
+      layer(a.layers[0],'sleeve-pendant-left','آویزهای میانی چپ',D,107,123,26,405,'repeatY',22,0,0,30,1),
+      layer(a.layers[0],'sleeve-pendant-right','آویزهای میانی راست',D,317,123,26,405,'repeatY',22,0,0,30,1),
+      layer(a.layers[0],'sleeve-left-border','حاشیهٔ هندسی چپ',B,30,30,18,564,'repeatY',48,90,0,1,1),
+      layer(a.layers[0],'sleeve-right-border','حاشیهٔ هندسی راست',B,402,30,18,564,'repeatY',48,90,0,1,1),
+      layer(a.layers[0],'sleeve-left-inset','خط داخلی چپ',Bfine,54,34,10,552,'repeatY',38,90,0,1,1),
+      layer(a.layers[0],'sleeve-right-inset','خط داخلی راست',Bfine,386,34,10,552,'repeatY',38,90,0,1,1),
+      layer(a.layers[0],'sleeve-top-band','نوار سرقطعه',P,64,28,322,30,'repeatX',58,0,0,0,1),
+      layer(a.layers[0],'sleeve-hem','نوار انتهایی',P,24,584,402,44,'repeatX',64,0,0,0,1)
+    ];
+
+    b=makeSection('pan','پانچک',450,1000,P); b.quantity=2;
+    b.layers=[
+      layer(b.layers[0],'pan-field','زمینهٔ ظریف',V,68,168,314,666,'grid',17,0,35,39,1),
+      layer(b.layers[0],'pan-center','مدالیون‌های مرکزی',Z,190,184,70,696,'repeatY',68,0,0,23,1),
+      layer(b.layers[0],'pan-pendant-left','آویز میانی چپ',D,82,174,28,702,'repeatY',22,0,0,30,1),
+      layer(b.layers[0],'pan-pendant-right','آویز میانی راست',D,340,174,28,702,'repeatY',22,0,0,30,1),
+      layer(b.layers[0],'pan-side-medallions-left','نشان‌های میانی چپ',Z,139,198,42,680,'repeatY',38,0,0,54,1),
+      layer(b.layers[0],'pan-side-medallions-right','نشان‌های میانی راست',Z,269,198,42,680,'repeatY',38,0,0,54,1),
+      layer(b.layers[0],'pan-left-border','نوار هندسی کناری چپ',B,14,53,22,894,'repeatY',58,90,0,1,1),
+      layer(b.layers[0],'pan-right-border','نوار هندسی کناری راست',B,414,53,22,894,'repeatY',58,90,0,1,1),
+      layer(b.layers[0],'pan-left-inset','خط داخلی چپ',Bfine,42,54,10,892,'repeatY',42,90,0,1,1),
+      layer(b.layers[0],'pan-right-inset','خط داخلی راست',Bfine,398,54,10,892,'repeatY',42,90,0,1,1),
+      layer(b.layers[0],'pan-top-band','حاشیهٔ بالایی',P,38,15,374,42,'repeatX',64,0,0,0,1),
+      layer(b.layers[0],'pan-bottom-band','حاشیهٔ پایینی',P,38,943,374,42,'repeatX',64,0,0,0,1)
+    ];
+
+    c=makeSection('tak','تک',150,600,D); c.quantity=2;
+    c.layers=[
+      layer(c.layers[0],'tak-field','زمینهٔ ریزنقش',V,34,60,82,480,'grid',16,0,15,22,1),
+      layer(c.layers[0],'tak-spine','نقش طولی مرکزی',D,57,68,36,462,'repeatY',30,0,0,18,1),
+      layer(c.layers[0],'tak-left-border','حاشیهٔ هندسی چپ',B,8,30,16,540,'repeatY',44,90,0,1,1),
+      layer(c.layers[0],'tak-right-border','حاشیهٔ هندسی راست',B,126,30,16,540,'repeatY',44,90,0,1,1),
+      layer(c.layers[0],'tak-left-inset','خط داخلی چپ',Bfine,27,32,10,536,'repeatY',38,90,0,1,1),
+      layer(c.layers[0],'tak-right-inset','خط داخلی راست',Bfine,113,32,10,536,'repeatY',38,90,0,1,1),
+      layer(c.layers[0],'tak-medallion','مدالیون مرکزی',Z,39,259,72,82,'contain',72,0,0,0,1),
+      layer(c.layers[0],'tak-top-band','نوار سرقطعه',P,22,8,106,32,'repeatX',58,0,0,0,1),
+      layer(c.layers[0],'tak-bottom-band','نوار انتهایی',P,22,560,106,32,'repeatX',58,0,0,0,1)
+    ];
+
+    d=makeSection('zih','زیح',300,700,D); d.shape='pentagon';
+    d.layers=[
+      layer(d.layers[0],'zih-field','زمینهٔ ریزنقش',V,55,192,190,416,'grid',17,0,29,31,1),
+      layer(d.layers[0],'zih-spine','نقش طولی مرکزی',D,126,181,48,434,'repeatY',32,0,0,20,1),
+      layer(d.layers[0],'zih-medallion','مدالیون اصلی',Z,114,300,72,82,'contain',72,0,0,0,1),
+      layer(d.layers[0],'zih-trail-left','آویزهای چپ',D,57,190,26,420,'repeatY',22,0,0,29,1),
+      layer(d.layers[0],'zih-trail-right','آویزهای راست',D,217,190,26,420,'repeatY',22,0,0,29,1),
+      layer(d.layers[0],'zih-left-border','حاشیهٔ هندسی چپ',B,21,126,18,516,'repeatY',48,90,0,1,1),
+      layer(d.layers[0],'zih-right-border','حاشیهٔ هندسی راست',B,261,126,18,516,'repeatY',48,90,0,1,1),
+      layer(d.layers[0],'zih-left-inset','خط داخلی چپ',Bfine,44,132,10,504,'repeatY',38,90,0,1,1),
+      layer(d.layers[0],'zih-right-inset','خط داخلی راست',Bfine,246,132,10,504,'repeatY',38,90,0,1,1),
+      layer(d.layers[0],'zih-neck-band','نوار بالایی',P,45,120,210,42,'repeatX',58,0,0,0,1),
+      layer(d.layers[0],'zih-lower-band','نوار پایینی',P,22,650,256,40,'repeatX',62,0,0,0,1)
+    ];
+
+    e=makeSection('gwatnam','گواتنام',180,220,G); e.partCode='Gwatnam';
+    e.layers=[
+      layer(e.layers[0],'gwatnam-field','زمینهٔ ظریف',V,35,40,110,140,'grid',15,0,12,14,1),
+      layer(e.layers[0],'gwatnam-pendant-left','آویز چپ',D,46,59,20,122,'repeatY',15,0,0,18,1),
+      layer(e.layers[0],'gwatnam-pendant-right','آویز راست',D,114,59,20,122,'repeatY',15,0,0,18,1),
+      layer(e.layers[0],'gwatnam-medallion','نشان مرکزی',G,75,92,30,30,'contain',30,0,0,0,1),
+      layer(e.layers[0],'gwatnam-left-border','حاشیهٔ هندسی چپ',B,13,29,15,162,'repeatY',42,90,0,0,1),
+      layer(e.layers[0],'gwatnam-right-border','حاشیهٔ هندسی راست',B,152,29,15,162,'repeatY',42,90,0,0,1),
+      layer(e.layers[0],'gwatnam-top-band','لبهٔ بالایی',P,29,9,122,32,'repeatX',58,0,0,0,1),
+      layer(e.layers[0],'gwatnam-bottom-band','لبهٔ پایینی',P,29,179,122,32,'repeatX',58,0,0,0,1)
+    ];
+    return {version:1,name:'نمونهٔ آزمایشی — ترکیب چندنقشی، ابعاد فرضی',sheet:{widthMm:2500,heightMm:1500,autoHeight:false,gutterMm:12,marginMm:10},guides:true,metadata:{sample:true,note:'ترکیب‌ها از چند نقش واقعی کاتالوگ ساخته شده‌اند؛ ابعاد فرضی‌اند و کد/مقیاس هر نقش باید پیش از تولید کالیبره شود.'},sections:[a,b,c,d,e]};
   }
   function createExchange(project,library,assetMap) {
     var manifest=layout(project,library), used=[], motifs=[], assets={}, i,j,k,p,m,href;

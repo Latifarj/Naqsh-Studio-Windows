@@ -173,6 +173,18 @@ test('100 percent scale-test SVG declares exact physical dimensions and a 100 mm
 test('full garment demo includes the five verified part names',()=>{
  const p=E.makeDefaultProject(lib),m=E.layout(p,lib);assert.equal(p.sections.length,5);assert.equal(m.sections.length,8);assert.equal(p.sections.find(s=>s.name==='گواتنام').partCode,'Gwatnam');assert.equal(m.sections.find(s=>s.sourceId==='sleeve').partCode,'Astin');assert.equal(m.sections.find(s=>s.sourceId==='pan').partCode,'Pan');assert.equal(m.sheet.widthMm,2500);assert.equal(m.sheet.heightMm,1500);
 });
+test('detailed starter composes every garment part from several real motif layers',()=>{
+ const catalog=JSON.parse(fs.readFileSync(require.resolve('../assets/library.json'),'utf8'));
+ const p=E.makeDefaultProject(catalog),m=E.layout(p,catalog);
+ for(const section of p.sections){
+  assert(section.layers.length>=5,`${section.name} should have at least five named layers`);
+  assert(new Set(section.layers.map(layer=>layer.code)).size>=3,`${section.name} should combine several motif codes`);
+  for(const layer of section.layers) assert(E.findMotif(catalog,layer.code),`${layer.code} must exist in the catalog`);
+ }
+ assert(m.placementCount>500);
+ assert(p.sections.some(section=>section.layers.some(layer=>layer.code==='B827')),'reference-coded B827 band should be used');
+ assert(!m.warnings.some(warning=>warning.includes('کیفیت مؤثر')),'the sample should avoid known sub-300-PPI placements');
+});
 test('Illustrator bundle is byte-identical to the shared engine',()=>{
  assert.equal(fs.readFileSync(require.resolve('../illustrator/lib/engine.js'),'utf8'),fs.readFileSync(require.resolve('../shared/engine.js'),'utf8'));
 });
