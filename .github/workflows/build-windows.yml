@@ -2,7 +2,7 @@ name: Windows desktop build
 on:
   workflow_dispatch:
   push:
-    branches: [main, master]
+    branches: [main, master, professional-v1]
 permissions:
   contents: read
 jobs:
@@ -55,18 +55,26 @@ jobs:
               Start-Sleep -Seconds 1
             }
             if (-not $ready) { Get-Content backend-error.log; throw "Backend did not become ready" }
-            $body = @{svg='<svg xmlns="http://www.w3.org/2000/svg" width="10mm" height="10mm"><rect width="10" height="10" fill="red"/></svg>'} | ConvertTo-Json
+            $body = @{svg='<svg xmlns="http://www.w3.org/2000/svg" width="10mm" height="10mm"><rect width="10" height="10" fill="red"/></svg>'; expected_width_mm=10; expected_height_mm=10} | ConvertTo-Json
             Invoke-WebRequest 'http://127.0.0.1:18765/api/export/pdf' -Method Post -ContentType 'application/json' -Body $body -OutFile smoke.pdf
             $bytes = [System.IO.File]::ReadAllBytes((Join-Path $PWD 'smoke.pdf'))
             if ([System.Text.Encoding]::ASCII.GetString($bytes,0,4) -ne '%PDF') { throw 'Invalid PDF' }
-            Write-Host 'Packaged backend health and PDF export passed'
+            Write-Host 'Packaged backend health, PDF export and expected page-size check passed'
           } finally { Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue }
+      - name: Create installer checksum
+        shell: pwsh
+        run: |
+          $installer = Get-ChildItem 'release/win/*.exe' | Select-Object -First 1
+          if (-not $installer) { throw 'Windows installer not found' }
+          $hash = (Get-FileHash $installer.FullName -Algorithm SHA256).Hash.ToLower()
+          "$hash  $($installer.Name)" | Set-Content -Encoding ascii "$($installer.FullName).sha256"
       - name: Upload installer artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Naqsh-Studio-Windows-x64
+          name: Naqsh-Studio-1.1.0-beta-Windows-x64
           path: |
             release/win/*.exe
+            release/win/*.sha256
             docs/*ویندوز.fa.md
           if-no-files-found: error
           retention-days: 30

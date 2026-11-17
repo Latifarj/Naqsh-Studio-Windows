@@ -13,7 +13,7 @@ import pytest
 import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from server import Handler, ThreadingHTTPServer, make_pdf, validate_svg
+from server import Handler, ThreadingHTTPServer, make_pdf, validate_svg, verify_pdf_dimensions
 
 
 def image_data():
@@ -36,6 +36,9 @@ def test_physical_pdf_page_size():
     assert len(doc) == 1
     assert doc[0].rect.width == pytest.approx(100 * 72 / 25.4, abs=0.01)
     assert doc[0].rect.height == pytest.approx(50 * 72 / 25.4, abs=0.01)
+    verify_pdf_dimensions(data, 100, 50)
+    with pytest.raises(ValueError, match='برابر نیست'):
+        verify_pdf_dimensions(data, 101, 50)
 
 
 def test_pdf_mirror_use_reference_and_clipping():
@@ -98,7 +101,13 @@ def live_server():
 
 
 def test_health_and_no_source_file_exposure(live_server):
-    assert requests.get(live_server + '/api/health').json()['ok'] is True
+    health = requests.get(live_server + '/api/health').json()
+    assert health['ok'] is True
+    assert health['version'] == '1.1.0-beta'
+    project_store = requests.get(live_server + '/shared/project-store.js')
+    assert project_store.status_code == 200
+    assert b'NaqshProjectStore' in project_store.content
+    assert requests.get(live_server + '/shared/not-allowed.js').status_code == 404
     assert requests.get(live_server + '/server.py').status_code == 404
     assert requests.get(live_server + '/assets/%2e%2e/server.py').status_code == 404
 
@@ -121,12 +130,15 @@ def test_server_refuses_non_loopback_bind_address():
 
 
 def test_export_endpoint(live_server):
-    response = requests.post(live_server + '/api/export/pdf', json={'svg': svg('<rect width="5" height="5"/>')})
+    response = requests.post(live_server + '/api/export/pdf', json={'svg': svg('<rect width="5" height="5"/>'), 'expected_width_mm': 100, 'expected_height_mm': 50})
     assert response.status_code == 200
     assert response.headers['Content-Type'] == 'application/pdf'
     assert response.content.startswith(b'%PDF')
     bad = requests.post(live_server + '/api/export/pdf', json={'svg': svg('<script/>')})
     assert bad.status_code == 400
+    wrong_size = requests.post(live_server + '/api/export/pdf', json={'svg': svg('<rect width="5" height="5"/>'), 'expected_width_mm': 99, 'expected_height_mm': 50})
+    assert wrong_size.status_code == 400
+    assert 'برابر نیست' in wrong_size.json()['error']
     wrong_type = requests.post(live_server + '/api/export/pdf', data='{}', headers={'Content-Type': 'text/plain'})
     assert wrong_type.status_code == 415
 
