@@ -12,7 +12,7 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="brand"><span class="brandmark">ن</span><div><b>نقش‌یار</b><small>استودیو طراحی خودکار نقش لباس</small></div></div>
+    <div class="brand"><span class="brandmark">ن</span><div><b>نقش‌یار</b><small>استودیو چیدمان چندلایهٔ نقش لباس</small></div></div>
     <div class="top-actions"><span id="statusPill" class="pill">در حال آماده‌سازی</span><button id="undoBtn" class="icon-btn" title="واگرد">↶</button><button id="redoBtn" class="icon-btn" title="بازانجام">↷</button><button id="saveBtn" class="btn secondary">ذخیره نسخه</button><button id="productionCheckBtn" class="btn secondary">کنترل تولید</button><button id="exportMenuBtn" class="btn primary">خروجی گرفتن ▾</button></div>
   </header>
   <main class="workspace">
@@ -27,7 +27,7 @@
     </aside>
     <section class="stage-area">
       <div class="stage-toolbar"><div class="tool-group"><button id="fitBtn" class="tool active">برازش ورق</button><button id="zoomOut" class="tool">−</button><span id="zoomLabel">۱۰۰٪</span><button id="zoomIn" class="tool">＋</button></div><div class="tool-group"><label class="toggle"><input id="guidesToggle" type="checkbox" checked><span></span>راهنما</label><button id="gridBtn" class="tool">شبکه</button></div><span id="renderMessage" class="render-message"></span></div>
-      <div id="canvasWrap" class="canvas-wrap"><div class="empty-state" id="emptyState"><strong>فضای طراحی آماده است</strong><p>از کتابخانه نقش انتخاب کنید یا ابتدا اندازهٔ قطعه را وارد کنید.</p><button id="loadSampleBtn" class="small-btn" type="button">بارگذاری نمونهٔ چندنقشی با اندازه‌های فرضی</button></div><div id="svgHost" class="svg-host"></div></div>
+      <div id="canvasWrap" class="canvas-wrap"><div class="empty-state starter-card" id="emptyState" aria-labelledby="starterTitle"><span class="starter-kicker">قالب آمادهٔ درون‌برنامه</span><img class="starter-preview" src="/web/starter-preview.png" alt="پیش‌نمایش هشت قطعه از پنج نوع با حاشیه‌ها، مدالیون‌ها و آویزهای چندلایه" width="900" height="540"><strong id="starterTitle">از یک ترکیب چندنقشی شروع کنید</strong><p>۵ نوع قطعه در ۸ جایگذاری روی شیت؛ هر قطعه ۸ تا ۱۲ لایهٔ مستقل دارد و کد نقش‌ها، تکرارها و حاشیه‌ها در خود پروژه قابل ویرایش‌اند.</p><button id="loadSampleBtn" class="btn primary" type="button">بارگذاری قالب و ویرایش لایه‌ها</button><small class="starter-note">ابعاد آموزشی و فرضی‌اند؛ پیش از تولید واقعی، اندازه و تطبیق تک‌تک نقش‌ها را کالیبره کنید.</small></div><div id="svgHost" class="svg-host"></div></div>
       <div class="stage-footer"><span>واحد داخلی: میلی‌متر</span><span id="placementInfo">۰ جایگذاری</span><span id="warningInfo">—</span></div>
       <details class="warning-details"><summary>جزئیات هشدارها</summary><ul id="warningDetails"></ul></details>
     </section>

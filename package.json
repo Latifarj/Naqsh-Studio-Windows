@@ -1,12 +1,13 @@
 {
   "name": "naqsh-studio",
-  "version": "1.2.0-alpha.1",
+  "version": "1.2.0-alpha.2",
   "private": true,
   "description": "Persian garment motif layout studio and Illustrator extension",
   "main": "desktop/main.cjs",
   "scripts": {
     "start": "python3 server.py",
     "desktop": "electron .",
+    "build:sample": "node tools/build_composed_demo.js",
     "build:server": "pyinstaller --noconfirm --clean --distpath dist/server desktop/server.spec",
     "dist:win": "npm run build:server && electron-builder --win nsis --x64",
     "test": "node tests/engine.test.js && node tests/project-store.test.js && node tests/app-persistence.test.js && node tests/web-unit-labels.test.js && node illustrator/tests/test.js && node tests/desktop-config.test.js && python3 -m pytest -q tests/test_server.py tests/test_catalog_curation.py"
@@ -21,7 +22,7 @@
   },
   "build": {
     "appId": "com.naqshstudio.desktop.alpha",
-    "productName": "Naqsh Studio 1.2 Alpha",
+    "productName": "Naqsh Studio 1.2 Alpha 2",
     "asar": true,
     "directories": {
       "output": "release/win",
@@ -54,7 +55,7 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "نقش‌یار ۱.۲ آلفا"
+      "shortcutName": "نقش‌یار ۱.۲ آلفا ۲"
     }
   }
 }

@@ -101,7 +101,7 @@
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       state.baseLibrary = await response.json();
       state.library = clone(state.baseLibrary);
-      $('#statusPill').textContent = `آلفا ۱.۲ · ${fa(state.library.motifs?.length || 0)} نقش`;
+      $('#statusPill').textContent = `۱.۲ آلفا ۲ · ${fa(state.library.motifs?.length || 0)} نقش`;
       $('#statusPill').classList.add('ok');
     } catch (error) {
       $('#statusPill').textContent = 'خطا در بارگذاری کتابخانه';
@@ -572,7 +572,7 @@
     $('#guidesToggle').onchange = e => { state.project.guides = e.target.checked; commit(); };
     $('#librarySearch').oninput = () => { state.visible = 24; renderLibrary(); }; $('#clearSearch').onclick = () => { $('#librarySearch').value = ''; renderLibrary(); }; $('#loadMoreBtn').onclick = () => { state.visible += 24; renderLibrary(); };
     $('#addSectionBtn').onclick = () => { remember(); const section = { id: uid('s'), name: 'قطعهٔ سفارشی', partKind: 'custom', partCode: '', labelFa: 'قطعهٔ سفارشی', widthMm: 350, heightMm: 550, quantity: 1, shape: 'rect', topWidthMm: 280, neckWidthMm: 90, neckDepthMm: 100, mirror: false, rotateOnSheet: false, layers: [] }; state.project.sections.push(section); state.selectedSection = section.id; state.selectedLayer = null; commit(); };
-    $('#loadSampleBtn').onclick = () => { remember(); state.project = engine().makeDefaultProject(state.library); selectFirst(); commit(); toast('نمونهٔ چندنقشی بارگذاری شد؛ لایه‌های هر قطعه جداگانه ویرایش می‌شوند. اندازه‌ها فرضی‌اند.'); };
+    $('#loadSampleBtn').onclick = () => { remember(); state.project = engine().makeDefaultProject(state.library); selectFirst(); commit(); toast('قالب چندنقشی روی پروژه بارگذاری شد؛ با واگرد بازگردید. اندازه‌ها فرضی‌اند.'); };
     $('#saveBtn').onclick = () => saveLocal(true); $('#newProjectBtn').onclick = async () => { if (window.confirm('پروژهٔ فعلی حفظ می‌شود و یک پروژهٔ خالی تازه ساخته خواهد شد. ادامه؟')) { if (!await saveLocal(false)) return; state.library = clone(state.baseLibrary); state.customAssets = {}; state.history = []; state.future = []; state.project = makeFallback(); state.projectId = uid('project-'); selectFirst(); commit(); } };
     $('#undoBtn').onclick = () => { if (!state.history.length) return; state.future.push(clone(state.project)); state.project = state.history.pop(); selectFirst(); renderAll(); scheduleSave(); }; $('#redoBtn').onclick = () => { if (!state.future.length) return; state.history.push(clone(state.project)); state.project = state.future.pop(); selectFirst(); renderAll(); scheduleSave(); };
     $('#fitBtn').onclick = () => fitCanvas(); $('#zoomIn').onclick = () => zoomBy(.1); $('#zoomOut').onclick = () => zoomBy(-.1); $('#gridBtn').onclick = () => $('#canvasWrap').classList.toggle('no-grid');

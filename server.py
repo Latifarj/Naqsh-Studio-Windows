@@ -497,7 +497,7 @@ def verify_pdf_dimensions(pdf: bytes, expected_width_mm: float, expected_height_
 
 
 class Handler(SimpleHTTPRequestHandler):
-    server_version = 'NaqshStudio/1.2.0-alpha.1'
+    server_version = 'NaqshStudio/1.2.0-alpha.2'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(ROOT), **kwargs)
@@ -539,7 +539,7 @@ class Handler(SimpleHTTPRequestHandler):
         if '\x00' in path or '\\' in path or '%' in path or '..' in Path(path).parts:
             return self.send_error(404)
         if path == '/api/health':
-            return self.json_response(200, {'ok': True, 'app': 'naqsh-studio', 'version': '1.2.0-alpha.1', 'pdf': True, 'printProfile': PRINT_PROFILE})
+            return self.json_response(200, {'ok': True, 'app': 'naqsh-studio', 'version': '1.2.0-alpha.2', 'pdf': True, 'printProfile': PRINT_PROFILE})
         if path in {'/', '/index.html'}:
             self.path = '/web/index.html'
         elif not (path.startswith('/web/') or path.startswith('/assets/') or path in {'/shared/engine.js', '/shared/project-store.js'}):

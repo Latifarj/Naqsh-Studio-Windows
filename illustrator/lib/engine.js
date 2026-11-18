@@ -1,4 +1,4 @@
-/* Naqsh Studio geometry engine v1.2.0-alpha.1 — millimetres, y-down.
+/* Naqsh Studio geometry engine v1.2.0-alpha.2 — millimetres, y-down.
  * ES3-compatible UMD so the same calculations can run in browsers and ExtendScript.
  * Catalog raster art remains raster. No hidden resampling or vector tracing.
  */
@@ -391,7 +391,7 @@
       if(!href || !/^data:image\//i.test(href)){throw new Error('برای پروژهٔ قابل‌انتقال، تصویر «'+used[i]+'» باید جاسازی شود.');}
       safeHref(href);assets[m.code]=href;motifs.push(copy(m));
     }
-    return {format:'naqsh-project',version:2,schemaVersion:2,appVersion:'1.2.0-alpha.1',createdAt:new Date().toISOString(),updatedAt:new Date().toISOString(),project:copy(project),library:{version:1,motifs:motifs},manifest:manifest,assets:assets};
+    return {format:'naqsh-project',version:2,schemaVersion:2,appVersion:'1.2.0-alpha.2',createdAt:new Date().toISOString(),updatedAt:new Date().toISOString(),project:copy(project),library:{version:1,motifs:motifs},manifest:manifest,assets:assets};
   }
   function productionCheck(project, library, manifest) {
     var errors = [], warnings = [], used = {}, motifs = [], i, j, k, section, layer, motif, code, list = library && library.motifs ? library.motifs : [], ppi, minPpi, placements;
@@ -450,5 +450,5 @@
     parts.push('<text x="60" y="39" text-anchor="middle" font-family="sans-serif" font-size="2.6">خط بین ۰ و ۱۰۰ باید دقیقاً ۱۰۰ میلی‌متر باشد · چاپ بدون Fit to page</text></svg>');
     return parts.join('\n');
   }
-  return {version:'1.2.0-alpha.1',PRINT_PROFILE:PRINT_PROFILE,MAX_PLACEMENTS:MAX_PLACEMENTS,normalizeCode:normalizeCode,findMotif:findMotif,getGarmentPart:getGarmentPart,garmentParts:garmentParts,validateProject:validateProject,layout:layout,renderSvg:renderSvg,makeDefaultProject:makeDefaultProject,makeSection:makeSection,createExchange:createExchange,shapePoints:shapePoints,productionCheck:productionCheck,renderPrintScaleSvg:renderPrintScaleSvg};
+  return {version:'1.2.0-alpha.2',PRINT_PROFILE:PRINT_PROFILE,MAX_PLACEMENTS:MAX_PLACEMENTS,normalizeCode:normalizeCode,findMotif:findMotif,getGarmentPart:getGarmentPart,garmentParts:garmentParts,validateProject:validateProject,layout:layout,renderSvg:renderSvg,makeDefaultProject:makeDefaultProject,makeSection:makeSection,createExchange:createExchange,shapePoints:shapePoints,productionCheck:productionCheck,renderPrintScaleSvg:renderPrintScaleSvg};
 }));

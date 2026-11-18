@@ -66,6 +66,7 @@ jobs:
           python -c "import server; from PIL import features; assert features.check('raqm'), 'RAQM/FriBidi is required for Persian labels'"
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           npm ci
+          npm run build:sample
           npm test
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           npm run dist:win -- --publish never

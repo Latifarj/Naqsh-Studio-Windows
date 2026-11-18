@@ -285,7 +285,7 @@ async function createWindow() {
 }
 
 app.whenReady().then(async () => {
-  app.setName('Naqsh Studio 1.2 Alpha');
+  app.setName('Naqsh Studio 1.2 Alpha 2');
   app.setPath('userData', path.join(app.getPath('appData'), 'Naqsh Studio 1.2 Alpha'));
   app.setAppUserModelId('com.naqshstudio.desktop.alpha');
   installDownloadDialog();

@@ -24,3 +24,15 @@ html,body{width:100%;min-width:0;overflow:hidden}
 .section-fields>label:nth-child(3) input{direction:rtl;width:100%;border:1px solid var(--line);border-radius:5px;padding:5px;font:inherit}
 .section-fields>label:nth-child(3) .section-name{grid-column:auto}
 .section-fields>label:nth-child(-n+3) input:read-only{background:#f5f0e8;color:var(--muted)}
+
+
+/* Alpha 2: in-app multi-motif starter card */
+.starter-card{z-index:2;width:min(430px,calc(100% - 28px));max-height:calc(100% - 24px);overflow:auto;padding:16px 18px;background:rgba(255,253,249,.98);border:1px solid var(--line);border-radius:13px;box-shadow:0 14px 40px #302b2026;text-align:center;display:grid;justify-items:center;gap:9px}
+.starter-card .starter-kicker{color:var(--teal);font-size:10px;font-weight:bold;letter-spacing:.02em}
+.starter-card .starter-preview{display:block;width:min(100%,360px);height:auto;aspect-ratio:5/3;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:7px}
+.starter-card strong{font-size:16px;line-height:1.5}
+.starter-card p{margin:0;font-size:11px;line-height:1.8;color:var(--muted)}
+.starter-card .btn{width:100%;font-size:12px;font-weight:bold;padding:9px 12px}
+.starter-card .starter-note{display:block;font-size:10px;line-height:1.7;color:#8b6c36}
+@media(max-height:620px){.starter-card{max-height:calc(100% - 12px);padding:9px 12px;gap:5px}.starter-card .starter-preview{width:min(100%,240px)}.starter-card strong{font-size:14px}}
+@media(max-width:760px){.starter-card{width:min(420px,calc(100% - 22px));max-height:calc(100% - 16px)}.starter-card .starter-preview{width:min(100%,300px)}}

@@ -23,6 +23,10 @@ function legacyProject(name = 'پروژه قدیمی') {
   assert.equal(migrated.project.status, 'draft');
   assert.ok(migrated.createdAt);
 
+  const alphaOne = ProjectStore.migrate({ format: 'naqsh-project', schemaVersion: 2, appVersion: '1.2.0-alpha.1', project: legacyProject('پروژهٔ نسخهٔ قبلی') });
+  assert.equal(alphaOne.appVersion, '1.2.0-alpha.1');
+  assert.equal(ProjectStore.makeEnvelope(alphaOne.project).appVersion, '1.2.0-alpha.2');
+
   const exchange = ProjectStore.migrate({ format: 'naqsh-project', version: 1, project: legacyProject('تبادل'), library: { motifs: [{ code: 'P1' }] }, assets: { P1: 'data:image/png;base64,AA==' } });
   assert.equal(exchange.schemaVersion, 2);
   assert.equal(exchange.library.motifs[0].code, 'P1');
